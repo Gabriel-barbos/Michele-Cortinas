@@ -17,7 +17,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //* Auto increment mysql
     @Column(name = "id", unique = true)
-    @NotBlank //* Veririca notempty e notnull
+    @NotBlank //* Verifica notEmpty e notnull
     private Long id;
 
     @Column(name = "nome", length = 50, nullable = false)
