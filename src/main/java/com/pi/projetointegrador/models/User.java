@@ -34,6 +34,12 @@ public class User {
     @Size(min = 2, max = 30)
     private String senha;
 
+    @Column (name = "telefone", length = 11, nullable = false)
+    @NotBlank
+    @Size(min = 11, max = 11)
+    private int telefone;
+
+
     public User() {
     }
 
@@ -74,6 +80,14 @@ public class User {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public int getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(int telefone) {
+        this.telefone = telefone;
     }
 
     @Override
