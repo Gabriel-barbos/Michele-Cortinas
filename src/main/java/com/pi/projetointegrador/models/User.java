@@ -9,10 +9,11 @@ import java.util.Objects;
 
 @Entity
 @Table(name = User.TABLE_NAME)
-
 public class User {
-    public static final String TABLE_NAME = "user";
 
+    public interface CreateUser{}
+    public interface UpdateUser{}
+    public static final String TABLE_NAME = "user";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //* Auto increment mysql
@@ -21,22 +22,22 @@ public class User {
     private Long id;
 
     @Column(name = "nome", length = 50, nullable = false)
-    @NotBlank
+    @NotBlank(groups = {CreateUser.class, UpdateUser.class})
     private String nome;
 
     @Column(name = "email", length = 100, nullable = false,unique = true)
-    @NotBlank
+    @NotBlank(groups = {CreateUser.class,UpdateUser.class})
     private String email;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) //* valdação
     @Column(name = "senha", length = 50, nullable = false)
-    @NotBlank
-    @Size(min = 2, max = 30)
+    @NotBlank(groups = {CreateUser.class,UpdateUser.class})
+    @Size(groups = {CreateUser.class,UpdateUser.class}, min = 2, max = 30)
     private String senha;
 
     @Column (name = "telefone", length = 11, nullable = false)
-    @NotBlank
-    @Size(min = 11, max = 11)
+    @NotBlank(groups = {CreateUser.class,UpdateUser.class})
+    @Size(groups = {CreateUser.class,UpdateUser.class},min = 11, max = 11)
     private int telefone;
 
 
