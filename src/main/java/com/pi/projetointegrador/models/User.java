@@ -1,6 +1,7 @@
 package com.pi.projetointegrador.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -18,37 +19,37 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //* Auto increment mysql
     @Column(name = "id", unique = true)
-    @NotBlank //* Verifica notEmpty e notnull
     private Long id;
 
     @Column(name = "nome", length = 50, nullable = false)
-    @NotBlank(groups = {CreateUser.class, UpdateUser.class})
+//    @NotBlank(groups = {CreateUser.class, UpdateUser.class})
     private String nome;
 
     @Column(name = "email", length = 100, nullable = false,unique = true)
-    @NotBlank(groups = {CreateUser.class,UpdateUser.class})
+//    @NotBlank(groups = {CreateUser.class,UpdateUser.class})
     private String email;
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) //* valdação
+    @JsonProperty(access = Access.WRITE_ONLY) //* validação
     @Column(name = "senha", length = 50, nullable = false)
-    @NotBlank(groups = {CreateUser.class,UpdateUser.class})
-    @Size(groups = {CreateUser.class,UpdateUser.class}, min = 2, max = 30)
+//    @NotBlank(groups = {CreateUser.class,UpdateUser.class})
+//    @Size(groups = {CreateUser.class,UpdateUser.class}, min = 2, max = 30)
     private String senha;
 
-    @Column (name = "telefone", length = 11, nullable = false)
-    @NotBlank(groups = {CreateUser.class,UpdateUser.class})
-    @Size(groups = {CreateUser.class,UpdateUser.class},min = 11, max = 11)
+    @Column (name = "telefone",  nullable = true)
+//    @NotBlank(groups = {CreateUser.class,UpdateUser.class})
+//    @Size(groups = {CreateUser.class,UpdateUser.class},min = 11, max = 11)
     private int telefone;
 
 
     public User() {
     }
 
-    public User(Long id, String nome, String email, String senha) {
+    public User(Long id, String nome, String email, String senha,int telefone) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
+        this.telefone = telefone;
     }
 
     public Long getId() {
