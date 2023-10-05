@@ -1,6 +1,6 @@
 const { sequelize } = require("../config/db");
 
-module.exports = (sequelize, DataTypes) =>{
+module.exports = (sequelize) =>{
 
     const Cliente = sequelize.define("clientes",{
         nome:{
@@ -21,6 +21,6 @@ module.exports = (sequelize, DataTypes) =>{
         }
     })
 
-    return User
+    return Cliente
 
 }
