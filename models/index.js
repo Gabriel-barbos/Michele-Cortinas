@@ -4,10 +4,6 @@ const models = {};
 
 models.cliente = require('./Cliente.js')(db)
 
-
-sequelize.sync({force:false}).then(()=>{
-    console.log('syncou')
-}
-)
+sequelize.sync({ force: false });
 
 module.exports = models
