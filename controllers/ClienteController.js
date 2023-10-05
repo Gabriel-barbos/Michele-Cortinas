@@ -1,9 +1,6 @@
-
-
-
-
-
-
+function login(req, res) {
+    res.send("Login funcionando")
+}
 
 const teste = require('../models')
 
@@ -67,3 +64,5 @@ module.exports ={
     updateCliente,
     deleteCliente,
 }
+
+module.exports = { login }
