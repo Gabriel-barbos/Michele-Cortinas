@@ -3,22 +3,21 @@ const router = express.Router()
 
 const controller = require("../controllers/ClienteController")
 
-router.post("/login", controller.login)
-
+router.post("/auth/login", controller.login)
 
 //* Create cliente
-router.post('/register', controller.createCliente)
+router.post('/', controller.createCliente)
 
-// //* exibir todos os clientes
-// router.get('/allClientes',controller.getAllCliente)
+//* exibir todos os clientes
+router.get('/',controller.getAllCliente)
 
-// //* Read
-// router.get('/:id:', controller.getOneCliente)
+//* Read
+router.get('/:id', controller.getOneCliente)
 
-// //* update
-// router.put('/:id',controller.updateCliente)
+//* update
+router.put('/:id',controller.updateCliente)
 
-// //* delete
-// router.get('/:id',controller.deleteCliente)
+//* delete
+router.get('/:id',controller.deleteCliente)
 
 module.exports = router

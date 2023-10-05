@@ -1,8 +1,8 @@
 const Cliente = require('../models').cliente
 
-const login =  (req, res) => {
+const login = async (req, res) => {
     const email = req.body.email
-    const password = req.body.password
+    const password = req.body.senha
 
     if(!email){
         res.status(422).json({msg: "O email é obrigatório"})
@@ -12,11 +12,11 @@ const login =  (req, res) => {
         res.status(422).json({msg: "Senha inválida"})
     }
 
-    const cliente = Cliente.findOne({ where: { email: email } })
+    const cliente = await Cliente.findOne({ where: { email: email } })
     if(cliente){
-        res.send("Existe um cliente")
+        res.status(200).json({msg: "Existe um cliente"})
     } else {
-        res.send("Não existe um cliente")
+        res.status(500).json({msg: "Não encontrado"})
     }
 
 }
