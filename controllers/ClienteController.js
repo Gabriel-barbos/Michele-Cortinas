@@ -1,6 +1,6 @@
 const Cliente = require('../models').cliente
 
-async function login(req, res) {
+const login =  (req, res) => {
     const email = req.body.email
     const password = req.body.password
 
@@ -18,6 +18,7 @@ async function login(req, res) {
     } else {
         res.send("Não existe um cliente")
     }
+
 }
 
 // Create
@@ -71,11 +72,10 @@ const deleteCliente = async(req,res)=>{
 }
 
 module.exports ={
+    login,
     createCliente,
     getAllCliente,
     getOneCliente,
     updateCliente,
     deleteCliente,
 }
-
-module.exports = { login }
