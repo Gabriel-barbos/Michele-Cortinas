@@ -6,7 +6,7 @@ const controller = require("../controllers/ClienteController")
 router.post("/auth/login", controller.login)
 
 //* Create cliente
-router.post('/', controller.createCliente)
+router.post('/auth/register', controller.register)
 
 //* exibir todos os clientes
 router.get('/',controller.getAllCliente)

@@ -1,37 +1,40 @@
+const bcrypt = require('bcrypt');
+
 const Cliente = require('../models').cliente
 
 const login = async (req, res) => {
     const email = req.body.email
-    const password = req.body.senha
+    const senha = req.body.senha
 
     if(!email){
         res.status(422).json({msg: "O email é obrigatório"})
     }
 
-    if(!password || password.length < 5){
-        res.status(422).json({msg: "Senha inválida"})
+    if(!senha || senha.length < 5){
+        res.status(422).json({msg: "senha inválida"})
     }
 
     const cliente = await Cliente.findOne({ where: { email: email } })
-   
-    if(!cliente) res.status(500).json({msg: "Cliente não encontrado"})
+    if(!cliente) { res.status(500).json({msg: "Cliente não encontrado"}) }
+
+
+    const checkSenha = await bcrypt.compare(senha, cliente.senha);
+    if(!checkSenha) { res.status(422).json({msg: "Senha incorreta"}) }
 
 }
 
 // Create
-const createCliente = async (req, res)=>{
+const register = async (req, res)=>{
 
     let info = {
         nome: req.body.nome,
         sobrenome: req.body.sobrenome,
         email: req.body.email,
-        senha: req.body.senha,
+        senha: await bcrypt.hash(req.body.senha, 10),
     }
 
     const cliente = await Cliente.create(info)
     res.status(200).send(cliente)
-
-
 }
 
 // Pegar todos os clientes
@@ -44,14 +47,13 @@ const getAllCliente = async (req, res)=>{
 
 // Pegar um cliente
 const getOneCliente = async (req, res)=>{
-    let id = req.param.id
+    let id = req.params.id
     let clientes = await Cliente.findOne({where: {id: id}})
     res.status(200).send(clientes)
 }
 
 
 // Update Cliente
-
 const updateCliente = async (req, res) => {
     let id = req.params.id
 
@@ -63,15 +65,14 @@ const updateCliente = async (req, res) => {
 
 // delete cliente por id
 const deleteCliente = async (req, res)=>{
-    let id = req.param.id
+    let id = req.params.id
     await Cliente.destroy({ where: { id: id}})
     res.status(200).send("produtos deletados")
 }
 
 module.exports ={
     login,
-    
-    createCliente,
+    register,
     getAllCliente,
     getOneCliente,
     updateCliente,
