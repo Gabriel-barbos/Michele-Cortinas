@@ -9,16 +9,16 @@ router.post("/login", controller.login)
 //* Create cliente
 router.post('/register', controller.createCliente)
 
-// //* exibir todos os clientes
-// router.get('/allClientes',controller.getAllCliente)
+//* exibir todos os clientes
+router.get('/allClientes',controller.getAllCliente)
 
-// //* Read
-// router.get('/:id:', controller.getOneCliente)
+//* Read
+router.get('/:id', controller.getOneCliente)
 
-// //* update
-// router.put('/:id',controller.updateCliente)
+//* update
+router.put('/:id',controller.updateCliente)
 
-// //* delete
-// router.get('/:id',controller.deleteCliente)
+//* delete
+router.delete('/:id',controller.deleteCliente)
 
 module.exports = router
