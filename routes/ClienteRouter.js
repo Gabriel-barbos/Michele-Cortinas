@@ -3,7 +3,7 @@ const router = express.Router()
 
 const clienteController = require("../controllers/ClienteController")
 
-router.get("/login", clienteController.login)
+router.post("/login", clienteController.login)
 
 
 //* Create cliente

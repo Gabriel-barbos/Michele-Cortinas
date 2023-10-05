@@ -1,11 +1,24 @@
-function login(req, res) {
-    res.send("Login funcionando")
+const Cliente = require('../models').cliente
+
+async function login(req, res) {
+    const email = req.body.email
+    const password = req.body.password
+
+    if(!email){
+        res.status(422).json({msg: "O email é obrigatório"})
+    }
+
+    if(!password || password.length < 5){
+        res.status(422).json({msg: "Senha inválida"})
+    }
+
+    const cliente = Cliente.findOne({ where: { email: email } })
+    if(cliente){
+        res.send("Existe um cliente")
+    } else {
+        res.send("Não existe um cliente")
+    }
 }
-
-const teste = require('../models')
-
-const Cliente =  modelCliente.cliente
-
 
 // Create
 const createCliente = async(req,res)=>{
