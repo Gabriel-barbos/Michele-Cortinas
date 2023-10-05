@@ -13,16 +13,13 @@ const login = async (req, res) => {
     }
 
     const cliente = await Cliente.findOne({ where: { email: email } })
-    if(cliente){
-        res.status(200).json({msg: "Existe um cliente"})
-    } else {
-        res.status(500).json({msg: "Não encontrado"})
-    }
+   
+    if(!cliente) res.status(500).json({msg: "Cliente não encontrado"})
 
 }
 
 // Create
-const createCliente = async(req,res)=>{
+const createCliente = async (req, res)=>{
 
     let info = {
         nome: req.body.nome,
@@ -39,14 +36,14 @@ const createCliente = async(req,res)=>{
 
 // Pegar todos os clientes
 
-const getAllCliente = async(req,res)=>{
+const getAllCliente = async (req, res)=>{
     let clientes = await Cliente.findAll({})
     res.status(200).send(clientes)
 }
 
 
 // Pegar um cliente
-const getOneCliente = async(req,res)=>{
+const getOneCliente = async (req, res)=>{
     let id = req.param.id
     let clientes = await Cliente.findOne({where: {id: id}})
     res.status(200).send(clientes)
@@ -55,7 +52,7 @@ const getOneCliente = async(req,res)=>{
 
 // Update Cliente
 
-const updateCliente = async (req,res) => {
+const updateCliente = async (req, res) => {
     let id = req.params.id
 
     const cliente = await Cliente.update(req.body,{where: {id:id}})
@@ -65,7 +62,7 @@ const updateCliente = async (req,res) => {
 
 
 // delete cliente por id
-const deleteCliente = async(req,res)=>{
+const deleteCliente = async (req, res)=>{
     let id = req.param.id
     await Cliente.destroy({ where: { id: id}})
     res.status(200).send("produtos deletados")
@@ -73,6 +70,7 @@ const deleteCliente = async(req,res)=>{
 
 module.exports ={
     login,
+    
     createCliente,
     getAllCliente,
     getOneCliente,
