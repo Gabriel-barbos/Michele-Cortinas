@@ -11,6 +11,13 @@ async function login(req, res) {
     if(!password || password.length < 5){
         res.status(422).json({msg: "Senha inválida"})
     }
+
+    const cliente = Cliente.findOne({ where: { email: email } })
+    if(cliente){
+        res.send("Existe um cliente")
+    } else {
+        res.send("Não existe um cliente")
+    }
 }
 
 // Create

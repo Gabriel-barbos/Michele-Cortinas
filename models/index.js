@@ -1,5 +1,7 @@
 const { db } = require("../config/db");
 
-modelCliente.cliente = require('./Cliente.js')(db)
+const models = {};
 
-module.exports = modelCliente
+models.cliente = require('./Cliente.js')(db)
+
+module.exports = models
