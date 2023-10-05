@@ -1,3 +1,5 @@
+const Cliente = require('../models').cliente
+
 async function login(req, res) {
     const email = req.body.email
     const password = req.body.password
@@ -10,11 +12,6 @@ async function login(req, res) {
         res.status(422).json({msg: "Senha inválida"})
     }
 }
-
-const teste = require('../models')
-
-const Cliente =  modelCliente.cliente
-
 
 // Create
 const createCliente = async(req,res)=>{
