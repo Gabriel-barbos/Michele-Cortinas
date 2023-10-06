@@ -1,4 +1,7 @@
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken')
+
+require("dotenv").config();
 
 const Cliente = require('../models').cliente
 
@@ -20,6 +23,18 @@ const login = async (req, res) => {
 
     const checkSenha = await bcrypt.compare(senha, cliente.senha);
     if(!checkSenha) { res.status(422).json({msg: "Senha incorreta"}) }
+
+    try {
+        const secret = process.env.JWT_SECRET
+        const token = jwt.sign({
+            id: cliente.id
+        }, secret)
+
+        res.status(200).json({msg: "Autenticação efetuada com sucesso", token})
+    } catch(err) {
+        console.log(err)
+        res.status(500).json({msg: "Ocorreu um erro na autenticação"})
+    }
 
 }
 
@@ -50,12 +65,6 @@ const getOneCliente = async (req, res) => {
   let cliente = await Cliente.findOne({ where: { id: id } });
   res.status(200).send(cliente);
 };
-const getOneCliente = async (req, res)=>{
-    let id = req.params.id
-    let clientes = await Cliente.findOne({where: {id: id}})
-    res.status(200).send(clientes)
-}
-
 
 // Update Cliente
 const updateCliente = async (req, res) => {
