@@ -6,9 +6,9 @@ const login = async (req, res) => {
     const email = req.body.email
     const senha = req.body.senha
 
-    if(!email){
-        res.status(422).json({msg: "O email é obrigatório"})
-    }
+  if (!email) {
+    res.status(422).json({ msg: "O email é obrigatório" });
+  }
 
     if(!senha || senha.length < 5){
         res.status(422).json({msg: "senha inválida"})
@@ -39,13 +39,17 @@ const register = async (req, res)=>{
 
 // Pegar todos os clientes
 
-const getAllCliente = async (req, res)=>{
-    let clientes = await Cliente.findAll({})
-    res.status(200).send(clientes)
-}
-
+const getAllCliente = async (req, res) => {
+  let clientes = await Cliente.findAll();
+  res.status(200).send(clientes);
+};
 
 // Pegar um cliente
+const getOneCliente = async (req, res) => {
+  let id = req.params.id;
+  let cliente = await Cliente.findOne({ where: { id: id } });
+  res.status(200).send(cliente);
+};
 const getOneCliente = async (req, res)=>{
     let id = req.params.id
     let clientes = await Cliente.findOne({where: {id: id}})
@@ -55,13 +59,11 @@ const getOneCliente = async (req, res)=>{
 
 // Update Cliente
 const updateCliente = async (req, res) => {
-    let id = req.params.id
+  let id = req.params.id;
 
-    const cliente = await Cliente.update(req.body,{where: {id:id}})
-    res.status(200).send(cliente)
-
-}
-
+  const cliente = await Cliente.update(req.body, { where: { id: id } });
+  res.status(200).send(cliente);
+};
 
 // delete cliente por id
 const deleteCliente = async (req, res)=>{
