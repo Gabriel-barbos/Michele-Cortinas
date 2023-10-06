@@ -7,7 +7,7 @@ const Cliente = require('../models').cliente
 
 const login = async (req, res) => {
     const email = req.body.email
-    const senha = req.body.senha
+    const senha = req.body.password
 
   if (!email) {
     res.status(422).json({ msg: "O email é obrigatório" });
@@ -29,7 +29,7 @@ const login = async (req, res) => {
         const token = jwt.sign({
             id: cliente.id
         }, secret)
-
+        
         res.status(200).json({msg: "Autenticação efetuada com sucesso", token})
     } catch(err) {
         console.log(err)
@@ -38,6 +38,27 @@ const login = async (req, res) => {
 
 }
 
+function checkToken(req,res,next){
+  const authHeader = req.headers['authorization']
+  const token = authHeader && authHeader.split(' ')[1]
+
+  if(!token){
+    return res.status(401).json({ msg: 'Acesso negado'})
+  }
+
+  try{
+
+    const secret = process.env.JWT_SECRET
+
+    jwt.verify(token,secret)
+
+    next()
+  }catch(error){
+    res.status(400).json({msg: "Token inválido! Caiu no catch"})
+  }
+}
+
+
 // Create
 const register = async (req, res)=>{
 
@@ -45,7 +66,7 @@ const register = async (req, res)=>{
         nome: req.body.nome,
         sobrenome: req.body.sobrenome,
         email: req.body.email,
-        senha: await bcrypt.hash(req.body.senha, 10),
+        senha: await bcrypt.hash(req.body.password, 10),
     }
 
     const cliente = await Cliente.create(info)
@@ -88,4 +109,5 @@ module.exports ={
     getOneCliente,
     updateCliente,
     deleteCliente,
+    checkToken
 }

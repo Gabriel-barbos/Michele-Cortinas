@@ -1,0 +1,85 @@
+button{
+    cursor: pointer;
+}
+
+.auth-header{
+    margin-bottom: 20px;
+}
+
+.auth-header-title{
+    font-weight: 500;
+    margin: 0;
+}
+
+.auth-body{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.auth-header-description{
+    color: #00000046;
+}
+
+.auth-form{
+    padding: 60px;
+    border-radius: 15px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    box-shadow: 0px 4px 90px 0px rgba(0, 0, 0, 0.04);
+    width: 30vw;
+}
+
+.auth-input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.auth-input {
+    padding: 20px 25px;
+    box-sizing: border-box;
+    outline: none;
+    background: #EEEEEE;
+    border: none;
+    width: 100%;
+    border: 1px solid #0094FF00;
+    transition: .2s ease border;
+}
+
+.auth-input:focus{
+    border: 1px solid #0094FF;
+}
+
+
+.auth-input::placeholder{
+    color: #00000033;
+}
+
+.auth-send-button{
+    background: #131313;
+    font-size: 1rem;
+    padding: 15px 20px;
+    box-sizing: border-box;
+    color: #fff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.auth-alt-button{
+    color: #0094FF;
+}
+
+@media screen and (max-width: 768px) {
+    .auth-form {
+        width: 70vw;
+        padding: 40px;
+    }
+}
