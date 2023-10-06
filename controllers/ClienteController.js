@@ -9,9 +9,9 @@ const login = async (req, res) => {
     const email = req.body.email
     const senha = req.body.password
 
-  if (!email) {
-    res.status(422).json({ msg: "O email é obrigatório" });
-  }
+    if (!email) {
+        res.status(422).json({ msg: "O email é obrigatório" });
+    }
 
     if(!senha || senha.length < 5){
         res.status(422).json({msg: "senha inválida"})
@@ -21,21 +21,11 @@ const login = async (req, res) => {
     if(!cliente) { res.status(500).json({msg: "Cliente não encontrado"}) }
 
 
+
     const checkSenha = await bcrypt.compare(senha, cliente.senha);
     if(!checkSenha) { res.status(422).json({msg: "Senha incorreta"}) }
 
-    try {
-        const secret = process.env.JWT_SECRET
-        const token = jwt.sign({
-            id: cliente.id
-        }, secret)
-        
-        res.status(200).json({msg: "Autenticação efetuada com sucesso", token})
-    } catch(err) {
-        console.log(err)
-        res.status(500).json({msg: "Ocorreu um erro na autenticação"})
-    }
-
+    console.log(req.session)
 }
 
 function checkToken(req,res,next){
@@ -53,15 +43,14 @@ function checkToken(req,res,next){
     jwt.verify(token,secret)
 
     next()
-  }catch(error){
+  } catch(error){
     res.status(400).json({msg: "Token inválido! Caiu no catch"})
   }
 }
 
 
 // Create
-const register = async (req, res)=>{
-
+const register = async (req, res) => {
     let info = {
         nome: req.body.nome,
         sobrenome: req.body.sobrenome,
@@ -69,8 +58,13 @@ const register = async (req, res)=>{
         senha: await bcrypt.hash(req.body.password, 10),
     }
 
+    const alreadyRegistered = await Cliente.findOne({where: {email: info.email}})
+
+    if(alreadyRegistered) res.status(422).json({msg: "E-mail já cadastrado"})
+
     const cliente = await Cliente.create(info)
-    res.status(200).send(cliente)
+
+    res.redirect("/entrar")
 }
 
 // Pegar todos os clientes
