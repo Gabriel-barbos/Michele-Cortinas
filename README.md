@@ -7,4 +7,5 @@
 1. Execute o comando `npm i` para baixar as dependências do projeto
 2. Execute o comando `npm run dev` para iniciar o servidor
 > ## Enfrentando problemas com o Nodemon?
-> Execute o comando `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser` no *Windows PowerShell*
+> 1. Execute o comando `npm install -g nodemon` no terminal
+> 2. Execute o comando `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser` no *Windows PowerShell*
