@@ -12,12 +12,12 @@ router.post('/auth/register', controller.register)
 router.get('/',controller.getAllCliente)
 
 //* Read
-router.get('/:id', controller.getOneCliente)
+router.get('/:id',controller.checkToken, controller.getOneCliente)
 
 //* update
-router.put('/:id',controller.updateCliente)
+router.put('/:id',controller.checkToken,controller.updateCliente)
 
 //* delete
-router.get('/:id',controller.deleteCliente)
+router.delete('/:id',controller.checkToken,controller.deleteCliente)
 
 module.exports = router
