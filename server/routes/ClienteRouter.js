@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const controller = require("../controllers/ClienteController")
+const { authentication } = require("../middlewares/AuthenticationMiddleWare")
 
 router.post("/auth/login", controller.login)
 
@@ -12,12 +13,12 @@ router.post('/auth/register', controller.register)
 router.get('/',controller.getAllCliente)
 
 //* Read
-router.get('/:id',controller.checkToken, controller.getOneCliente)
+router.get('/:id', authentication, controller.getOneCliente)
 
 //* update
-router.put('/:id',controller.checkToken,controller.updateCliente)
+router.put('/:id', authentication ,controller.updateCliente)
 
 //* delete
-router.delete('/:id',controller.checkToken,controller.deleteCliente)
+router.delete('/:id',authentication,controller.deleteCliente)
 
 module.exports = router
