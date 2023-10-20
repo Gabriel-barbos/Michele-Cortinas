@@ -40,6 +40,15 @@
     text-align: center;
   }
 
+  .registro-title {
+    position:relative;
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    line-height: 1.2;
+    text-align: center;
+  }
+
   .login-form-subtitle {
     position:relative;
     width: 500px;

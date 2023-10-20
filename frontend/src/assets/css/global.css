@@ -1,0 +1,11 @@
+:root{
+    --primary-font: 'Inter', sans-serif;
+    --primary-color: #000;
+  }
+
+  body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--primary-font);
+}
