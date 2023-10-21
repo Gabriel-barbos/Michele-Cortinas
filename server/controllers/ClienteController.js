@@ -36,6 +36,7 @@ const login = async (req, res) => {
         res.status(500).json({msg: "Ocorreu um erro na autenticação"})
     }
 
+
 }
 
 // Create

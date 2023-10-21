@@ -1,31 +1,26 @@
 import { useState } from "react";
-import "../assets/css/Login.css";
-// import {useSignIn} from "react-auth-kit";
+import "../assets/css/login.css";
+import axios from "axios";
 export function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   
-  const loginSubmitHandler = async () => {
-    
-    // const signIn = useSignIn();
-    try {
-      const response = await axios.post(
-        "http://localhost:8081/cliente/auth/login",
-        values
-      )
-
-        // signIn({
-        //   token: response.data.token,
-        //   expiresIn: 3600,
-        //   tokenType: "Bearer",
-        //   authState: {email: values.emai}
-        // })
-
-    } catch (error) {
-      
+  const loginSubmitHandler = async (e) => {
+    e.preventDefault();
+    axios.post(
+      "http://localhost:8081/cliente/auth/login",
+      {
+        email: email,
+        senha: password
+      }
+    ).then((response) => {
+        sessionStorage.setItem("token", response.data.token)
+        window.location = "/dashboard"
+    }).catch((err) => {
+        console.log(err)
     }
-
+)
   }
 
   return (
@@ -33,12 +28,12 @@ export function Login() {
     <div className="container">
 
     <div className="container-login">
-    <span className="login-form-title">Bem vindo</span>
+    <span className="login-form-title">Bem-vindo(a)</span>
 
-    <span className="login-form-subtitle">faça login para poder realizar pedidos e ter acesso a descontos promocionais</span>
+    <span className="login-form-subtitle">Faça login para poder realizar pedidos e ter acesso a descontos promocionais</span>
 
       <div className="wrap-login">
-        <form className="login-form" onSubmit={loginSubmitHandler} >
+        <form className="login-form" onSubmit={loginSubmitHandler}>
 
 
           <div className="wrap-input">
@@ -58,16 +53,16 @@ export function Login() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <span className="focus-input" data-placeholder="Password"></span>
+            <span className="focus-input" data-placeholder="Senha"></span>
           </div>
 
           <div className="container-login-form-btn">
-            <button className="login-form-btn">Login</button>
+            <button className="login-form-btn">Entrar</button>
           </div>
 
           <div className="text-center">
-            <span className="txt1">Não possui conta? </span>
-            <a className="txt2" href="#">
+            <span className="txt1">Não possui conta?</span>
+            <a className="txt2" href="registrar">
               Criar conta
             </a>
           </div>
@@ -76,7 +71,7 @@ export function Login() {
 
 
       <div className="ajuda">
-        <span>Problemas com login ?</span>
+        <span>Problemas com login?</span>
       </div>
 
       <div className="wpp-btn">

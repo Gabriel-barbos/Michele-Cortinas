@@ -10,7 +10,7 @@ router.post("/auth/login", controller.login)
 router.post('/auth/register', controller.register)
 
 //* exibir todos os clientes
-router.get('/',controller.getAllCliente)
+router.get('/', controller.getAllCliente)
 
 //* Read
 router.get('/:id', authentication, controller.getOneCliente)
