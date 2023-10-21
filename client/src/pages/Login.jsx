@@ -1,13 +1,28 @@
 import { useState } from "react";
 import "../assets/css/login.css";
 import axios from "axios";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export function Login() {
+    const token = sessionStorage.getItem("token")
+
+    if(token){
+        return window.location = "/perfil"
+    }
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   
   const loginSubmitHandler = async (e) => {
     e.preventDefault();
+
+    if(password.length < 5){
+      return toast.warn("A senha deve conter mais de 5 caracteres");
+    }
+
     axios.post(
       "http://localhost:8081/cliente/auth/login",
       {
@@ -16,17 +31,17 @@ export function Login() {
       }
     ).then((response) => {
         sessionStorage.setItem("token", response.data.token)
-        window.location = "/dashboard"
+        window.location = "/perfil"
     }).catch((err) => {
+        toast.warn(err.response.data.msg);
         console.log(err)
     }
 )
   }
 
   return (
-    
     <div className="container">
-
+    <ToastContainer />
     <div className="container-login">
     <span className="login-form-title">Bem-vindo(a)</span>
 
@@ -57,7 +72,7 @@ export function Login() {
           </div>
 
           <div className="container-login-form-btn">
-            <button className="login-form-btn">Entrar</button>
+            <button className="login-form-btn" type="submit">Entrar</button>
           </div>
 
           <div className="text-center">
@@ -69,14 +84,15 @@ export function Login() {
         </form>
       </div>
 
+      {/* 
+        <div className="ajuda">
+          <span>Problemas com login?</span>
+        </div>
 
-      <div className="ajuda">
-        <span>Problemas com login?</span>
-      </div>
-
-      <div className="wpp-btn">
-        Falar com especialistas
-      </div>
+        <div className="wpp-btn">
+          Falar com especialistas
+        </div> 
+      */}
     </div>
   </div>
     );

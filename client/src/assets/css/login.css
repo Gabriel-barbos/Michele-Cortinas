@@ -156,6 +156,7 @@ html {
   flex-wrap: wrap;
   justify-content: center;
   padding-bottom: 13px;
+  gap: 10px;
 }
 
 .login-form-btn {
@@ -207,4 +208,8 @@ html {
 
 .wpp.btn {
   border-radius: 10px;
+}
+
+.dangerous {
+  background: red;
 }

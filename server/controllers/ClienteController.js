@@ -2,7 +2,6 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
 
 require("dotenv").config();
-
 const Cliente = require('../models').cliente
 
 const login = async (req, res) => {
@@ -10,19 +9,19 @@ const login = async (req, res) => {
     const senha = req.body.senha
 
   if (!email) {
-    res.status(422).json({ msg: "O email é obrigatório" });
+      return res.status(422).json({ msg: "O email é obrigatório" });
   }
 
     if(!senha || senha.length < 5){
-        res.status(422).json({msg: "senha inválida"})
+      return res.status(422).json({msg: "Senha inválida"})
     }
 
     const cliente = await Cliente.findOne({ where: { email: email } })
-    if(!cliente) { res.status(500).json({msg: "Cliente não encontrado"}) }
+    if(!cliente) { return res.status(500).json({msg: "Cliente não encontrado"}) }
 
 
     const checkSenha = await bcrypt.compare(senha, cliente.senha);
-    if(!checkSenha) { res.status(422).json({msg: "Senha incorreta"}) }
+    if(!checkSenha) { return res.status(422).json({msg: "Senha incorreta"}) }
 
     try {
         const secret = process.env.JWT_SECRET
@@ -41,12 +40,16 @@ const login = async (req, res) => {
 
 // Create
 const register = async (req, res)=>{
-
     let info = {
         nome: req.body.nome,
         sobrenome: req.body.sobrenome,
         email: req.body.email,
         senha: await bcrypt.hash(req.body.senha, 10),
+    }
+
+    const emailIsRegistered = await Cliente.findOne({ where: {email: info.email}});
+    if(emailIsRegistered){
+      return res.status(422).json({msg: "E-mail já cadastrado"})
     }
 
     const cliente = await Cliente.create(info)

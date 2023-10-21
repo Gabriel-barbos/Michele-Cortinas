@@ -2,6 +2,10 @@ import { useState } from "react";
 import "../assets/css/login.css";
 import axios from "axios";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 export function Registro() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -10,6 +14,15 @@ export function Registro() {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+
+    if(email == "" || password == "" || nome == "" || sobrenome == ""){
+      return toast.warn("Nenhum campo pode estar vazio")
+    }
+
+    if(password.length < 5){
+      return toast.warn("A senha deve conter mais de 5 caracteres");
+    }
+
     axios.post(
           "http://localhost:8081/cliente/auth/register",
           {
@@ -21,13 +34,14 @@ export function Registro() {
     ).then(() => {
         window.location = "/login"
     }).catch((err) => {
-        console.log(err)
+        toast.warn(err.response.data.msg)
     })
   }
 
   return (
     
     <div className="container">
+    <ToastContainer />
     <div className="container-login">
     <span className="login-form-title">Crie sua conta</span>
 

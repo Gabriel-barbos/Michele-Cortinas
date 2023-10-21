@@ -16,7 +16,7 @@ router.get('/', controller.getAllCliente)
 router.get('/:id', authentication, controller.getOneCliente)
 
 //* update
-router.put('/:id', authentication ,controller.updateCliente)
+router.put('/:id', authentication, controller.updateCliente)
 
 //* delete
 router.delete('/:id',authentication,controller.deleteCliente)
