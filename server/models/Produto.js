@@ -1,8 +1,8 @@
 const { sequelize, Sequelize } = require("../config/db");
-const Pedido = require("./Pedido");
+const Pedido = require("./Pedido").Pedido;
 
 module.exports = () => {
-    const Cliente = sequelize.define("clientes",{
+    const Produto = sequelize.define("produtos",{
         id:{
             type: Sequelize.INTEGER,
             autoIncrement:true,
@@ -12,20 +12,20 @@ module.exports = () => {
             type: Sequelize.STRING,
             allowNull: true
         },
-        sobrenome:{
+        preco:{
+            type: Sequelize.FLOAT,
+            allowNull: true
+        },
+        descricao:{
             type: Sequelize.STRING,
             allowNull: true
         },
-        email:{
-            type: Sequelize.STRING,
-            allowNull: true
-        },
-        senha:{
+        categoria:{
             type: Sequelize.STRING,
             allowNull: true
         }
     })
 
 
-    return Cliente
+    return Produto
 }

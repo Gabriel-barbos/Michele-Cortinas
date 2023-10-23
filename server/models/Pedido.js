@@ -1,8 +1,9 @@
 const { sequelize, Sequelize } = require("../config/db");
-const Pedido = require("./Pedido");
+const Cliente = require("./Cliente");
+const Produto = require("./Produto");
 
 module.exports = () => {
-    const Cliente = sequelize.define("clientes",{
+    const Pedido= sequelize.define('pedidos',{
         id:{
             type: Sequelize.INTEGER,
             autoIncrement:true,
@@ -12,20 +13,28 @@ module.exports = () => {
             type: Sequelize.STRING,
             allowNull: true
         },
-        sobrenome:{
+        preco:{
+            type: Sequelize.FLOAT,
+            allowNull: true
+        },
+        descricao:{
             type: Sequelize.STRING,
             allowNull: true
         },
-        email:{
-            type: Sequelize.STRING,
-            allowNull: true
-        },
-        senha:{
+        categoria:{
             type: Sequelize.STRING,
             allowNull: true
         }
     })
 
+    Pedido.belongsTo(Cliente,{
+        constraint: true,
+        foreignKey: 'idCliente',
+        onDelete: 'CASCADE'
+    });
 
-    return Cliente
+    Cliente.hasMany(Pedido,{
+        foreignKey: 'idCliente'
+    })
+    return Pedido
 }
