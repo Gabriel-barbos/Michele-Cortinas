@@ -8,8 +8,4 @@ const Pedido = sequelize.define('pedidos', {
     }
   });
   
-
-
-
-
   module.exports = Pedido;
