@@ -8,10 +8,13 @@ require("dotenv").config();
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
+const cors = require("cors");
+app.use(cors());
+
 //routers
 const clienteRoute = require("./routes/ClienteRouter")
 const produtoRoute = require("./routes/ProdutoRouter")
-
+app.use("/authorization", authorization)
 app.use("/cliente", clienteRoute)
 app.use("/produto", produtoRoute)
 

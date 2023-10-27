@@ -1,3 +1,5 @@
+const jwt = require("jsonwebtoken")
+
 function authentication(req,res,next){
     // const authHeader = req.headers['authorization']
     // const token = authHeader && authHeader.split(' ')[1]
@@ -13,9 +15,9 @@ function authentication(req,res,next){
     //   jwt.verify(token,secret)
   
       next()
-    // }catch(error){
-    //   res.status(400).json({msg: "Token inválido! Caiu no catch"})
-    // }
+  //   }catch(error){
+  //     res.status(400).json({msg: "Token inválido! Caiu no catch"})
+  //   }
   }
 
 module.exports = { authentication };
