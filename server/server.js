@@ -13,10 +13,10 @@ app.use(cors());
 
 //routers
 const clienteRoute = require("./routes/ClienteRouter")
-const authorization = require("./routes/AuthRouter")
-
-app.use("/cliente", clienteRoute)
+const produtoRoute = require("./routes/ProdutoRouter")
 app.use("/authorization", authorization)
+app.use("/cliente", clienteRoute)
+app.use("/produto", produtoRoute)
 
 app.listen(process.env.APP_PORT, () => {
     console.log(`🚀 Aplicação rodando: http://localhost:${process.env.APP_PORT}`)
