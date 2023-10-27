@@ -1,0 +1,25 @@
+.categoria-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.categoria-card-info {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.categoria-card-info-slug {
+    color: #00000018;
+}
+

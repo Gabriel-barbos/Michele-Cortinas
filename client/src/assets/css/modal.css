@@ -1,21 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Knewave&family=Nunito:wght@400;600;700&display=swap');
 
-body{
-margin: 0;
-padding: 0;
-width: 100vw;
-height: 100vh;
-display: flex;
-align-items: center;
-justify-content: center;
-font-family: Nunito, sans-serif;
-}
 
-.container{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 .modal-overlay{
   background: #ececec;

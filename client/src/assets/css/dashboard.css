@@ -1,65 +1,38 @@
-body {
-    background-color: #ececec;
-}
-.container-categorias {
+.dashboard-container {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    height: 100vh;
 }
-.container-dashboard { 
-    display: flex;
-    flex-direction: row;
+
+.sidebar {
+    width: 20vw;
 }
 
 .dashboard-content {
-    max-height: 100vh;
-    overflow-y: scroll;
     flex: 1;
-    padding: 20px;
+    overflow-y: scroll;
+    padding: 40px 30px;
     box-sizing: border-box;
-    background-color: #ececec;
+    background: #ECECEC;
 }
 
-.listagem-text {
+.list-header {
     display: flex;
-    align-items:center;
     gap: 10px;
+    align-items: center;
+    margin-bottom: 15px;
 }
 
-.barra-lateral {
-    background-color: #fff;
-    height: 100%;
-    width: 35vw;
-    position: sticky;
-}
-
-.categoria-info {
-    padding: 20px 20px;
-    background-color: #fff;
-    color: #000;
-    width: 100%;
-    font-size: 16px;
-    border-radius: 7px;
-}
-.slug { 
-    font-size: 8px;
-    color: #d2d2d2;
-    
-}
-
-.listagem-de-categoria h1{
-    font-size: 24px;
-}
-.listagem-de-categoria a{
-    font-size: 16px;
-}
-
-.dropdown {
-    top: 4.5rem;
-    right: 1.5rem;
-    width: 80px;
-    padding: 15px;
+.add-button {
+    border: 1px solid #3582a3;
+    padding: 5px 10px;
     border-radius: 8px;
-    background-color: #fff;
+    background: none;
+    color: #3582a3;
+    cursor: pointer;
+    transition: .2s ease;
 }
 
+.add-button:hover{
+    background: #3582a3;
+    color: #fff;
+}

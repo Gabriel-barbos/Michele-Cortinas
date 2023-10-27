@@ -11,6 +11,11 @@ import { Logout } from "./Logout.jsx";
 import { Dashboard } from "./Dashboard.jsx";
 import { ModalTeste } from "../components/ModalTeste.jsx";
 import AuthGuard from "../hooks/useAuthGuard.jsx"
+import { Categorias } from "./Categorias.jsx";
+
+import '../assets/css/login.css'
+import '../assets/css/dashboard.css'
+import '../assets/css/login.css'
 
 export function AppRoutes(){
     return (
@@ -20,7 +25,9 @@ export function AppRoutes(){
                 <Route path="/registrar" element={<Registro />}/>
                 <Route path="/perfil" element={<Perfil />} />
                 <Route path="/logout" element={<Logout />} />
-                <Route path="/dashboard" element={<Dashboard />}/>
+                <Route path="/dashboard/categorias" element={
+                    <Dashboard page={<Categorias />} />
+                }/>
                 <Route path="/modal" element={<ModalTeste />}/>
 
             </Routes>

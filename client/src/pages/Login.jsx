@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "../assets/css/login.css";
 import axios from "axios";
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -40,7 +39,7 @@ export function Login() {
   }
 
   return (
-    <div className="container">
+    <div className="login-body">
     <ToastContainer />
     <div className="container-login">
     <span className="login-form-title">Bem-vindo(a)</span>
