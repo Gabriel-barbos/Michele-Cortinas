@@ -3,9 +3,10 @@ const router = express.Router()
 
 const controller = require("../controllers/ProdutoController")
 
+const upload = require("../config/multerConfig")
 
 //* Create produto
-router.post('/', controller.createProduto)
+router.post('/', upload.single("file"),  controller.createProduto)
 
 //* exibir todos os produtos
 router.get('/', controller.getAllProduto)
