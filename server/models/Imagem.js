@@ -5,9 +5,6 @@ const Imagem = sequelize.define('imagens', {
         type: Sequelize.STRING,
         allowNull: true,
       },
-    extensao:{
-        type: Sequelize.STRING
-    }
   });
   
   module.exports = Imagem;

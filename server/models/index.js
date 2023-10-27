@@ -6,6 +6,7 @@ models.cliente = require('./Cliente.js')
 models.pedido = require('./Pedido.js')
 models.produto = require('./Produto.js')
 models.imagem = require('./Imagem.js')
+models.categoria = require('./Categoria.js')
 
 //* Relacionamento Cliente x Pedido
 models.cliente.hasMany(models.pedido); //Um Cliente pode ter vários Pedidos
