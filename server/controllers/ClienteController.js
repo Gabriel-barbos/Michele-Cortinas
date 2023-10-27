@@ -19,12 +19,12 @@ const login = async (req, res) => {
 
   const cliente = await Cliente.findOne({ where: { email: email } });
   if (!cliente) {
-    res.status(500).json({ msg: "Cliente não encontrado" });
+    return res.status(500).json({ msg: "Cliente não encontrado" });
   }
 
   const checkSenha = await bcrypt.compare(senha, cliente.senha);
   if (!checkSenha) {
-    res.status(422).json({ msg: "Senha incorreta" });
+    return res.status(422).json({ msg: "Senha incorreta" });
   }
 
   try {
@@ -36,10 +36,10 @@ const login = async (req, res) => {
       secret
     );
 
-    res.status(200).json({ msg: "Autenticação efetuada com sucesso", token });
+    return res.status(200).json({ msg: "Autenticação efetuada com sucesso", token });
   } catch (err) {
     console.log(err);
-    res.status(500).json({ msg: "Ocorreu um erro na autenticação" });
+    return res.status(500).json({ msg: "Ocorreu um erro na autenticação" });
   }
 }
 
