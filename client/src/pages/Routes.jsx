@@ -9,7 +9,7 @@ import { Registro } from "./Registro.jsx";
 import { Perfil } from "./Perfil.jsx";
 import { Logout } from "./Logout.jsx";
 import { Dashboard } from "./Dashboard.jsx";
-import { ModalTeste } from "../components/ModalTeste.jsx";
+import Modalpopup from "../components/Modalpopup.jsx";
 import AuthGuard from "../hooks/useAuthGuard.jsx"
 import { Categorias } from "./Categorias.jsx";
 
@@ -28,7 +28,7 @@ export function AppRoutes(){
                 <Route path="/dashboard/categorias" element={
                     <Dashboard page={<Categorias />} />
                 }/>
-                <Route path="/modal" element={<ModalTeste />}/>
+                <Route path="/modal" element={<Modalpopup />}/>
 
             </Routes>
         </Router>
