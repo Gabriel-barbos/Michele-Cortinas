@@ -6,7 +6,7 @@ const controller = require("../controllers/ProdutoController")
 const upload = require("../config/multerConfig")
 
 //* Create produto
-router.post('/', upload.single("file"),  controller.createProduto)
+router.post('/', upload.array("file",[5]),  controller.createProduto)
 
 //* exibir todos os produtos
 router.get('/', controller.getAllProduto)

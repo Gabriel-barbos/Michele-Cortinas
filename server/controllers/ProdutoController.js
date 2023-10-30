@@ -6,34 +6,40 @@ const Imagem = require("../models").imagem;
 const path = require("path");
 
 const createProduto = async (req, res) => {
-
   try {
-    const file = req.file;
+    const files = req.files;
     
-    const extensao = path.extname(file.originalname)
-    const extensoesValidas = ['.jpg', '.png', '.webp']
-    if(!extensoesValidas.includes(extensao)){
+    files.forEach(file => {
+      const extensao = path.extname(file.originalname)
+      const extensoesValidas = ['.jpg', '.png', '.webp']
+      if(!extensoesValidas.includes(extensao)){
+        
+      }
+      let nomeArquivo = file.filename
+      const imagem = Imagem.create({nomeArquivo: nomeArquivo}); // Insert imagem no banco de dados
       
-    }
+    })
 
-    let nomeArquivo = file.filename;
+
+    
+    
     let id = req.body.id
     let info = {
       nome: req.body.nome,
     };
-
     const produto = await Produto.create(info);
+    res.json({files, msg: "Enviada com sucesso vamo q vamo" });
     
-    const imagem = await Imagem.create({nomeArquivo: nomeArquivo, produtoId: id}); // Insert imagem no banco de dados
+    
+    
 
-    res.json({ msg: "Enviada com sucesso vamo q vamo" });
   } catch (error) {
-    res.status(500).json();
+    res.status(500).json({msg:"caiu no catch"});
   }
 };
 
 const getAllProduto = async (req, res) => {
-  let produtos = await Produto.findAll();o
+  let produtos = await Produto.findAll();
   res.status(200).send(produtos);
 };
 
