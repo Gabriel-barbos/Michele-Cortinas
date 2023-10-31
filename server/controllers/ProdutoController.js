@@ -8,39 +8,41 @@ const path = require("path");
 const createProduto = async (req, res) => {
   try {
     const files = req.files;
-    
-    files.forEach(file => {
-      const extensao = path.extname(file.originalname)
-      const extensoesValidas = ['.jpg', '.png', '.webp']
-      if(!extensoesValidas.includes(extensao)){
-        
-      }
-      let nomeArquivo = file.filename
-      const imagem = Imagem.create({nomeArquivo: nomeArquivo}); // Insert imagem no banco de dados
-      
-    })
 
-
-    
-    
-    let id = req.body.id
     let info = {
       nome: req.body.nome,
     };
-    const produto = await Produto.create(info);
-    res.json({files, msg: "Enviada com sucesso vamo q vamo" });
-    
-    
-    
+    const produto = await Produto.create(info); // Insert produto
 
+    const produtoRecente = await Produto.findOne({
+      attributes: ["id"],
+      order: [["createdAt", "DESC"]],
+    }); //Pegar produto recém adicionado
+    const id = produtoRecente.id;
+
+    files.forEach((file) => {
+      const extensao = path.extname(file.originalname);
+      const extensoesValidas = [".jpg", ".png", ".webp", ".pdf"];
+      // if (!extensoesValidas.includes(extensao)) {
+        let nomeArquivo = file.filename;
+        const imagem = Imagem.create({ nomeArquivo: nomeArquivo, produtoId: id }); // Insert imagem no banco de dados
+      // }
+    });
+
+    res.json({ msg: "Enviada com sucesso vamo q vamo" });
   } catch (error) {
-    res.status(500).json({msg:"caiu no catch"});
+    res.status(500).json({ msg: "caiu no catch" });
   }
 };
 
 const getAllProduto = async (req, res) => {
-  let produtos = await Produto.findAll();
-  res.status(200).send(produtos);
+  try {
+    
+    let produtos = await Produto.findAll();
+    res.status(200).send(produtos);
+  } catch (error) {
+    res.status(400).json({ error });
+  }
 };
 
 // Pegar um produto
