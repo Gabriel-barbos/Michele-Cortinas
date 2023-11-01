@@ -8,28 +8,44 @@ const path = require("path");
 const createProduto = async (req, res) => {
   try {
     const files = req.files;
-
-    let info = {
-      nome: req.body.nome,
-    };
-    const produto = await Produto.create(info); // Insert produto
-
-    const produtoRecente = await Produto.findOne({
-      attributes: ["id"],
-      order: [["createdAt", "DESC"]],
-    }); //Pegar produto recém adicionado
-    const id = produtoRecente.id;
-
+    let extensaoValida = true
+    // valida extensão
     files.forEach((file) => {
       const extensao = path.extname(file.originalname);
-      const extensoesValidas = [".jpg", ".png", ".webp", ".pdf"];
-      // if (!extensoesValidas.includes(extensao)) {
-        let nomeArquivo = file.filename;
-        const imagem = Imagem.create({ nomeArquivo: nomeArquivo, produtoId: id }); // Insert imagem no banco de dados
-      // }
+      const extensoesValidas = [".jpg", ".png", ".webp"];
+      if (!extensoesValidas.includes(extensao)) {
+        console.log("extensao invalida = true")
+        extensaoValida = false
+      }
     });
 
-    res.json({ msg: "Enviada com sucesso vamo q vamo" });
+    if(extensaoValida){
+      console.log("ta caindo aqui")
+      let info = {
+        nome: req.body.nome,
+        preco: req.body.preco,
+        descricao: req.body.descricao,
+        categoria: req.body.categoria,
+      };
+      const produto = await Produto.create(info); // Insert produto
+  
+      //Pegar produto recém adicionado
+      const produtoRecente = await Produto.findOne({
+        attributes: ["id"],
+        order: [["createdAt", "DESC"]],
+      }); 
+      const id = produtoRecente.id;
+
+      files.forEach((file)=>{
+        let nomeArquivo = file.filename;
+      const imagem = Imagem.create({ nomeArquivo: nomeArquivo, produtoId: id }); // Insert imagem no banco de dados
+      })
+      res.json({ msg: "Enviada com sucesso vamo q vamo" });
+      
+    }else{
+      res.status(500).json({ msg: "Extensão invalida" });
+    }
+    
   } catch (error) {
     res.status(500).json({ msg: "caiu no catch" });
   }
