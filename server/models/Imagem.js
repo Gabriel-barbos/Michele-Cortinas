@@ -5,6 +5,10 @@ const Imagem = sequelize.define('imagens', {
         type: Sequelize.STRING,
         allowNull: true,
       },
+    isCapa:{
+        type: Sequelize.BOOLEAN,
+        allowNull: true,
+    }
   });
   
   module.exports = Imagem;

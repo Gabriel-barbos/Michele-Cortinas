@@ -16,6 +16,6 @@ models.pedido.belongsTo(models.cliente); // Cada Pedido está relacionado a um C
 models.produto.hasMany(models.imagem)
 models.imagem.belongsTo(models.produto)
 
-sequelize.sync({ force: true });
+sequelize.sync({ force: false });
 
 module.exports = models

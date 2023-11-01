@@ -54,7 +54,12 @@ const createProduto = async (req, res) => {
 const getAllProduto = async (req, res) => {
   try {
     
-    let produtos = await Produto.findAll();
+    let produtos = await Produto.findAll({
+      include: {
+        model: Imagem,
+        order: [["isCapa","DESC"]]
+      }
+    });
     res.status(200).send(produtos);
   } catch (error) {
     res.status(400).json({ error });
@@ -65,8 +70,14 @@ const getAllProduto = async (req, res) => {
 const getOneProduto = async (req, res) => {
   try {
     let id = req.params.id;
-    let produto = await Produto.findOne({ where: { id: id } });
-    res.status(200).send(produto);
+    let produto = await Produto.findOne({ 
+      include:{
+        model: Imagem,
+        order: [["isCapa","ASC"]]
+      },
+      where: { id: id },
+    });
+    res.status(200).json(produto);
   } catch (error) {
     res.status(400).json({ error });
   }
