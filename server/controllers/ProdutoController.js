@@ -20,11 +20,10 @@ const createProduto = async (req, res) => {
       }
 
       //Se alguma das imagens tiver extensão inválida remove do repositório
-      if (!extensaoValida){
+      if (!extensaoValida) {
         let nomeImagem = file.filename;
         fs.unlinkSync("./imagens/" + nomeImagem);
       }
-      
     });
 
     if (extensaoValida) {
@@ -58,7 +57,6 @@ const createProduto = async (req, res) => {
       res.status(500).json({ msg: "Extensão invalida" });
     }
   } catch (error) {
-
     const files = req.files;
 
     files.forEach((file) => {
@@ -118,7 +116,16 @@ const updateProduto = async (req, res) => {
 const deleteProduto = async (req, res) => {
   try {
     let id = req.params.id;
-    await Produto.destroy({ where: { id: id } });
+    const images = await Imagem.findAll({ where: { produtoId: id } });
+    const deleteProduto = await Produto.destroy({ where: { id: id } });
+
+    if (deleteProduto) {
+      images.forEach((image) => {
+        let nomeImagem = image.nomeArquivo;
+        fs.unlinkSync("./imagens/" + nomeImagem);
+      });
+    }
+
     res.status(200).send("produtos deletados");
   } catch (error) {
     res.status(400).json({ error });
