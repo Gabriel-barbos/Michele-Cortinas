@@ -10,6 +10,7 @@ const createProduto = async (req, res) => {
   try {
     const files = req.files;
     let extensaoValida = true;
+
     // valida extensão
     files.forEach((file) => {
       const extensao = path.extname(file.originalname);
@@ -21,8 +22,7 @@ const createProduto = async (req, res) => {
 
       //Se alguma das imagens tiver extensão inválida remove do repositório
       if (!extensaoValida) {
-        let nomeImagem = file.filename;
-        fs.unlinkSync("./imagens/" + nomeImagem);
+        
       }
     });
 
@@ -54,6 +54,8 @@ const createProduto = async (req, res) => {
 
       res.json({ msg: "Enviada com sucesso vamo q vamo" });
     } else {
+      let nomeImagem = file.filename;
+      fs.unlinkSync("./imagens/" + nomeImagem);
       res.status(500).json({ msg: "Extensão invalida" });
     }
   } catch (error) {
@@ -68,6 +70,7 @@ const createProduto = async (req, res) => {
     fs.unlinkSync("./imagens/" + nomeImagem);
   }
 };
+
 
 const getAllProduto = async (req, res) => {
   try {
