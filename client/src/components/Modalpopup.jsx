@@ -65,4 +65,3 @@ const Modalpopup = (props) => {
 }
 
 export default Modalpopup;
-

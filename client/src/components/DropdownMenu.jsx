@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-
-export function DropdownMenu(){
+import ThreeDots from './ThreeDots';
+import ModalExcluir from './ModalExcluir';
+import "../assets/css/dropdown.css"
+export default function DropdownMenu(props){
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -10,17 +12,14 @@ export function DropdownMenu(){
   return (
     <div className="dropdown">
       <button onClick={toggleMenu} className="dropdown-toggle">
-        Toggle Dropdown
+      <ThreeDots width="40px" height="100%"/>
       </button>
       {isOpen && (
         <ul className="dropdown-menu">
-          <li>Option 1</li>
-          <li>Option 2</li>
-          <li>Option 3</li>
+          <li>Editar</li>
+          <li><ModalExcluir type={props.type}/></li>
         </ul>
       )}
     </div>
   );
 };
-
-export default DropdownMenu();

@@ -1,3 +1,4 @@
+import DropdownMenu from "./DropdownMenu"
 export function CategoriaCard(props){
     return (
         <div className="categoria-card">
@@ -7,6 +8,7 @@ export function CategoriaCard(props){
                 <input type="hidden" name="id" value={props.id} />
             </div>
             <div className="categoria-card-action">
+                <DropdownMenu type="esta categoria"/>
             </div>
         </div>
     )
