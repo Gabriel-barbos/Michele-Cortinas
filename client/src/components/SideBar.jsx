@@ -9,8 +9,8 @@ export function SideBar(props) {
                 <LogoDashboard width="100%" height="35px" />
             </div>
             <div className="sidebar-items">
-                <a href="#" className={`${props.active == "Categorias" ? "active" : ""} sidebar-item` }>Categorias</a>
-                <a href="#" className={`${props.active == "Produtos" ? "active" : ""} sidebar-item` }>Produtos</a>
+                <a href="/dashboard/categorias" className={`${props.active == "Categorias" ? "active" : ""} sidebar-item` }>Categorias</a>
+                <a href="/dashboard/produtos" className={`${props.active == "Produtos" ? "active" : ""} sidebar-item` }>Produtos</a>
                 <a href="#" className={`${props.active == "Clientes" ? "active" : ""} sidebar-item` }>Clientes</a>
                 <a href="#" className={`${props.active == "Configurações" ? "active" : ""} sidebar-item` }>Configurações</a>
             </div>

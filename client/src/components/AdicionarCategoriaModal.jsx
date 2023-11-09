@@ -6,7 +6,7 @@ import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Modalpopup = (props) => {
+const AdicionarCategoriaModal = (props) => {
     const [open, openchange] = useState(false);
     const functionopenpopup = () => {
         openchange(true);
@@ -64,4 +64,4 @@ const Modalpopup = (props) => {
     );
 }
 
-export default Modalpopup;
+export default AdicionarCategoriaModal;

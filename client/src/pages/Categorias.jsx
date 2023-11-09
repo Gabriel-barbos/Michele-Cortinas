@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import '../assets/css/categorias.css'
 import { CategoriaCard } from '../components/CategoriaCard'
-import Modalpopup from '../components/Modalpopup';
+import AdicionarCategoriaModal from '../components/AdicionarCategoriaModal'
 
 const categoriasMock = [{
     t: "Cortinas para salas",
@@ -22,8 +22,7 @@ export function Categorias() {
     <>
     <header className="list-header">
         <h1>Categorias</h1>
-        
-    <Modalpopup></Modalpopup>
+    <AdicionarCategoriaModal/>
     </header>
     <div className="items-list">
         {categoriasMock.map((v) => <CategoriaCard titulo={v.t} slug={v.s} />)}
