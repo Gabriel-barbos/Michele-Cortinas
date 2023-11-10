@@ -9,7 +9,7 @@ const Categoria = require("../models").categoria;
 // Create
 const createCategoria = async (req, res) => {
   let info = {
-    nome: req.body.nome,
+    titulo: req.body.titulo,
     slug: req.body.slug,
   };
 

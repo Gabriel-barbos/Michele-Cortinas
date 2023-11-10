@@ -15,11 +15,11 @@ const AdicionarProdutoModal = (props) => {
         openchange(false);
     }
 
-    const [Nome, setNome] = useState("");
-    const [Preco, setPreco] = useState("");
-    const [Descricao, setDesc] = useState("");
-    const [Cores, setCores] = useState("")
-    const [Material, setMaterial] = useState("")
+    const [nome, setNome] = useState("");
+    const [preco, setPreco] = useState("");
+    const [descricao, setDesc] = useState("");
+    const [cores, setCores] = useState("")
+    const [material, setMaterial] = useState("")
 
 
 
@@ -29,11 +29,11 @@ const AdicionarProdutoModal = (props) => {
         axios.post(
             "http://localhost:8081/produto/",
             {
-                Nome: Nome,
-                Preco: Preco,
-                Descricao: Descricao,
-                Cores: Cores,
-                Material: Material
+                nome: nome,
+                preco: preco,
+                descricao: descricao,
+                cores: cores,
+                material: material
             }
         ).then(() => {
             window.location = "/dashboard/produtos"
@@ -50,36 +50,36 @@ const AdicionarProdutoModal = (props) => {
                 <DialogTitle>Novo Produto  <IconButton onClick={closepopup} style={{ float: 'right' }}><CloseIcon color="primary"></CloseIcon></IconButton>  </DialogTitle>
                 <DialogContent>
                     <Stack spacing={2} margin={2}>
-                        <TextField variant="outlined" label="Nome" className={Nome !== "" ? "has-val input" : "input"}
+                        <TextField variant="outlined" label="Nome" className={nome !== "" ? "has-val input" : "input"}
                             type="text"
-                            value={Nome}
+                            value={nome}
                             onChange={(e) => setNome(e.target.value)}
                         >
                         </TextField>
-                        <TextField variant="outlined" label="Preço" className={Preco !== "" ? "has-val input" : "input"}
+                        <TextField variant="outlined" label="Preço" className={preco !== "" ? "has-val input" : "input"}
                             type="text"
-                            value={Preco}
+                            value={preco}
                             onChange={(e) => setPreco(e.target.value)}
                         >
                         </TextField>
 
-                        <TextField variant="outlined" label="Descrição" className={Descricao !== "" ? "has-val input" : "input"}
+                        <TextField variant="outlined" label="Descrição" className={descricao !== "" ? "has-val input" : "input"}
                             type="text"
-                            value={Descricao}
+                            value={descricao}
                             onChange={(e) => setDesc(e.target.value)}
                         >
                         </TextField>
 
-                        <TextField variant="outlined" label="Cores" className={Cores !== "" ? "has-val input" : "input"}
+                        <TextField variant="outlined" label="Cores" className={cores !== "" ? "has-val input" : "input"}
                             type="text"
-                            value={Cores}
+                            value={cores}
                             onChange={(e) => setCores(e.target.value)}
                         >
                         </TextField>
 
-                        <TextField variant="outlined" label="Material" className={Material !== "" ? "has-val input" : "input"}
+                        <TextField variant="outlined" label="Material" className={material !== "" ? "has-val input" : "input"}
                             type="text"
-                            value={Material}
+                            value={material}
                             onChange={(e) => setMaterial(e.target.value)}
                         >
                         </TextField>

@@ -44,7 +44,7 @@ const AdicionarCategoriaModal = (props) => {
                         <TextField variant="outlined" label="titulo" className={titulo !== "" ? "has-val input" : "input"}
                             type="text"
                             value={titulo}
-                            onChange={(e) => setTitulo(e.target.value)}
+                            onChange={(e) => { setTitulo(e.target.value) }}
                         >
                         </TextField>
                         <TextField variant="outlined" label="slug" className={slug !== "" ? "has-val input" : "input"}

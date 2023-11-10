@@ -1,23 +1,22 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import '../assets/css/categorias.css'
 import { CategoriaCard } from '../components/CategoriaCard'
 import AdicionarCategoriaModal from '../components/AdicionarCategoriaModal'
-
-const categoriasMock = [{
-    t: "Cortinas para salas",
-    s: "cortinas-para-salas"
-},
-{
-    t: "Cortinas para quartos",
-    s: "cortinas-para-quartos"
-}
-]
-
-
-
-
+import axios from "axios"
 
 export function Categorias() {
+    const [categorias, setCategorias] = useState([{}]);
+
+    useEffect(() => {
+        axios({
+            method: 'get',
+            url: `http://localhost:8081/categoria/`,
+        }).then(({data}) => {
+            setCategorias(data)
+        })
+    }, [])
+    
+
     return(
     <>
     <header className="list-header">
@@ -25,7 +24,7 @@ export function Categorias() {
     <AdicionarCategoriaModal/>
     </header>
     <div className="items-list">
-        {categoriasMock.map((v) => <CategoriaCard titulo={v.t} slug={v.s} />)}
+        {categorias.map((categoria) => <CategoriaCard key={categoria.id} titulo={categoria.titulo} slug={categoria.slug} />)}
     </div>
     </>)
 }
