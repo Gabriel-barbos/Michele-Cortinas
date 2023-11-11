@@ -7,6 +7,7 @@ const path = require("path");
 const fs = require("fs");
 
 const createProduto = async (req, res) => {
+  console.log(req.body.nome)
   try {
     const files = req.files;
     let extensaoValida = true;
@@ -32,7 +33,7 @@ const createProduto = async (req, res) => {
         nome: req.body.nome,
         preco: req.body.preco,
         descricao: req.body.descricao,
-        categoria: req.body.categoria,
+        categoria: req.body.categoria
       };
       const produto = await Produto.create(info); // Insert produto
 
