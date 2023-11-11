@@ -8,9 +8,11 @@ const Categoria = require("../models").categoria;
 
 // Create
 const createCategoria = async (req, res) => {
+  let slug = req.body.slug.replace(" ", "-")
+
   let info = {
     titulo: req.body.titulo,
-    slug: req.body.slug,
+    slug: slug,
   };
 
   const categoria = await Categoria.create(info);
