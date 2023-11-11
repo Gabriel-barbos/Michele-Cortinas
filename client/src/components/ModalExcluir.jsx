@@ -6,7 +6,7 @@ import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const ModalExcluir = ({type}) => {
+const ModalExcluir = ({route, id, name}) => {
     const [open, openchange] = useState(false);
     const functionopenpopup = () => {
         openchange(true);
@@ -14,7 +14,15 @@ const ModalExcluir = ({type}) => {
     const closepopup = () => {
         openchange(false);
     }
-
+    const excluirHandler = async (e) => {
+        e.preventDefault();
+        axios.delete(
+            `http://localhost:8081/${route}/${id}`
+        ).then(() => {
+           window.location = "/dashboard/categorias"
+        })
+        closepopup()
+    }
 
 
     return (
@@ -22,11 +30,11 @@ const ModalExcluir = ({type}) => {
             <Button onClick={functionopenpopup} color="error" variant="contained">Excluir</Button>
             <Dialog
                 open={open} onClose={closepopup} fullWidth maxWidth="sm">
-                <DialogTitle>Deseja excluir {type}? <IconButton onClick={closepopup} style={{ float: 'right' }}><CloseIcon color="primary"></CloseIcon></IconButton>  </DialogTitle>
+                <DialogTitle>Deseja excluir {name}? <IconButton onClick={closepopup} style={{ float: 'right' }}><CloseIcon color="primary"></CloseIcon></IconButton>  </DialogTitle>
                 <DialogContent>
                     <Stack spacing={2} margin={2}>
                         <Button onClick={closepopup} color="primary" variant="contained">Cancelar</Button>
-                        <Button onClick={closepopup} color="error" variant="contained">Excluir</Button>
+                        <Button onClick={excluirHandler} color="error" variant="contained">Excluir</Button>
                     </Stack>
                 </DialogContent>
                 <DialogActions>

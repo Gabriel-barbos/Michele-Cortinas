@@ -24,7 +24,7 @@ export function Categorias() {
     <AdicionarCategoriaModal/>
     </header>
     <div className="items-list">
-        {categorias.map((categoria) => <CategoriaCard key={categoria.id} titulo={categoria.titulo} slug={categoria.slug} />)}
+        {categorias.map((categoria) => <CategoriaCard  id={categoria.id} titulo={categoria.titulo} slug={categoria.slug} />)}
     </div>
     </>)
 }

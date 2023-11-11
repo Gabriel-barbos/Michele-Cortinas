@@ -1,10 +1,25 @@
-import { Button, Checkbox, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControlLabel, IconButton, Stack, TextField } from "@mui/material";
+import { Button, Checkbox, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControlLabel, IconButton, Stack, TextField, Typography } from "@mui/material";
 import FormControlContext from "@mui/material/FormControl/FormControlContext";
 import CloseIcon from "@mui/icons-material/Close"
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { styled } from '@mui/material/styles';
+
+
+const VisuallyHiddenInput = styled('input')({
+    clip: 'rect(0 0 0 0)',
+    clipPath: 'inset(50%)',
+    height: 1,
+    position: 'absolute',
+    overflow: hidden,
+    bottom: 0,
+    left: 0,
+    whiteSpace: 'nowrap',
+    width: 1,
+});
 
 const AdicionarProdutoModal = (props) => {
     const [open, openchange] = useState(false);
@@ -20,6 +35,9 @@ const AdicionarProdutoModal = (props) => {
     const [descricao, setDesc] = useState("");
     const [cores, setCores] = useState("")
     const [material, setMaterial] = useState("")
+    const [nomeArquivo, setNomeArquivo] = useState("")
+
+
 
 
 
@@ -40,6 +58,18 @@ const AdicionarProdutoModal = (props) => {
         }).catch((err) => {
             toast.warn(err.response.data.msg)
         })
+        closepopup()
+    }
+
+    const imageHandler = async(e) => {
+        e.preventDefault();
+
+        axios.post(
+            "http://localhost:8081/imagem/",
+            {
+               nomeArquivo: nomeArquivo
+            }
+        )
     }
 
     return (
@@ -84,7 +114,13 @@ const AdicionarProdutoModal = (props) => {
                         >
                         </TextField>
 
-                  
+                        <Typography variant='h4'>Imagens</Typography>
+                        <Button component="label" variant="contained" startIcon={<CloudUploadIcon />}>
+                            enviar imagens
+                            <VisuallyHiddenInput type="file" />
+                            
+                        </Button>
+                        
                         <Button onClick={submitHandler} color="primary" variant="contained">Cadastrar</Button>
                     </Stack>
                 </DialogContent>
