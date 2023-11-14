@@ -4,6 +4,7 @@ const models = {};
 
 models.cliente = require("./Cliente.js");
 models.pedido = require("./Pedido.js");
+models.variacao = require("./Variacao.js");
 models.produto = require("./Produto.js");
 models.imagem = require("./Imagem.js");
 models.categoria = require("./Categoria.js");
@@ -17,6 +18,10 @@ models.produto.hasMany(models.imagem, {
   onDelete: "cascade",
 });
 models.imagem.belongsTo(models.produto);
+
+//* Relacionamento Imagem x Produto
+models.produto.hasMany(models.variacao)
+models.variacao.belongsTo(models.produto)
 
 sequelize.sync({ force: true });
 
