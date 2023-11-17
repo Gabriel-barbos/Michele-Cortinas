@@ -55,7 +55,7 @@ const createVariacao = async (req, res) => {
       res.json({ msg: "Enviada com sucesso vamo q vamo" });
     } else {
       let nomeImagem = file.filename;
-      fs.unlinkSync("./imagens/" + nomeImagem);
+      fs.unlinkSync("./public/imagens/" + nomeImagem);
       res.status(500).json({ msg: "Extensão invalida" });
     }
   } catch (error) {
@@ -63,11 +63,11 @@ const createVariacao = async (req, res) => {
 
     files.forEach((file) => {
       let nomeImagem = file.filename;
-      fs.unlinkSync("./imagens/" + nomeImagem);
+      fs.unlinkSync("./public/imagens/" + nomeImagem);
     });
 
     res.status(500).json({ error, msg: "caiu no catch" });
-    fs.unlinkSync("./imagens/" + nomeImagem);
+    fs.unlinkSync("./public/imagens/" + nomeImagem);
   }
 };
 
@@ -125,7 +125,7 @@ const deleteVariacao = async (req, res) => {
     if (deleteVariacao) {
       images.forEach((image) => {
         let nomeImagem = image.nomeArquivo;
-        fs.unlinkSync("./imagens/" + nomeImagem);
+        fs.unlinkSync("./public/imagens/" + nomeImagem);
       });
     }
 

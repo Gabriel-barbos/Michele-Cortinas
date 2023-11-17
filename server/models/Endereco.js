@@ -17,6 +17,10 @@ const Endereco = sequelize.define("enderecos", {
     type: Sequelize.STRING,
     allowNull: true,
   },
+  complemento: {
+    type: Sequelize.STRING,
+    allowNull: true,
+  },
 });
 
 module.exports = Endereco;
