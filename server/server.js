@@ -11,6 +11,8 @@ app.use(express.urlencoded({extended: true}))
 const cors = require("cors");
 app.use(cors());
 
+app.use(express.static('public'))
+
 //routers
 const clienteRoute = require("./routes/ClienteRouter")
 const produtoRoute = require("./routes/ProdutoRouter")
