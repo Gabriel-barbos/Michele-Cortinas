@@ -15,7 +15,7 @@ const Modalpopup = (props) => {
         openchange(false);
     }
 
-    const [titulo, setTitulo] = useState("");
+    const [nome, setNome] = useState("");
     const [slug, setSlug] = useState("");
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -23,7 +23,7 @@ const Modalpopup = (props) => {
         axios.post(
             "http://localhost:8081/categoria/",
             {
-                titulo: titulo,
+                nome: nome,
                 slug: slug
             }
         ).then(() => {
@@ -33,24 +33,46 @@ const Modalpopup = (props) => {
         })
     }
 
+    const slugFormat = (str) => {
+        if(str.charAt(0) == " "){
+            return "";
+        }
+        str = str.toLowerCase();
+    
+        // remove accents, swap ñ for n, etc
+        var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
+        var to   = "aaaaeeeeiiiioooouuuunc------";
+        for (var i=0, l=from.length ; i<l ; i++) {
+            str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+        }
+
+        str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+            .replace(/\s+/g, '-') // collapse whitespace and replace by -
+            .replace(/-+/g, '-'); // collapse dashes
+
+        return str;
+    }
     return (
         <div style={{ textAlign: 'center' }}>
             <Button onClick={functionopenpopup} color="primary" variant="contained">Adicionar</Button>
             <Dialog
                 open={open} onClose={closepopup} fullWidth maxWidth="sm">
-                <DialogTitle>Novo Produto  <IconButton onClick={closepopup} style={{ float: 'right' }}><CloseIcon color="primary"></CloseIcon></IconButton>  </DialogTitle>
+                <DialogTitle>Nova categoria  <IconButton onClick={closepopup} style={{ float: 'right' }}><CloseIcon color="primary"></CloseIcon></IconButton>  </DialogTitle>
                 <DialogContent>
                     <Stack spacing={2} margin={2}>
-                        <TextField variant="outlined" label="titulo" className={titulo !== "" ? "has-val input" : "input"}
+                        <TextField variant="outlined" label="nome" className={nome !== "" ? "has-val input" : "input"}
                             type="text"
-                            value={titulo}
-                            onChange={(e) => setTitulo(e.target.value)}
+                            value={nome}
+                            onChange={(e) => {
+                                setNome(e.target.value); 
+                                setSlug(slugFormat(e.target.value))
+                            }}
                         >
                         </TextField>
                         <TextField variant="outlined" label="slug" className={slug !== "" ? "has-val input" : "input"}
                             type="text"
                             value={slug}
-                            onChange={(e) => setSlug(e.target.value)}
+                            onChange={(e) => setSlug(slugFormat(e.target.value))}
                         >
                         </TextField>
                         <Button onClick={submitHandler} color="primary" variant="contained">Cadastrar</Button>

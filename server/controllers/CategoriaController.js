@@ -13,6 +13,7 @@ const createCategoria = async (req, res) => {
     slug: req.body.slug,
   };
 
+  console.log(info.nome)
   const categoria = await Categoria.create(info);
   res.status(200).send(categoria);
 };

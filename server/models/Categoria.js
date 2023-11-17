@@ -1,7 +1,7 @@
 const { sequelize, Sequelize } = require("../config/db");
 
 const Categoria = sequelize.define("categorias", {
-  titulo: {
+  nome: {
     type: Sequelize.STRING,
     allowNull: true,
   },

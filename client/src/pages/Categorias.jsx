@@ -1,23 +1,21 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import '../assets/css/categorias.css'
 import { CategoriaCard } from '../components/CategoriaCard'
-import Modalpopup from '../components/Modalpopup';
-
-const categoriasMock = [{
-    t: "Cortinas para salas",
-    s: "cortinas-para-salas"
-},
-{
-    t: "Cortinas para quartos",
-    s: "cortinas-para-quartos"
-}
-]
-
-
-
-
+import Modalpopup from '../components/ModalAdicionarCategoria';
+import axios from 'axios';
 
 export function Categorias() {
+    const [categorias, setCategorias] = useState([]);
+
+    useEffect(() => {
+        axios.get("http://localhost:8081/categoria/")
+        .then(({ data }) => {
+            setCategorias(data)
+        })
+    }, [])
+    
+    
+
     return(
     <>
     <header className="list-header">
@@ -26,7 +24,8 @@ export function Categorias() {
     <Modalpopup></Modalpopup>
     </header>
     <div className="items-list">
-        {categoriasMock.map((v) => <CategoriaCard titulo={v.t} slug={v.s} />)}
+        {categorias.map((v) => <CategoriaCard titulo={v.nome} slug={v.slug} id={v.id} />)}
+        {categorias.length == 0 && <p>Nenhuma categoria registrada</p>}
     </div>
     </>)
 }

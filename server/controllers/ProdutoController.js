@@ -11,6 +11,9 @@ const createProduto = async (req, res) => {
 
     let info = {
       nome: req.body.nome,
+      preco: req.body.preco,
+      descricao: req.body.descricao,
+      categoria: req.body.categoria
     };
     const produto = await Produto.create(info); // Insert produto
 
@@ -20,16 +23,22 @@ const createProduto = async (req, res) => {
     }); //Pegar produto recém adicionado
     const id = produtoRecente.id;
 
+    const extensoesValidas = [".jpg", ".png", ".webp", ".jpeg"];
+    let someImageLoaded = false; 
+
     files.forEach((file) => {
       const extensao = path.extname(file.originalname);
-      const extensoesValidas = [".jpg", ".png", ".webp", ".pdf"];
-      // if (!extensoesValidas.includes(extensao)) {
+      console.log(extensao)
+      // if (extensoesValidas.includes(extensao)) {
         let nomeArquivo = file.filename;
         const imagem = Imagem.create({ nomeArquivo: nomeArquivo, produtoId: id }); // Insert imagem no banco de dados
+        someImageLoaded = true;
       // }
     });
 
-    res.json({ msg: "Enviada com sucesso vamo q vamo" });
+    if(!someImageLoaded) return res.status(500).json({msg: "Uma imagem com formato inválido"});
+
+    res.json({ msg: files});
   } catch (error) {
     res.status(500).json({ msg: "caiu no catch" });
   }
