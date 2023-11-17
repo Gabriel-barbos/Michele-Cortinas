@@ -1,0 +1,29 @@
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
+require("dotenv").config();
+
+const Carrinho = require("../models").carrinho;
+
+
+// Create
+const addPedido = async (req, res) => {
+  let slug = req.body.slug.replace(" ", "-")
+
+  let info = {
+    titulo: req.body.titulo,
+    slug: slug,
+  };
+
+  const categoria = await Categoria.create(info);
+  res.status(200).send(categoria);
+};
+
+
+module.exports = {
+  createCategoria,
+  getAllCategoria,
+  getOneCategoria,
+  updateCategoria,
+  deleteCategoria,
+};

@@ -11,6 +11,7 @@ models.categoria = require("./Categoria.js");
 models.variacao = require("./Variacao.js");
 models.endereco = require("./Endereco.js");
 models.telefone = require("./Telefone.js");
+models.carrinho = require("./Carrinho.js");
 
 //* Relacionamento Cliente x Pedido
 models.cliente.hasMany(models.pedido); //Um Cliente pode ter vários Pedidos
@@ -44,6 +45,14 @@ models.cliente.hasOne(models.endereco,{
 })
 models.endereco.belongsTo(models.cliente)
 
+
+//* Relacionamento Carrinho x Cliente 1-1
+models.cliente.hasOne(model.carrinho)
+models.carrinho.belongsTo(models.cliente)
+
+//* Relacionamento Carrinho x Pedido 1-N
+models.carrinho.hasMany(models.pedido)
+models.pedido.belongsTo(models.carrinho)
 
 
 
