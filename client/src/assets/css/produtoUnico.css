@@ -1,0 +1,415 @@
+.imgprodIcon {
+    position: absolute;
+    top: 163px;
+    left: 85px;
+    border-radius: var(--br-4xs);
+    width: 651.4px;
+    height: 552px;
+    object-fit: cover;
+  }
+  .footer,
+  .header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--color-gainsboro);
+    width: 1940px;
+    height: 100px;
+  }
+  .footer {
+    top: 1091px;
+    height: 105px;
+  }
+  .nomeprod {
+    margin: 0;
+    top: 163px;
+    left: calc(50% + 130px);
+    font-size: 36px;
+    font-weight: 400;
+    font-family: inherit;
+    width: 446px;
+  }
+  .exemplo167,
+  .larguraEmMetros,
+  .nomeprod {
+    position: absolute;
+    display: inline-block;
+  }
+  .larguraEmMetros {
+    top: 264px;
+    left: 846px;
+    width: 283px;
+    height: 23px;
+  }
+  .exemplo167 {
+    top: 301px;
+    left: 850px;
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-100);
+    width: 138px;
+  }
+  .alturaEmMetros,
+  .exemplo1671 {
+    position: absolute;
+    top: 264px;
+    left: 1077px;
+    display: inline-block;
+    width: 233px;
+  }
+  .exemplo1671 {
+    top: 302px;
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-100);
+    width: 124px;
+  }
+  .noSabeMedir {
+    text-decoration: none;
+    top: 339px;
+    left: 850px;
+    font-size: 15px;
+    color: #0094ff;
+    width: 198.9px;
+  }
+  .aPartirDe,
+  .noSabeMedir,
+  .precoprod {
+    position: absolute;
+    display: inline-block;
+  }
+  .aPartirDe {
+    top: 389px;
+    left: calc(50% + 126px);
+    font-size: 23px;
+    line-height: 150%;
+    color: rgba(0, 0, 0, 0.31);
+    width: 189.1px;
+    height: 40px;
+  }
+  .precoprod {
+    top: 429px;
+    left: 846px;
+    font-size: var(--font-size-5xl);
+    width: 172px;
+    height: 27px;
+  }
+  .imgprodpIcon,
+  .imgprodpIcon1,
+  .imgprodpIcon2,
+  .imgprodpIcon3 {
+    position: absolute;
+    top: 770px;
+    left: 85px;
+    border-radius: var(--br-4xs);
+    width: 98px;
+    height: 100px;
+    object-fit: cover;
+  }
+  .imgprodpIcon1,
+  .imgprodpIcon2,
+  .imgprodpIcon3 {
+    left: 248px;
+  }
+  .imgprodpIcon2,
+  .imgprodpIcon3 {
+    left: 411px;
+  }
+  .imgprodpIcon3 {
+    left: 585px;
+  }
+  .selecioneUmaCor {
+    margin: 0;
+  }
+  .selecioneUmaCorContainer {
+    position: absolute;
+    top: 491px;
+    left: 844px;
+    display: inline-block;
+    width: 227px;
+  }
+  .corprod1,
+  .corprod2,
+  .corprod3,
+  .corprod4 {
+    cursor: pointer;
+    border: 1px solid var(--color-black);
+    padding: 0;
+    background-color: #949681;
+    position: absolute;
+    top: 527px;
+    left: 850px;
+    border-radius: var(--br-81xl);
+    box-sizing: border-box;
+    width: 39.2px;
+    height: 40px;
+  }
+  .corprod1,
+  .corprod2,
+  .corprod3 {
+    background-color: #9f1313;
+    left: 919px;
+  }
+  .corprod1,
+  .corprod2 {
+    background-color: #eaeaea;
+    left: 988px;
+  }
+  .corprod1 {
+    background-color: #adadad;
+    left: 1057px;
+  }
+  .descrio {
+    margin: 0;
+    font-weight: 600;
+  }
+  .cortinaBlackoutCom {
+    margin: 0;
+    font-size: var(--font-size-xl);
+  }
+  .descrioCortinaBlackoutContainer {
+    position: absolute;
+    top: 772px;
+    left: 791px;
+    font-size: var(--font-size-5xl);
+  }
+  .desktop1 {
+    position: relative;
+    background-color: #fff;
+    width: 100%;
+    height: 1196px;
+    overflow: hidden;
+    text-align: left;
+    font-size: var(--font-size-xl);
+    color: var(--color-black);
+    font-family: var(--font-inter);
+  }
+  
+  @media (max-width: 450px) {
+    header {
+      position: absolute;
+      top: 1046px;
+      left: 1px;
+      background-color: var(--color-gainsboro);
+      width: 360px;
+      height: 60px;
+    }
+    .nomeprod {
+      margin: 0;
+      position: absolute;
+      top: 102px;
+      left: calc(50% - 172px);
+      font-size: var(--font-size-5xl);
+      font-weight: 400;
+      font-family: inherit;
+      display: inline-block;
+      width: 205px;
+      height: 44px;
+    }
+    .imgprodIcon {
+      position: absolute;
+      top: 146px;
+      left: 35px;
+      border-radius: var(--br-4xs);
+      width: 289px;
+      height: 254px;
+      object-fit: cover;
+    }
+    .exemplo167,
+    .larguraEmMetros {
+      position: absolute;
+      top: 497px;
+      left: 24px;
+      display: inline-block;
+      width: 200px;
+      height: 18px;
+    }
+    .exemplo167 {
+      top: 526px;
+      left: 27px;
+      font-size: var(--font-size-mini);
+      color: var(--color-gray-100);
+      width: 106px;
+      height: 13px;
+    }
+    .alturaEmMetros,
+    .exemplo1671 {
+      position: absolute;
+      top: 497px;
+      left: 231px;
+      display: inline-block;
+      width: 178px;
+      height: 19px;
+    }
+    .exemplo1671 {
+      top: 527px;
+      font-size: var(--font-size-mini);
+      color: var(--color-gray-100);
+      width: 95px;
+      height: 13px;
+    }
+    .noSabeMedir {
+      text-decoration: none;
+      top: 586px;
+      left: 27px;
+      font-size: var(--font-size-sm);
+      color: var(--color-dodgerblue);
+      width: 152px;
+      height: 28px;
+    }
+    .aPartirDe,
+    .noSabeMedir,
+    .precoprod {
+      position: absolute;
+      display: inline-block;
+    }
+    .aPartirDe {
+      top: 631px;
+      left: calc(50% - 200px);
+      line-height: 150%;
+      color: var(--color-gray-300);
+      width: 189.1px;
+      height: 40px;
+    }
+    .precoprod {
+      top: 671px;
+      left: 26px;
+      width: 172px;
+      height: 27px;
+    }
+    .selecioneUmaCor {
+      margin: 0;
+    }
+    .selecioneUmaCorContainer {
+      position: absolute;
+      top: 715px;
+      left: 21px;
+      display: inline-block;
+      width: 163px;
+      height: 68px;
+    }
+    .corprod1,
+    .corprod2,
+    .corprod3,
+    .corprod4 {
+      cursor: pointer;
+      border: 1px solid var(--color-black);
+      padding: 0;
+      background-color: var(--color-gray-200);
+      position: absolute;
+      top: 789px;
+      left: 21px;
+      border-radius: var(--br-81xl);
+      box-sizing: border-box;
+      width: 39.2px;
+      height: 40px;
+    }
+    .corprod1,
+    .corprod2,
+    .corprod3 {
+      background-color: var(--color-firebrick);
+      top: 789px;
+      left: 73px;
+    }
+    .corprod1,
+    .corprod2 {
+      background-color: var(--color-whitesmoke);
+      left: 177px;
+    }
+    .corprod1 {
+      background-color: var(--color-darkgray);
+      left: 125px;
+    }
+    .btnCustom {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      border-radius: 5.86px;
+      background-color: var(--color-silver);
+    }
+    .customBtntxt {
+      position: absolute;
+      top: 11.1px;
+      left: 15.2px;
+      font-size: 11.72px;
+      font-family: var(--font-inter);
+      color: var(--color-black);
+      text-align: left;
+    }
+    .botaocustomizacao {
+      cursor: pointer;
+      border: 0;
+      padding: 0;
+      background-color: transparent;
+      position: absolute;
+      top: 785px;
+      left: 85px;
+      width: 169.3px;
+      height: 38.1px;
+    }
+    .btnCarrinho {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      border-radius: 6.87px;
+      background-color: var(--color-gainsboro);
+    }
+    .adicionarAoCarrinho {
+      position: absolute;
+      top: 13px;
+      left: 17.9px;
+      font-size: 13.74px;
+      font-family: var(--font-inter);
+      color: var(--color-black);
+      text-align: left;
+    }
+    .carrinhobtn {
+      cursor: pointer;
+      border: 0;
+      padding: 0;
+      background-color: transparent;
+      position: absolute;
+      top: 611px;
+      left: 163px;
+      width: 168.9px;
+      height: 44.6px;
+    }
+    .imgprodpIcon,
+    .imgprodpIcon1,
+    .imgprodpIcon2,
+    .imgprodpIcon3 {
+      position: absolute;
+      top: 408px;
+      left: 39px;
+      border-radius: var(--br-4xs);
+      width: 46px;
+      height: 50px;
+      object-fit: cover;
+    }
+    .imgprodpIcon1,
+    .imgprodpIcon2,
+    .imgprodpIcon3 {
+      left: 116px;
+      width: 47px;
+    }
+    .imgprodpIcon2,
+    .imgprodpIcon3 {
+      left: 194px;
+    }
+    .imgprodpIcon3 {
+      left: 272px;
+      width: 46px;
+    }
+  }
+  
+  
+  @media (min-width: 768px)and (max-width: 1024px) {
+    
+  
+  }

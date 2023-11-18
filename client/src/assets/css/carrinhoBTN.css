@@ -1,0 +1,32 @@
+.btnCarrinho {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: var(--br-3xs);
+    background-color: var(--color-gainsboro);
+  }
+  .adicionarAoCarrinho {
+    position: absolute;
+    top: 19px;
+    left: 26px;
+    font-size: var(--font-size-xl);
+    font-family: var(--font-inter);
+    color: var(--color-black);
+    text-align: left;
+  }
+  .carrinhobtn {
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+    position: absolute;
+    top: 631px;
+    left: 1089px;
+    width: 245.9px;
+    height: 65px;
+  }
+  
