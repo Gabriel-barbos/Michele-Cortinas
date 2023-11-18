@@ -15,7 +15,7 @@ const Modalpopup = (props) => {
         openchange(false);
     }
 
-    const [nome, setNome] = useState("");
+    const [titulo, setTitulo] = useState("");
     const [slug, setSlug] = useState("");
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -23,7 +23,7 @@ const Modalpopup = (props) => {
         axios.post(
             "http://localhost:8081/categoria/",
             {
-                nome: nome,
+                titulo: titulo,
                 slug: slug
             }
         ).then(() => {
@@ -60,11 +60,11 @@ const Modalpopup = (props) => {
                 <DialogTitle>Nova categoria  <IconButton onClick={closepopup} style={{ float: 'right' }}><CloseIcon color="primary"></CloseIcon></IconButton>  </DialogTitle>
                 <DialogContent>
                     <Stack spacing={2} margin={2}>
-                        <TextField variant="outlined" label="nome" className={nome !== "" ? "has-val input" : "input"}
+                        <TextField variant="outlined" label="titulo" className={titulo !== "" ? "has-val input" : "input"}
                             type="text"
-                            value={nome}
+                            value={titulo}
                             onChange={(e) => {
-                                setNome(e.target.value); 
+                                setTitulo(e.target.value); 
                                 setSlug(slugFormat(e.target.value))
                             }}
                         >

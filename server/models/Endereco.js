@@ -1,24 +1,27 @@
 const { sequelize, Sequelize } = require("../config/db");
-const Pedido = require("./Pedido");
 
-const Produto = sequelize.define("produtos", {
-  nome: {
+const Endereco = sequelize.define("enderecos", {
+  rua: {
     type: Sequelize.STRING,
     allowNull: true,
   },
-  preco: {
+  cep: {
     type: Sequelize.FLOAT,
     allowNull: true,
   },
-  descricao: {
+  cidade: {
     type: Sequelize.STRING,
     allowNull: true,
   },
-  categoria: {
+  bairro: {
+    type: Sequelize.STRING,
+    allowNull: true,
+  },
+  complemento: {
     type: Sequelize.STRING,
     allowNull: true,
   },
 });
 
-module.exports = Produto;
+module.exports = Endereco;
 

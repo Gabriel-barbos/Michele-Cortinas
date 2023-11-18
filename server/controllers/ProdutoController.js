@@ -4,10 +4,26 @@ const Produto = require("../models").produto;
 const Imagem = require("../models").imagem;
 
 const path = require("path");
+const fs = require("fs");
 
 const createProduto = async (req, res) => {
   try {
     const files = req.files;
+    
+    let extensaoValida = true;
+    // valida extensão
+    files.forEach((file) => {
+      const extensao = path.extname(file.originalname);
+
+      const extensoesValidas = [".jpg", ".png", ".webp"];
+      if (!extensoesValidas.includes(extensao)) {
+        let nomeImagem = file.filename;
+        fs.unlinkSync("./public/imagens/" + nomeImagem);
+        extensaoValida = false;
+      }
+    });
+
+    if(!extensaoValida) return res.status(500).json({ msg: "Uma imagem selecionada com extensão inválida" });
 
     let info = {
       nome: req.body.nome,
@@ -17,37 +33,37 @@ const createProduto = async (req, res) => {
     };
     const produto = await Produto.create(info); // Insert produto
 
+    //Pegar produto recém adicionado
     const produtoRecente = await Produto.findOne({
       attributes: ["id"],
       order: [["createdAt", "DESC"]],
-    }); //Pegar produto recém adicionado
+    });
+    
     const id = produtoRecente.id;
 
-    const extensoesValidas = [".jpg", ".png", ".webp", ".jpeg"];
-    let someImageLoaded = false; 
-
-    files.forEach((file) => {
-      const extensao = path.extname(file.originalname);
-      console.log(extensao)
-      // if (extensoesValidas.includes(extensao)) {
-        let nomeArquivo = file.filename;
-        const imagem = Imagem.create({ nomeArquivo: nomeArquivo, produtoId: id }); // Insert imagem no banco de dados
-        someImageLoaded = true;
-      // }
-    });
-
-    if(!someImageLoaded) return res.status(500).json({msg: "Uma imagem com formato inválido"});
-
-    res.json({ msg: files});
-  } catch (error) {
-    res.status(500).json({ msg: "caiu no catch" });
+    // cadastra no banco de dados
+    for(let file of files) {
+      let nomeArquivo = file.filename;
+      await Imagem.create({
+        nomeArquivo: nomeArquivo,
+        produtoId: id,
+      })
+    };
+  } 
+  catch (error) {
+    console.log(error)
   }
 };
 
+
 const getAllProduto = async (req, res) => {
   try {
-    
-    let produtos = await Produto.findAll();
+    let produtos = await Produto.findAll({
+      include: {
+        model: Imagem,
+        order: [["isCapa", "DESC"]],
+      },
+    });
     res.status(200).send(produtos);
   } catch (error) {
     res.status(400).json({ error });
@@ -58,8 +74,14 @@ const getAllProduto = async (req, res) => {
 const getOneProduto = async (req, res) => {
   try {
     let id = req.params.id;
-    let produto = await Produto.findOne({ where: { id: id } });
-    res.status(200).send(produto);
+    let produto = await Produto.findOne({
+      include: {
+        model: Imagem,
+        order: [["isCapa", "ASC"]],
+      },
+      where: { id: id },
+    });
+    res.status(200).json(produto);
   } catch (error) {
     res.status(400).json({ error });
   }
@@ -81,7 +103,16 @@ const updateProduto = async (req, res) => {
 const deleteProduto = async (req, res) => {
   try {
     let id = req.params.id;
-    await Produto.destroy({ where: { id: id } });
+    const images = await Imagem.findAll({ where: { produtoId: id } });
+    const deleteProduto = await Produto.destroy({ where: { id: id } });
+
+    if (deleteProduto) {
+      images.forEach((image) => {
+        let nomeImagem = image.nomeArquivo;
+        fs.unlinkSync("./public/imagens/" + nomeImagem);
+      });
+    }
+
     res.status(200).send("produtos deletados");
   } catch (error) {
     res.status(400).json({ error });

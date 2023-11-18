@@ -1,7 +1,7 @@
 const { sequelize, Sequelize } = require("../config/db");
 const Pedido = require("./Pedido");
 
-const Produto = sequelize.define("produtos", {
+const Variacao = sequelize.define("variacao", {
   nome: {
     type: Sequelize.STRING,
     allowNull: true,
@@ -20,5 +20,5 @@ const Produto = sequelize.define("produtos", {
   },
 });
 
-module.exports = Produto;
+module.exports = Variacao;
 

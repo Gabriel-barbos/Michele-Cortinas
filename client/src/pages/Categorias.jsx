@@ -24,7 +24,7 @@ export function Categorias() {
     <Modalpopup></Modalpopup>
     </header>
     <div className="items-list">
-        {categorias.map((v) => <CategoriaCard titulo={v.nome} slug={v.slug} id={v.id} />)}
+        {categorias.map((v) => <CategoriaCard titulo={v.titulo} slug={v.slug} id={v.id} />)}
         {categorias.length == 0 && <p>Nenhuma categoria registrada</p>}
     </div>
     </>)

@@ -18,9 +18,9 @@ const VisuallyHiddenInput = styled('input')({
 
 export default function InputFileUpload({handler, loading, loaded}) {
   return (
-    <LoadingButton component="label" loading={loading} loaded={loaded} loadingIndicator="Enviando imagens…" color={!loaded ? "secondary" : "success"} variant="outlined" startIcon={<CloudUploadIcon />} onChange={(e) => {handler(e)}}>
+    <LoadingButton component="label" loading={loading} loaded={loaded} loadingIndicator="Enviando imagens…" color={!loaded ? "secondary" : "success"} variant="outlined" startIcon={<CloudUploadIcon />} >
       {!loaded ? "Carregar imagens" : "Arquivos carregados"}
-      <VisuallyHiddenInput type="file" multiple />
+      <VisuallyHiddenInput type="file" multiple  onInput={(e) => {handler(e)}}/>
     </LoadingButton>
   );
 }

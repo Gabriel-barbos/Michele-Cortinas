@@ -52,6 +52,16 @@ const register = async (req, res) => {
     senha: await bcrypt.hash(req.body.senha, 10),
   };
 
+  let telefone = req.body.telefone
+
+  let endereco = {
+    rua: req.body.nome,
+    cep: req.body.cep,
+    cidade: req.body.cidade,
+    bairro: req.body.bairro,
+    complemento: req.body.complemento
+  }
+  
   const emailIsRegistered = await Cliente.findOne({
     where: { email: info.email },
   });

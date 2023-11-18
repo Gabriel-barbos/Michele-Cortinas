@@ -6,6 +6,7 @@ import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import InputFileUpload from "./InputFileUpload";
+import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
 
 const ModalPopup = (props) => {
     const [open, openchange] = useState(false);
@@ -16,15 +17,14 @@ const ModalPopup = (props) => {
         openchange(false);
     }
 
-    let formData = new FormData();    //formdata object
-
+    
     const [nome, setNome] = useState("");
-    const [preco, setPreco] = useState(0);
+    const [preco, setPreco] = useState("");
     const [descricao, setDescricao] = useState("");
     const [categoria, setCategoria] = useState(""); 
     const [categoriaId, setCategoriaId] = useState("");
     const [categorias, setCategorias] = useState([]);
-
+    
     useEffect(() => {
         axios.get("http://localhost:8081/categoria/")
         .then(({ data }) => {
@@ -33,31 +33,35 @@ const ModalPopup = (props) => {
             console.log(err)
         })
     }, [])
-
-
+    
+    
     const [sendingFiles, setSendingFiles] = useState(false)
     const [sendedFiles, setSendedFiles] = useState(false)
+    
+    let formData = new FormData();    //formdata object
 
     const uploadFileHandler = (e) => {
         const files = e.target.files;
 
+        // formData.delete("file");
         for(let file of files){
+            // console.log(file)
             formData.append("file", file);
         }
 
         setSendedFiles(true)
+
     }
 
     const submitHandler = async (e) => {
         e.preventDefault();
 
-        setSendingFiles(true)
-
+        // setSendingFiles(true)
         formData.append("nome", nome)
         formData.append("preco", preco)
         formData.append("descricao", descricao)
         formData.append("categoria", categoria)
-
+        
         axios.post(
             "http://localhost:8081/produto/",
             formData,
@@ -67,11 +71,12 @@ const ModalPopup = (props) => {
                 } 
             }
         ).then((response) => {
-            // window.location = "/dashboard/categorias"
             console.log(response)
+            window.location = "/dashboard/produtos"
             setSendingFiles(false)
-        }).catch((err) => {
+        }).catch((err) => {  
             toast.warn(err.response.data.msg)
+            setSendingFiles(false)
         })
     }
 
@@ -79,7 +84,8 @@ const ModalPopup = (props) => {
 
     return (
         <div style={{ textAlign: 'center' }}>
-            <Button onClick={functionopenpopup} color="primary" variant="contained">Adicionar</Button>
+            <ToastContainer />
+            <Button onClick={(functionopenpopup)} color="primary" variant="contained">Adicionar</Button>
             <Dialog
                 open={open} onClose={closepopup} fullWidth maxWidth="sm">
                 <DialogTitle>Novo Produto  <IconButton onClick={closepopup} style={{ float: 'right' }}><CloseIcon color="primary"></CloseIcon></IconButton>  </DialogTitle>
@@ -92,7 +98,7 @@ const ModalPopup = (props) => {
                         >
                         </TextField>
                         <TextField variant="outlined" label="Preco" className={preco !== "" ? "has-val input" : "input"}
-                            type="text"
+                            type="number"
                             value={preco}
                             onChange={(e) => setPreco(e.target.value)}
                         >
@@ -120,12 +126,13 @@ const ModalPopup = (props) => {
                                 disabled={categorias.length <= 0}
                             >
                 
-                                {categorias.map((v) => {return <MenuItem value={v.id}>{v.nome}</MenuItem>})}
+                                {categorias.map((v) => {return <MenuItem value={v.id}>{v.titulo}</MenuItem>})}
                             </Select>
-                            {categorias.length <= 0 && <p>Nenhuma categoria disponível, <Link href="categorias">cadastre uma categoria</Link></p>}
+                            
                         </FormControl>
                         <InputFileUpload handler={uploadFileHandler} loaded={sendedFiles} loading={sendingFiles} />
-                        <Button onClick={submitHandler} color="primary" variant="contained">Cadastrar</Button>
+                        <Button onClick={submitHandler} color="primary" variant="contained" disabled={categorias.length <= 0}>Cadastrar</Button>
+                        {categorias.length <= 0 && <p style={{display: 'flex', alignItems: 'center', gap: '4px'}}><ErrorOutlineOutlinedIcon />Nenhuma categoria disponível, <Link href="categorias">cadastre uma categoria</Link></p>}
                     </Stack>
                 </DialogContent>
                 <DialogActions>
