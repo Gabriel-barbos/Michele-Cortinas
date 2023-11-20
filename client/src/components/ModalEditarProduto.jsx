@@ -1,14 +1,14 @@
-import { Button, Checkbox, Link, Dialog, DialogActions, DialogContent, FormControl, InputLabel, Select, DialogTitle, MenuItem, IconButton, Stack, TextField } from "@mui/material";
+import { Button, Checkbox, FormControl, InputLabel, Select, MenuItem, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControlLabel, IconButton, Stack, TextField } from "@mui/material";
 import FormControlContext from "@mui/material/FormControl/FormControlContext";
 import CloseIcon from "@mui/icons-material/Close"
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ImageItemGallery from "./ImageItemGallery";
 import InputFileUpload from "./InputFileUpload";
-import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
 
-const ModalPopup = (props) => {
+const ModalEditar = (props) => {
     const [open, openchange] = useState(false);
     const functionopenpopup = () => {
         openchange(true);
@@ -17,13 +17,23 @@ const ModalPopup = (props) => {
         openchange(false);
     }
 
-    
-    const [nome, setNome] = useState("");
-    const [preco, setPreco] = useState("");
-    const [descricao, setDescricao] = useState("");
-    const [categoria, setCategoria] = useState(""); 
+    const uploadFileHandler = (e) => {
+        setFiles(e.target.files);
+        setSendedFiles(true)
+    }
+
+    const [nome, setNome] = useState('');
+    const [descricao, setDescricao] = useState('');
+    const [preco, setPreco] = useState('');
+    const [categoria, setCategoria] = useState('')
     const [categoriaId, setCategoriaId] = useState("");
     const [categorias, setCategorias] = useState([]);
+    const [imagens, setImagens] = useState([])
+    const [sendingFiles, setSendingFiles] = useState(false)
+    const [sendedFiles, setSendedFiles] = useState(false)
+    
+    
+    const [files, setFiles] = useState([]);
     
     useEffect(() => {
         axios.get("http://localhost:8081/categoria/")
@@ -33,18 +43,6 @@ const ModalPopup = (props) => {
             console.log(err)
         })
     }, [])
-    
-    
-    const [sendingFiles, setSendingFiles] = useState(false)
-    const [sendedFiles, setSendedFiles] = useState(false)
-    
-    
-    const [files, setFiles] = useState([]);
-
-    const uploadFileHandler = (e) => {
-        setFiles(e.target.files);
-        setSendedFiles(true)
-    }
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -60,9 +58,11 @@ const ModalPopup = (props) => {
         formData.append("preco", preco)
         formData.append("descricao", descricao)
         formData.append("categoria", categoria)
+
+        console.log(formData.get("nome"))
         
-        axios.post(
-            "http://localhost:8081/produto/",
+        axios.put(
+            "http://localhost:8081/produto/" + props.id,
             formData,
             { 
                 headers: {
@@ -71,26 +71,37 @@ const ModalPopup = (props) => {
             }
         ).then((response) => {
             console.log(response)
-            window.location = "/dashboard/produtos"
+            // window.location = "/dashboard/produtos"
             setSendingFiles(false)
         }).catch((err) => {  
             toast.warn(err.response.data.msg)
             setSendingFiles(false)
         })
     }
+    
+    useEffect(() => {
+        axios.get(
+            `http://localhost:8081/produto/${props.id}`
+        ).then(({data}) => {
+            setNome(data.nome);
+            setDescricao(data.descricao)
+            setPreco(data.preco)
+            setCategoria(data.categoria)
+            setImagens(data.imagens)
+        })
+    }, [props.id])
 
-   
-
+    
+    
     return (
-        <div style={{ textAlign: 'center' }}>
-            <ToastContainer />
-            <Button onClick={(functionopenpopup)} color="primary" variant="contained">Adicionar</Button>
+        <div style={{ textAlign: 'center', width: '100%'}}>
+            <Button onClick={functionopenpopup} color="primary" variant="contained" sx={{ width: '100%' }}>Editar</Button>
             <Dialog
                 open={open} onClose={closepopup} fullWidth maxWidth="sm">
-                <DialogTitle>Novo Produto  <IconButton onClick={closepopup} style={{ float: 'right' }}><CloseIcon color="primary"></CloseIcon></IconButton>  </DialogTitle>
+                <DialogTitle>Editar {props.name} <IconButton onClick={closepopup} style={{ float: 'right' }}><CloseIcon color="primary"></CloseIcon></IconButton>  </DialogTitle>
                 <DialogContent>
-                    <Stack spacing={2}>
-                        <TextField variant="outlined" label="Nome" className={nome !== "" ? "has-val input" : "input"}
+                    <Stack spacing={2} margin={2}>
+                    <TextField variant="outlined" label="Nome" className={nome !== "" ? "has-val input" : "input"}
                             type="text"
                             value={nome}
                             onChange={(e) => setNome(e.target.value)}
@@ -129,9 +140,9 @@ const ModalPopup = (props) => {
                             </Select>
                             
                         </FormControl>
+                        {imagens.length > 0 && <ImageItemGallery images={imagens} />}
                         <InputFileUpload handler={uploadFileHandler} loaded={sendedFiles} loading={sendingFiles} />
-                        <Button onClick={submitHandler} color="primary" variant="contained" disabled={categorias.length <= 0}>Cadastrar</Button>
-                        {categorias.length <= 0 && <p style={{display: 'flex', alignItems: 'center', gap: '4px'}}><ErrorOutlineOutlinedIcon />Nenhuma categoria disponível, <Link href="categorias">cadastre uma categoria</Link></p>}
+                        <Button onClick={submitHandler} color="primary" variant="contained">Atualizar</Button>
                     </Stack>
                 </DialogContent>
                 <DialogActions>
@@ -142,5 +153,4 @@ const ModalPopup = (props) => {
     );
 }
 
-export default ModalPopup;
-
+export default ModalEditar;

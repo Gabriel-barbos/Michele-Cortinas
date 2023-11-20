@@ -20,7 +20,7 @@ export default function InputFileUpload({handler, loading, loaded}) {
   return (
     <LoadingButton component="label" loading={loading} loaded={loaded} loadingIndicator="Enviando imagens…" color={!loaded ? "secondary" : "success"} variant="outlined" startIcon={<CloudUploadIcon />} >
       {!loaded ? "Carregar imagens" : "Arquivos carregados"}
-      <VisuallyHiddenInput type="file" multiple  onInput={(e) => {handler(e)}}/>
+      <VisuallyHiddenInput type="file" multiple  onChange={(e) => {handler(e)}}/>
     </LoadingButton>
   );
 }

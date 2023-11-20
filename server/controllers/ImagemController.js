@@ -25,7 +25,7 @@ const deleteOneImagem = async (req, res) => {
 
     if (deleteImage) {
       let nomeImagem = image.nomeArquivo;
-      fs.unlinkSync("./imagens/" + nomeImagem);
+      fs.unlinkSync("./public/imagens/" + nomeImagem);
     }
 
     res.status(200).send("imagem deletada");

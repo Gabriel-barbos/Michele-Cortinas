@@ -7,12 +7,16 @@ import { ProdutoCard } from "../components/ProdutoCard"
 export function Produtos() {
     const [produtos, setProdutos] = useState([]);
 
-    useEffect(() => {
+    const updateProductGrid = () => {
         axios.get("http://localhost:8081/produto/")
         .then(({ data }) => {
             console.log(data)
             setProdutos(data)
         })
+    }
+
+    useEffect(() => {
+        updateProductGrid();
     }, [])
     
     
@@ -25,7 +29,14 @@ export function Produtos() {
     <ModalPopup></ModalPopup>
     </header>
     <div className="items-list-produtos">
-        {produtos.map((v) => <ProdutoCard title={v.nome} img={v.imagens[0]} />)}
+        {/* Alterar api para retornar o path com ip */}
+        {produtos.map((v) => 
+        <ProdutoCard 
+            title={v.nome} 
+            img={v.imagens[0] ? "http://localhost:8081/imagens/" + v.imagens[0].nomeArquivo : "https://turismo.eurodicas.com.br/wp-content/uploads/2018/11/place-des-vosges.jpg"} 
+            id={v.id}
+        />
+        )}
     </div>
     </>)
 }

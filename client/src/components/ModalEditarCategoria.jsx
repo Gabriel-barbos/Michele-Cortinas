@@ -42,8 +42,8 @@ const ModalEditar = (props) => {
 
     
     return (
-        <div style={{ textAlign: 'center' }}>
-            <Button onClick={functionopenpopup} color="primary" variant="contained">Editar</Button>
+        <div style={{ textAlign: 'center', width: '100%'}}>
+            <Button onClick={functionopenpopup} color="primary" variant="contained" sx={{ width: '100%' }}>Editar</Button>
             <Dialog
                 open={open} onClose={closepopup} fullWidth maxWidth="sm">
                 <DialogTitle>Editar {props.name} <IconButton onClick={closepopup} style={{ float: 'right' }}><CloseIcon color="primary"></CloseIcon></IconButton>  </DialogTitle>

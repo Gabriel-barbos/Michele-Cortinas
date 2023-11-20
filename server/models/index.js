@@ -56,6 +56,6 @@ models.endereco.belongsTo(models.cliente)
 
 
 
-sequelize.sync({ force: true });
+// sequelize.sync({ force: true });
 
 module.exports = models;

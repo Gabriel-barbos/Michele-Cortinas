@@ -5,10 +5,6 @@ import ModalEditar from './ModalEditarCategoria';
 import Paper from '@mui/material/Paper';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
 import "../assets/css/dropdown.css"
 export default function DropdownMenu(props) {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,20 +23,10 @@ export default function DropdownMenu(props) {
           <Paper sx={{ width: 150, maxWidth: '100%', position: 'absolute', right: '20px'}}>
             <MenuList>
               <MenuItem>
-                <ListItemIcon>
-                  <EditIcon />
-                </ListItemIcon>
-                <ListItemText>
-                  <ModalEditar id={props.id} name={props.name}/>
-                </ListItemText>
+                  <ModalEditar id={props.id} name={props.name} />
               </MenuItem>
               <MenuItem>
-                <ListItemIcon>
-                  <DeleteIcon />
-                </ListItemIcon>
-                <ListItemText>
                   <ModalExcluir entity={props.entity} id={props.id} name={props.name}/>
-                </ListItemText>
               </MenuItem>
             </MenuList>
           </Paper>

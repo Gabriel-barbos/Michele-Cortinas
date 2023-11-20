@@ -15,7 +15,7 @@ const createProduto = async (req, res) => {
     files.forEach((file) => {
       const extensao = path.extname(file.originalname);
 
-      const extensoesValidas = [".jpg", ".png", ".webp"];
+      const extensoesValidas = [".jpg", ".png", ".webp", ".jpeg"];
       if (!extensoesValidas.includes(extensao)) {
         let nomeImagem = file.filename;
         fs.unlinkSync("./public/imagens/" + nomeImagem);
@@ -49,6 +49,8 @@ const createProduto = async (req, res) => {
         produtoId: id,
       })
     };
+
+    return res.status(200).json({msg: "Produto cadastrado com sucesso"});
   } 
   catch (error) {
     console.log(error)
@@ -91,9 +93,8 @@ const getOneProduto = async (req, res) => {
 const updateProduto = async (req, res) => {
   try {
     let id = req.params.id;
-
     const produto = await Produto.update(req.body, { where: { id: id } });
-    res.status(200).send(produto);
+    res.status(200).json({msg: "Produto atualizado com sucesso" + req.body.nome});
   } catch (error) {
     res.status(400).json({ error });
   }
