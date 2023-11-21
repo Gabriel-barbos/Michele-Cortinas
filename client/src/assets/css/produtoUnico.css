@@ -1,0 +1,213 @@
+.imgprod {
+  position: absolute;
+  top: 170px;
+  left: 80px;
+  border-radius: 4px;
+  width: 663px;
+  height: 520px;
+  object-fit: cover;
+}
+.footer,
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: gray;
+  width: 1440px;
+  height: 100px;
+}
+.footer {
+  top: 962px;
+  left: 5px;
+  height: 105px;
+}
+.nomeprod {
+  margin: 0;
+  top: 163px;
+  left: 820px;
+  font-size: 36px;
+  font-weight: 400;
+  font-family: inherit;
+  width: 446px;
+}
+.descricao,
+.largura,
+.nomeprod {
+  position: absolute;
+  display: inline-block;
+}
+.largura {
+  top: 288px;
+  left: 830px;
+  width: 283px;
+  height: 23px;
+}
+.descricao {
+  margin: 0;
+  top: 214px;
+  left: 820px;
+  font-size: 15px;
+  color: grey;
+  width: 333px;
+}
+.altura,
+.NsabeMedirLink {
+  position: absolute;
+  top: 402px;
+  left: 828px;
+  display: inline-block;
+  width: 233px;
+  text-decoration:blue;
+
+}
+.NsabeMedirLink {
+  top: 502px;
+  left: 911px;
+  font-size: var(--font-size-mini);
+  color: var(--color-dodgerblue);
+  width: 247px;
+}
+.btnCarrinho {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 10px;
+  background-color: black;
+}
+.adicionarAoCarrinho {
+  position: absolute;
+  top: 21px;
+  left: 92px;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: var(--font-inter);
+  color: white;
+  text-align: left;
+}
+.carrinho {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  top: 751px;
+  left: 825px;
+  width: 391px;
+  height: 65px;
+}
+.customizacoees1 {
+  margin: 0;
+}
+.customizacoes,
+.precoprod {
+  position: absolute;
+  top: 529px;
+  left: 825px;
+  font-size: 20.78px;
+  display: inline-block;
+  width: 152px;
+  height: 28px;
+}
+.precoprod {
+  top: 702px;
+  font-size: 35px;
+  font-weight: 550;
+  width: 195px;
+  height: 26px;
+}
+
+.inputLargura {
+  border: 0;
+  background-color: transparent;
+  position: absolute;
+  top: 323px;
+  left: 824px;
+}
+
+.inputAltura{
+  left: 454px
+}
+.inputAltura {
+  top: 432px;
+}
+.precoTotal {
+  position: absolute;
+  top: 671px;
+  left: 825px;
+  font-weight: 601;
+  font-size: 25px;
+}
+
+
+.prodImgMini1Icon,
+.prodImgMini2Icon,
+.prodImgMini3Icon,
+.prodImgMini4Icon {
+  position: absolute;
+  top: 708px;
+  left: 82px;
+  width: 140px;
+  height: 110px;
+  object-fit: cover;
+}
+.prodImgMini1Icon,
+.prodImgMini2Icon,
+.prodImgMini3Icon {
+  left: 603px;
+}
+.prodImgMini1Icon,
+.prodImgMini2Icon {
+  left: 429px;
+}
+.prodImgMini1Icon {
+  left: 255px;
+}
+.custom1,
+.custom2,
+.custom3,
+.custom4 {
+  cursor: pointer;
+  border: 1.9px black;
+  padding: 0;
+  background-color: grey;
+  position: absolute;
+  top: 565.9px;
+  left: 824px;
+  border-radius: 60px;
+  box-sizing: border-box;
+  width: 73.6px;
+  height: 75.1px;
+}
+.custom1,
+.custom2,
+.custom3 {
+  top: 564px;
+  left: 921.7px;
+}
+.custom1,
+.custom2 {
+  left: 1117px;
+}
+.custom1 {
+  left: 1019.3px;
+}
+.produtounico {
+  position: relative;
+  background-color: var(--color-white);
+  width: 100%;
+  height: 1067px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--font-size-xl);
+  color: var(--color-black);
+  font-family: var(--font-inter);
+}
+@media screen and (max-width: 1200px) {
+  .produtounico {
+    width: 1440px;
+  }
+}

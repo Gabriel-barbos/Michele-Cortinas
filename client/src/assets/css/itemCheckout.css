@@ -1,0 +1,149 @@
+.boxCard {
+  position: absolute;
+  height: 170px;
+  width: 1364px;
+  top: 0%;
+  right: 0%;
+  bottom: 0%;
+  left: 0%;
+  border-radius: 15px;
+  background-color: #f1f1f1;
+}
+.imgprodIcon {
+  position: absolute;
+  height: 76.47%;
+  width: 13.78%;
+  top: 13.53%;
+  right: 84.09%;
+  bottom: 10%;
+  left: 2.13%;
+  border-radius: 18px;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+}
+.titulo {
+  margin: 0;
+  position: absolute;
+  top: 13.53%;
+  left: 18.84%;
+  font-size: 20px;
+  font-weight: 800;
+  font-family: inherit;
+}
+.cor {
+  margin: 0;
+  position: absolute;
+  top: 36.47%;
+  left: 18.84%;
+  font-size: inherit;
+  font-weight: 400;
+  font-family: inherit;
+}
+.desc {
+  margin: 0;
+  position: absolute;
+  top: 54.12%;
+  left: 18.84%;
+  color: gray;
+}
+.valor{
+  position: absolute;
+  top: 11.76%;
+  left: 79.4%;
+}
+.largura {
+  position: absolute;
+  top: 40.76%;
+  left: 79.4%;}
+
+.altura{
+  position: absolute;
+  top: 30.76%;
+  left: 79.4%;
+}
+
+.editBtnChild {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0%;
+  right: 0%;
+  bottom: 0%;
+  left: 0%;
+  border-radius: var(--br-8xs);
+  background-color: var(--color-black);
+}
+.editar {
+  position: absolute;
+  top: 21.29%;
+  left: 26.65%;
+  font-size: 15px;
+  font-family: var(--font-inter);
+  color: white;
+  text-align: left;
+}
+.editBtn {
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  background-color: black;
+  position: absolute;
+  height: 20.59%;
+  width: 6.23%;
+  top: 74.71%;
+  right: 7.33%;
+  bottom: 4.71%;
+  left: 86.44%;
+  border-radius: 10px;
+}
+.deleteBtnChild {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0%;
+  right: 0%;
+  bottom: 0%;
+  left: 0%;
+  border-radius: 10px;
+  background-color: red;
+}
+.excluir {
+  position: absolute;
+  top: 22.29%;
+  left: 22.94%;
+  font-size: 15px;
+  font-family: var(--font-inter);
+  color: white;
+  text-align: left;
+}
+.deleteBtn {
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  height: 20.59%;
+  width: 6.23%;
+  top: 74.71%;
+  right: 0.37%;
+  bottom: 4.71%;
+  left: 93.4%;
+}
+.medidas {
+  position: absolute;
+  top: 29.41%;
+  left: 85.92%;
+}
+.itemCarrinho {
+  position: absolute;
+  top: 203px;
+  left: 38px;
+  width: 1364px;
+  height: 170px;
+  text-align: left;
+  font-size: var(--font-size-xl);
+  color: var(--color-black);
+  font-family: var(--font-inter);
+}

@@ -1,0 +1,153 @@
+.header {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: var(--color-gainsboro);
+    width: 1440px;
+    height: 105px;
+  }
+  .checkout {
+    margin: 0;
+    position: absolute;
+    top: 136px;
+    left: 22px;
+    font-size: var(--font-size-13xl);
+    font-weight: 500;
+    font-family: inherit;
+  }
+  .checkoutBox {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-radius: var(--br-3xs) var(--br-3xs) 0px 0px;
+    background-color: var(--color-whitesmoke-200);
+    width: 1440px;
+    height: 154px;
+  }
+  .total {
+    margin: 0;
+    position: absolute;
+    top: 30px;
+    left: 45px;
+    font-size: var(--font-size-5xl);
+    font-weight: 500;
+    font-family: inherit;
+  }
+  .enviarBtnIcon {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0%;
+    right: 0%;
+    bottom: 0%;
+    left: 0%;
+    border-radius: var(--br-3xs);
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+  }
+  .enviarPedido {
+    position: absolute;
+    top: 11px;
+    left: 57px;
+    font-size: var(--font-size-8xl);
+    font-weight: 500;
+    font-family: var(--font-inter);
+    color: var(--color-white);
+    text-align: left;
+  }
+  .sendBtn {
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    position: absolute;
+    top: 67px;
+    left: 45px;
+    width: 290px;
+    height: 55px;
+  }
+  .enderecoBox1 {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0%;
+    right: 0%;
+    bottom: 0%;
+    left: 0%;
+    border-radius: 15px;
+    background-color: var(--color-gainsboro);
+  }
+  .enderecoDeEntrega {
+    position: absolute;
+    top: 5px;
+    left: 8px;
+    font-weight: 500;
+  }
+  .alterar {
+    position: absolute;
+    top: 5px;
+    left: 342px;
+    font-size: var(--font-size-sm);
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  .endereco {
+    position: absolute;
+    top: 39px;
+    left: 13px;
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    color: #828282;
+  }
+  .enderecoBox {
+    position: absolute;
+    top: 15px;
+    left: 422px;
+    width: 396px;
+    height: 116px;
+  }
+  .avisoh2 {
+    margin: 0;
+    position: absolute;
+    top: 15px;
+    left: 978px;
+    font-size: inherit;
+    font-weight: 400;
+    font-family: inherit;
+  }
+
+  .avisotxt {
+    margin: 0;
+    position: absolute;
+    top: 54px;
+    left: 988px;
+  }
+  .checkoutCard {
+    position: absolute;
+    top: 769px;
+    left: 0px;
+    width: 1440px;
+    height: 154px;
+  }
+  .footer {
+    position: absolute;
+    top: 923px;
+    left: 0px;
+    background-color: #6f6d6d;
+    width: 1440px;
+    height: 105px;
+  }
+
+  .checkout {
+    position: relative;
+    background-color: var(--color-white);
+    width: 100%;
+    height: 1024px;
+    overflow: hidden;
+    text-align: left;
+    font-size: var(--font-size-xl);
+    color: var(--color-black);
+    font-family: var(--font-inter);
+  }
+  

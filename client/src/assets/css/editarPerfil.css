@@ -1,0 +1,53 @@
+
+
+  .atualizarInfo {
+    margin: 0;
+    top: 173px;
+    left: 310px;
+    font-size: 25px;
+    position:absolute;
+    font-weight: 600;
+    font-family: inherit;
+  }
+  .inputUser {
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    top: 150px;
+    left: -2px;
+  }
+  .inputTel {
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    top: 230px;
+    left: -315px;
+  }
+  .inputSenha {
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    top: 300px;
+    left: -629px;
+  }
+
+  .salvar {
+    position: absolute;
+    top: 28.51%;
+    left: 26.95%;
+    font-size: 15px;
+    font-family: var(--font-inter);
+    color: white;
+    text-align: center;
+  }
+  .savebtn {
+    cursor: pointer;
+    border-radius: 15px;
+    padding: 0;
+    background-color: black;
+    position: absolute;
+    top: 480px;
+    left: 310px;
+    width: 95px;
+    height: 39px;
+  }
