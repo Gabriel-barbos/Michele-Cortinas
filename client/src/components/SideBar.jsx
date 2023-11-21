@@ -12,7 +12,8 @@ export function SideBar(props) {
                 <a href="categorias" className={`${props.active == "Categorias" ? "active" : ""} sidebar-item` }>Categorias</a>
                 <a href="produtos" className={`${props.active == "Produtos" ? "active" : ""} sidebar-item` }>Produtos</a>
                 <a href="#" className={`${props.active == "Clientes" ? "active" : ""} sidebar-item` }>Clientes</a>
-                <a href="#" className={`${props.active == "Configurações" ? "active" : ""} sidebar-item` }>Configurações</a>
+                <a href="pedidos" className={`${props.active == "Pedidos" ? "active" : ""} sidebar-item` }>Pedidos</a>
+                <a href="#" className={`${props.active == "Configuracoes" ? "active" : ""} sidebar-item` }>Configurações</a>
             </div>
             <div className="sidebar-footer">
                 <a href="logout" className="sidebar-item">Sair</a>
