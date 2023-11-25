@@ -12,6 +12,7 @@ import { Dashboard } from "./admin/Dashboard.jsx";
 import Modalpopup from "../components/ModalAdicionarCategoria.jsx";
 import AuthGuard from "../hooks/useAuthGuard.jsx"
 import { Categorias } from "./admin/Categorias.jsx";
+import Home from "./user/Home.jsx";
 
 import '../assets/css/login.css'
 import '../assets/css/dashboard.css'
@@ -37,7 +38,7 @@ export function AppRoutes(){
                     <Dashboard page={<Pedidos />} />
                 }/>
                 <Route path="/modal" element={<Modalpopup />}/>
-
+                <Route path="/" element={<Home/>}/>
             </Routes>
         </Router>
     )
