@@ -2,25 +2,26 @@
     position: absolute;
     top: 0px;
     left: 0px;
-    background-color: var(--color-gainsboro);
+    background-color: gray;
     width: 1440px;
     height: 105px;
   }
-  .checkout {
+  .title {
     margin: 0;
     position: absolute;
     top: 136px;
     left: 22px;
-    font-size: var(--font-size-13xl);
-    font-weight: 500;
+    font-size: 20;
+    font-weight: 700;
     font-family: inherit;
   }
+  
   .checkoutBox {
     position: absolute;
     top: 0px;
     left: 0px;
-    border-radius: var(--br-3xs) var(--br-3xs) 0px 0px;
-    background-color: var(--color-whitesmoke-200);
+    border-radius: 15px;
+    background-color: whitesmoke;
     width: 1440px;
     height: 154px;
   }
@@ -29,38 +30,27 @@
     position: absolute;
     top: 30px;
     left: 45px;
-    font-size: var(--font-size-5xl);
-    font-weight: 500;
+    font-size: 20px;
+    font-weight: 600;
     font-family: inherit;
   }
-  .enviarBtnIcon {
+
+  .enviar {
     position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0%;
-    right: 0%;
-    bottom: 0%;
-    left: 0%;
-    border-radius: var(--br-3xs);
-    max-width: 100%;
-    overflow: hidden;
-    max-height: 100%;
-  }
-  .enviarPedido {
-    position: absolute;
-    top: 11px;
-    left: 57px;
-    font-size: var(--font-size-8xl);
+    top: 15px;
+    left: 80px;
+    font-size: 22px;
     font-weight: 500;
     font-family: var(--font-inter);
-    color: var(--color-white);
+    color: white;
     text-align: left;
   }
   .sendBtn {
     cursor: pointer;
     border: none;
+    border-radius: 10px;
     padding: 0;
-    background-color: transparent;
+    background-color: black;
     position: absolute;
     top: 67px;
     left: 45px;
@@ -76,27 +66,27 @@
     bottom: 0%;
     left: 0%;
     border-radius: 15px;
-    background-color: var(--color-gainsboro);
+    background-color: #d3d3d3;
   }
   .enderecoDeEntrega {
     position: absolute;
     top: 5px;
     left: 8px;
-    font-weight: 500;
+    font-weight: 600;
   }
   .alterar {
     position: absolute;
     top: 5px;
-    left: 342px;
-    font-size: var(--font-size-sm);
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+    left: 338px;
+    font-size: 16px;
+    
   }
 
   .endereco {
     position: absolute;
-    top: 39px;
+    top: 35px;
     left: 13px;
-    font-size: var(--font-size-base);
+    font-size: 16px;
     font-weight: 500;
     color: #828282;
   }
@@ -112,8 +102,8 @@
     position: absolute;
     top: 15px;
     left: 978px;
-    font-size: inherit;
-    font-weight: 400;
+    font-size: 20PX;
+    font-weight: 700;
     font-family: inherit;
   }
 
@@ -122,6 +112,7 @@
     position: absolute;
     top: 54px;
     left: 988px;
+    font-size: 18px;
   }
   .checkoutCard {
     position: absolute;
@@ -138,16 +129,3 @@
     width: 1440px;
     height: 105px;
   }
-
-  .checkout {
-    position: relative;
-    background-color: var(--color-white);
-    width: 100%;
-    height: 1024px;
-    overflow: hidden;
-    text-align: left;
-    font-size: var(--font-size-xl);
-    color: var(--color-black);
-    font-family: var(--font-inter);
-  }
-  

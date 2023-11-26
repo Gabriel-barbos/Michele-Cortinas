@@ -6,10 +6,9 @@ export function Checkout() {
         <>
             
       <header className="header" />
-      <h1 className="checkout">Checkout</h1>
-      <ItemCheckout />
-      <ItemCheckout titulo="578px" />
-      <ItemCheckout titulo="392px" />
+      <h1 className="title ">Checkout</h1>
+      
+      <ItemCheckout top={50} left={100}/>
       <div className="checkoutCard">
         <div className="checkoutBox" />
         <h2 className="total">TOTAL: 750 R$</h2>
@@ -22,9 +21,11 @@ export function Checkout() {
           <div className="enderecoDeEntrega">Endereço de entrega:</div>
           <div className="alterar">alterar</div>
           <div className="endereco">
-            <p>rua da Bahia, 345 - ap 416</p> <br />
-            <p >Jardim das Flores</p><br />
-            <p>Xique-Xique,BA</p>
+            <p>rua da Bahia, 345 - ap 416 <br />
+              Cidade baixa <br />
+              Xique-Xique,BA <br />
+              </p> 
+        
           </div>
         </div>
 
