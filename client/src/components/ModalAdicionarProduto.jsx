@@ -7,6 +7,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import InputFileUpload from "./InputFileUpload";
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import VariacaoInput from "./VariacaoInput";
 
 const ModalPopup = (props) => {
     const [open, openchange] = useState(false);
@@ -40,14 +42,40 @@ const ModalPopup = (props) => {
     
     
     const [files, setFiles] = useState([]);
+    const [variacoes, setVariacoes] = useState([]);
 
     const uploadFileHandler = (e) => {
         setFiles(e.target.files);
         setSendedFiles(true)
     }
 
+    const submitVariacoes = () => {
+        for(let variacao of variacoes){
+            let formData = new FormData();
+
+            formData.append("nome", variacao.titulo)
+            for(let file of variacao.imagens){
+                formData.append("file", file)
+            }
+
+            console.log(formData.get("file"))
+            axios.post(
+                "http://localhost:8081/variacao/", 
+                formData,
+                { 
+                    headers: {
+                        "Content-Type": "multipart/form-data"
+                    } 
+            }).then((response) => {
+                console.log(response)
+            })
+        }
+    }
+
     const submitHandler = async (e) => {
         e.preventDefault();
+        submitVariacoes();
+        return
         let formData = new FormData();    //formdata object
 
         setSendingFiles(true)
@@ -79,7 +107,20 @@ const ModalPopup = (props) => {
         })
     }
 
-   
+    const addVariacaoHandler = () => {
+        setVariacoes(variacoes => [...variacoes, {id: variacoes.length, titulo: "", imagens: []}])
+    }
+
+    const deleteVariacaoHandler = (id) => {
+        setVariacoes(variacoes.filter(v => v.id != id));
+    }
+
+    const applyVariacaoHandler = (id, titulo, imagens) => {
+        const variacaoIndex = variacoes.findIndex(v => v.id == id);
+        let variacoesCopy = [...variacoes];
+        variacoesCopy[variacaoIndex] = {id: id, titulo: titulo || variacoesCopy[variacaoIndex].titulo, imagens: imagens || variacoesCopy[variacaoIndex].imagens }
+        setVariacoes(variacoesCopy);
+    }
 
     return (
         <div style={{ textAlign: 'center' }}>
@@ -129,7 +170,16 @@ const ModalPopup = (props) => {
                             </Select>
                             
                         </FormControl>
+
                         <InputFileUpload handler={uploadFileHandler} loaded={sendedFiles} loading={sendingFiles} />
+
+                        <h3>Variações</h3>
+                        <Stack spacing={1} className="variacoes-container">
+                            {variacoes.map((v, i) => {
+                                return <VariacaoInput index={i} id={v.id} onAdd={applyVariacaoHandler} onDelete={deleteVariacaoHandler} />
+                            })}
+                        </Stack>
+                        <Button onClick={addVariacaoHandler} variant="outlined" startIcon={<AddCircleOutlineIcon />}>Adicionar variação</Button>
                         <Button onClick={submitHandler} color="primary" variant="contained" disabled={categorias.length <= 0}>Cadastrar</Button>
                         {categorias.length <= 0 && <p style={{display: 'flex', alignItems: 'center', gap: '4px'}}><ErrorOutlineOutlinedIcon />Nenhuma categoria disponível, <Link href="categorias">cadastre uma categoria</Link></p>}
                     </Stack>
