@@ -15,9 +15,12 @@ router.get('/', controller.getAllProduto)
 router.get('/:id', controller.getOneProduto)
 
 //* update
-router.put('/:id',controller.updateProduto)
+router.put('/:id',upload.array("file"),controller.updateProduto)
 
 //* delete
 router.delete('/:id', controller.deleteProduto)
+
+//* deleteOneImage
+router.delete('/delete/image/:id', controller.deleteOneImagem)
 
 module.exports = router

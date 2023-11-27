@@ -92,11 +92,40 @@ const getOneProduto = async (req, res) => {
 // Update produto
 const updateProduto = async (req, res) => {
   try {
+
+    // TRATAMENTO DE IMAGENS
+    const files = req.files;
+    console.log(files)
+    
+    let extensaoValida = true;
+    // valida extensão da imagem
+    files.forEach((file) => {
+      const extensao = path.extname(file.originalname);
+      const extensoesValidas = [".jpg", ".png", ".webp", ".jpeg"];
+      if (!extensoesValidas.includes(extensao)) {
+        let nomeImagem = file.filename;
+        fs.unlinkSync("./public/imagens/" + nomeImagem);
+        extensaoValida = false;
+      }
+    });
+
+    if(!extensaoValida) return res.status(500).json({ msg: "Uma imagem selecionada com extensão inválida" });
+    
     let id = req.params.id;
-    const produto = await Produto.update(req.body, { where: { id: id } });
+    const insertProduto = await Produto.update(req.body, { where: { id: id } });
+    if(insertProduto){
+    // cadastra no banco de dados
+      for(let file of files) {
+        let nomeArquivo = file.filename;
+        await Imagem.create({
+          nomeArquivo: nomeArquivo,
+          produtoId: id,
+        })
+      };
+    }
     res.status(200).json({msg: "Produto atualizado com sucesso" + req.body.nome});
   } catch (error) {
-    res.status(400).json({ error });
+    res.status(400).json({ msg:"Caiu no catch" });
   }
 };
 
@@ -114,9 +143,26 @@ const deleteProduto = async (req, res) => {
       });
     }
 
-    res.status(200).send("produtos deletados");
+    res.status(200).json({msg: "Produto deletado com sucesso!"});
   } catch (error) {
     res.status(400).json({ error });
+  }
+};
+
+const deleteOneImagem = async (req, res) => {
+  try {
+    let id = req.params.id;
+    const image = await Imagem.findOne({ where: { id: id } });
+    const deleteImage = await Imagem.destroy({ where: { id: id } });
+
+    if (deleteImage) {
+      let nomeImagem = image.nomeArquivo;
+      fs.unlinkSync("./public/imagens/" + nomeImagem);
+    }
+
+    res.status(200).send("imagem deletada");
+  } catch (error) {
+    res.status(500).json({ error });
   }
 };
 
@@ -126,4 +172,5 @@ module.exports = {
   getOneProduto,
   updateProduto,
   deleteProduto,
+  deleteOneImagem
 };
