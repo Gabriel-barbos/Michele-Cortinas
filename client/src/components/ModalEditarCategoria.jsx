@@ -1,12 +1,12 @@
 import { Button, Checkbox, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControlLabel, IconButton, Stack, TextField } from "@mui/material";
 import FormControlContext from "@mui/material/FormControl/FormControlContext";
 import CloseIcon from "@mui/icons-material/Close"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Modalpopup = (props) => {
+const ModalEditar = (props) => {
     const [open, openchange] = useState(false);
     const functionopenpopup = () => {
         openchange(true);
@@ -15,36 +15,44 @@ const Modalpopup = (props) => {
         openchange(false);
     }
 
-    const [titulo, setTitulo] = useState("");
-    const [slug, setSlug] = useState("");
+    const [titulo, setTitulo] = useState('');
+    const [slug, setSlug] = useState('');
+    
     const submitHandler = async (e) => {
         e.preventDefault();
-
-        axios.post(
-            "http://localhost:8081/categoria/",
+        axios.put(
+            `http://localhost:8081/categoria/${props.id}`,
             {
-                titulo: titulo,
+                nome: titulo,
                 slug: slug
             }
         ).then(() => {
             window.location = "/dashboard/categorias"
-        }).catch((err) => {
-            toast.warn(err.response.data.msg)
         })
     }
+    
+    useEffect(() => {
+        axios.get(
+            `http://localhost:8081/categoria/${props.id}`
+        ).then(({data}) => {
+            setTitulo(data.nome);
+            setSlug(data.slug)
+        })
+    }, [props.id])
 
+    
     return (
-        <div style={{ textAlign: 'center' }}>
-            <Button onClick={functionopenpopup} color="primary" variant="contained">Adicionar</Button>
+        <div style={{ textAlign: 'center', width: '100%'}}>
+            <Button onClick={functionopenpopup} color="primary" variant="contained" sx={{ width: '100%' }}>Editar</Button>
             <Dialog
                 open={open} onClose={closepopup} fullWidth maxWidth="sm">
-                <DialogTitle>Novo Produto  <IconButton onClick={closepopup} style={{ float: 'right' }}><CloseIcon color="primary"></CloseIcon></IconButton>  </DialogTitle>
+                <DialogTitle>Editar {props.name} <IconButton onClick={closepopup} style={{ float: 'right' }}><CloseIcon color="primary"></CloseIcon></IconButton>  </DialogTitle>
                 <DialogContent>
                     <Stack spacing={2} margin={2}>
                         <TextField variant="outlined" label="titulo" className={titulo !== "" ? "has-val input" : "input"}
                             type="text"
                             value={titulo}
-                            onChange={(e) => setTitulo(e.target.value)}
+                            onChange={(e) => { setTitulo(e.target.value) }}
                         >
                         </TextField>
                         <TextField variant="outlined" label="slug" className={slug !== "" ? "has-val input" : "input"}
@@ -53,7 +61,7 @@ const Modalpopup = (props) => {
                             onChange={(e) => setSlug(e.target.value)}
                         >
                         </TextField>
-                        <Button onClick={submitHandler} color="primary" variant="contained">Cadastrar</Button>
+                        <Button onClick={submitHandler} color="primary" variant="contained">Atualizar</Button>
                     </Stack>
                 </DialogContent>
                 <DialogActions>
@@ -64,5 +72,4 @@ const Modalpopup = (props) => {
     );
 }
 
-export default Modalpopup;
-
+export default ModalEditar;

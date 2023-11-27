@@ -1,30 +1,40 @@
 require("dotenv").config();
 
-const Produto = require("../models").imagem;
+const Produto = require("../models").produto;
+const Imagem = require("../models").imagem;
+const fs = require("fs");
+const path = require("path");
 
-const createImagem = async (req, res) => {
+// Pegar um produto
+const createOneImagem = async (req, res) => {
+  let id = req.body.id;
+  const file = req.file;
 
-    const imagePath = "/server/imagens/"
+  let nomeArquivo = file.filename;
+  const imagem = Imagem.create({ nomeArquivo: nomeArquivo, produtoId: id }); // Insert imagem no banco de dados
+  res.status(200).send("imagem criada");
+};
 
-    let info = {
-      nomeArquivo: req.body.nomeArquivo,
-      extensao: req.boy.extensao
-    };
-  
-    const imagem = await Imagem.create(info);
-    res.status(200).send(produto);
-  };
+// delete produto por id
+const deleteOneImagem = async (req, res) => {
+  try {
+    let id = req.params.id;
+    const image = await Imagem.findOne({ where: { id: id } });
+    const deleteImage = await Imagem.destroy({ where: { id: id } });
+    console.log(image)
 
+    if (deleteImage) {
+      let nomeImagem = image.nomeArquivo;
+      fs.unlinkSync("./public/imagens/" + nomeImagem);
+    }
 
+    res.status(200).send("imagem deletada");
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+};
 
-
-
-  module.exports = {
-    createProduto,
-    getAllProduto,
-    getOneProduto,
-    updateProduto,
-    deleteProduto,
-  };
-  
-  
+module.exports = {
+  createOneImagem,
+  deleteOneImagem,
+};

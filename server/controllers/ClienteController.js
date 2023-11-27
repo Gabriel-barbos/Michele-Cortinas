@@ -1,9 +1,13 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { cliente } = require("../models");
+const { exit } = require("process");
 
 require("dotenv").config();
 
 const Cliente = require("../models").cliente;
+const Endereco = require("../models").endereco;
+const Telefone = require("../models").telefone;
 
 const login = async (req, res) => {
   const email = req.body.email;
@@ -52,6 +56,7 @@ const register = async (req, res) => {
     senha: await bcrypt.hash(req.body.senha, 10),
   };
 
+
   const emailIsRegistered = await Cliente.findOne({
     where: { email: info.email },
   });
@@ -59,8 +64,39 @@ const register = async (req, res) => {
     return res.status(422).json({ msg: "E-mail já cadastrado" });
   }
 
-  const cliente = await Cliente.create(info);
-  res.status(200).send(cliente);
+  const insertCliente = await Cliente.create(info);
+
+  //* Adicionar endereco e telefone do cliente
+  if(insertCliente){
+
+    let numero = req.body.numero
+    let endereco = {
+      rua: req.body.nome,
+      cep: req.body.cep,
+      cidade: req.body.cidade,
+      bairro: req.body.bairro,
+      complemento: req.body.complemento
+    }
+
+    //* Caso o insert de cliente dê certo, realiza o insert de endereço e telefone
+
+    const clienteRecente = await Cliente.findOne({
+      attributes: ["id"],
+      order: [["createdAt", "DESC"]],
+    });
+    clienteId = clienteRecente.id
+    const insertTelefone = await Telefone.create({
+      numero: numero,
+      clienteId: clienteId
+    });
+    const insertEndereco = await Endereco.create(endereco);
+    res.status(200).json({ msg: "Cliente cadastrado com sucesso!"});
+  }else{
+    return res.status(500).json({ msg: "Erro ao cadastrar Usuário"})
+  }
+  
+
+  
 };
 
 // Pegar todos os clientes
