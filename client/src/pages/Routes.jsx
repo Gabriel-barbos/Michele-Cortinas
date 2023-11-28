@@ -20,6 +20,7 @@ import '../assets/css/login.css'
 import { Produtos } from "./Produtos.jsx";
 import { Checkout } from "./Checkout.jsx";
 import { ItemCheckout } from "../components/ItemCheckout.jsx";
+import { PedidosADM } from "./PedidosAdm.jsx";
 export function AppRoutes(){
     return (
         <Router>
@@ -31,6 +32,8 @@ export function AppRoutes(){
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/Checkout" element={<Checkout />}/>
                 <Route path ="/dashboard/editarPerfil" element ={<Dashboard page ={<EditarPerfil/>}/>} />
+                <Route path ="/dashboard/Pedidos" element ={<Dashboard page ={<PedidosADM/>}/>} />
+
                 <Route path="/dashboard/categorias" element={
                     <Dashboard page={<Categorias />} />
                 }/>

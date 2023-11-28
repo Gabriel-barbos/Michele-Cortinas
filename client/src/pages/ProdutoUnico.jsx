@@ -1,23 +1,27 @@
 import { TextField, InputAdornment, Icon, IconButton } from "@mui/material";
-import '../assets/css/produtoUnico.css'
+import '../assets/css/produtoUnico.css';
+import cortinaCinza from '../assets/img-teste/cortina-cinza.jpg';
 
 export function ProdutoUnico(){
   return (
     <>
-      <img className="imgprod" alt="Imagem do Produto" src="/imgprod1@2x.png" />
+      <img className="imgprod" alt="Imagem do Produto" src={cortinaCinza} />
 
       <header className="header" />
       <footer className="footer" />
 
 
       <h1 className="nomeprod" >Nome do Produto</h1>
-      <div className="largura">Largura (em metros)</div>
       <p className="descricao">
         cortina blackout com regulagem de abertura e tecido fresco que náo deixa
         cheiro, com facil lavagem e remoção
       </p>
 
+{/* 
       <div className="altura">Altura (em metros)</div>
+      <div className="largura">Largura (em metros)</div>
+      */}
+      
       <a href="https://www.youtube.com/watch?v=8fItc6KUuh8&pp=ygUfY29tbyBtZWRpciBvIHRhbWFuaG8gZGEgY29ydGluYQ%3D%3D" className="NsabeMedirLink">Não sabe medir? Clique aqui</a>
       <button className="carrinho">
         <div className="btnCarrinho" />
@@ -49,27 +53,64 @@ export function ProdutoUnico(){
       <img
         className="prodImgMini4Icon"
         alt=""
-        src="/prodimgmini4@2x.png"
+        src={cortinaCinza}
       />
       <img
         className="prodImgMini3Icon"
         alt=""
-        src="/prodimgmini4@2x.png"
+        src={cortinaCinza}
       />
       <img
         className="prodImgMini2Icon"
         alt=""
-        src="/prodimgmini4@2x.png"
+        src={cortinaCinza}
+
       />
       <img
         className="prodImgMini1Icon"
         alt=""
-        src="/prodimgmini4@2x.png"
+        src={cortinaCinza}
+
       />
-      <button className="custom4" />
-      <button className="custom3" />
-      <button className="custom2" />
-      <button className="custom1" />
+
+<div className="custom-container">
+  <button className="circle">
+  <img  src={cortinaCinza}/>
+  </button>
+
+  <button className="circle">
+  <img  src={cortinaCinza}/>
+  </button>
+
+  <button className="circle">
+  <img  src={cortinaCinza}/>
+  </button>
+
+  <button className="circle">
+  <img  src={cortinaCinza}/>
+  </button>
+</div>
+
+
+
+{/*
+      <div className="custom1">
+        <button> a}/>
+        </button>
+      </div>
+      
+      <div className="custom2">
+        <button></button>
+      </div>
+
+      <div className="custom3">
+        <button></button>
+      </div>
+
+      <div className="custom4">
+        <button></button>
+      </div>
+*/}
       </>
   );
 };

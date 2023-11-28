@@ -34,11 +34,11 @@
 .largura,
 .nomeprod {
   position: absolute;
-  display: inline-block;
+
 }
 .largura {
   top: 288px;
-  left: 830px;
+  left: 30px;
   width: 283px;
   height: 23px;
 }
@@ -64,7 +64,7 @@
   top: 502px;
   left: 911px;
   font-size: var(--font-size-mini);
-  color: var(--color-dodgerblue);
+  color: bl;
   width: 247px;
 }
 .btnCarrinho {
@@ -211,3 +211,5 @@
     width: 1440px;
   }
 }
+
+
