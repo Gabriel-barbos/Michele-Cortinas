@@ -5,16 +5,17 @@ import StepLabel from '@mui/material/StepLabel';
 import { useState } from 'react';
 import '../../assets/css/home.css'
 import JourneyHeader from '../../components/JourneyHeader'
+import Questionario from './Questionario';
 
 const steps = [
     {
-        label: "Primeiro passo",
-        title: "Esse é o primeiro passo",
-        element: <h1>Teste</h1>
+        label: "QUESTIONÁRIO",
+        title: "O que você deseja?",
+        element: <Questionario />
     },
     {
-        label: "Segundo passo",
-        title: "Esse é o segundo passo",
+        label: "PRODUTOS",
+        title: "Qual cortina mais te agrada?",
         element: <h1>Teste</h1>
     }
 ]
@@ -33,21 +34,26 @@ const Home = () => {
     return (
         <>
             <JourneyHeader />
-            <div className="journey-stepper">
-                <Stepper activeStep={currentStep}>
-                {steps.map((step) => (
-                    <Step key={step.label}>
-                    <StepLabel>{step.label}</StepLabel>
-                    </Step>
-                ))}
-                </Stepper>
+            <div className="journey-stepper-container">
+                <div className="journey-stepper">
+                    <Stepper activeStep={currentStep}>
+                    {steps.map((step) => (
+                        <Step key={step.label}>
+                        <StepLabel>{step.label}</StepLabel>
+                        </Step>
+                    ))}
+                    </Stepper>
+                </div>
             </div>
 
             <div className='journey-info'>
-                {steps[currentStep].title}
+                <div className="journey-header">
+                    <h2 className='journey-title'>{steps[currentStep].title}</h2>
+                </div>
+                <div className="journey-content">
+                    {steps[currentStep].element}
+                </div>
             </div>
-
-            <button onClick={nextStepHandler}>add</button>
         </>
     )
 }

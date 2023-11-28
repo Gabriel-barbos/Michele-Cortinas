@@ -23,7 +23,7 @@ const ModalEditar = (props) => {
         axios.put(
             `http://localhost:8081/categoria/${props.id}`,
             {
-                nome: titulo,
+                titulo: titulo,
                 slug: slug
             }
         ).then(() => {
@@ -35,7 +35,7 @@ const ModalEditar = (props) => {
         axios.get(
             `http://localhost:8081/categoria/${props.id}`
         ).then(({data}) => {
-            setTitulo(data.nome);
+            setTitulo(data.titulo);
             setSlug(data.slug)
         })
     }, [props.id])
