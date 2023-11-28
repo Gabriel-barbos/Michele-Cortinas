@@ -16,6 +16,7 @@ import { Categorias } from "./admin/Categorias.jsx";
 import '../assets/css/login.css'
 import '../assets/css/dashboard.css'
 import '../assets/css/login.css'
+import Home from "./shop/Home"
 import { Produtos } from "./admin/Produtos.jsx";
 import { Pedidos } from "./admin/Pedidos.jsx";
 
@@ -23,8 +24,10 @@ export function AppRoutes(){
     return (
         <Router>
             <Routes>
-                <Route path="/login" element={<Login />}/>
-                <Route path="/registrar" element={<Registro />}/>
+                <Route path="/" element={<Home />}/>
+
+                <Route path="/dashboard/login" element={<Login />}/>
+                <Route path="/dashboard/registrar" element={<Registro />}/>
                 <Route path="/perfil" element={<Perfil />} />
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/dashboard/categorias" element={
