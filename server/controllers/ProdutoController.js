@@ -2,6 +2,7 @@ require("dotenv").config();
 
 const Produto = require("../models").produto;
 const Imagem = require("../models").imagem;
+const { Op } = require("sequelize");
 
 const path = require("path");
 const fs = require("fs");
@@ -166,11 +167,44 @@ const deleteOneImagem = async (req, res) => {
   }
 };
 
+
+//* Procurar um produto
+const searchProduto = async (req,res)=>{
+  try {
+    let pesquisa = req.query.pesquisa;
+
+   produtos = await Produto.findAll({
+    where: { 
+      [Op.or]:[{
+          nome:{
+            [Op.like]: '%'+pesquisa+'%'
+          }
+        },
+        {
+          categoria:{
+            [Op.like]: '%'+pesquisa+'%'
+          }
+        }]
+    }, 
+    include: {
+      model: Imagem,
+      order: [["isCapa", "ASC"]],
+    },
+  })
+
+    res.status(200).json({produtos})
+  } catch (error) {
+    res.status(500).json({msg: "Caiu no catch" + error.getMessage})
+  }
+}
+
+
 module.exports = {
   createProduto,
   getAllProduto,
   getOneProduto,
   updateProduto,
   deleteProduto,
-  deleteOneImagem
+  deleteOneImagem,
+  searchProduto
 };
