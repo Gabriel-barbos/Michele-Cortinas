@@ -47,12 +47,12 @@ models.endereco.belongsTo(models.cliente)
 
 
 // //* Relacionamento Carrinho x Cliente 1-1
-// models.cliente.hasOne(model.carrinho)
-// models.carrinho.belongsTo(models.cliente)
+models.cliente.hasOne(models.carrinho)
+models.carrinho.belongsTo(models.cliente)
 
 // //* Relacionamento Carrinho x Pedido 1-N
-// models.carrinho.hasMany(models.pedido)
-// models.pedido.belongsTo(models.carrinho)
+models.carrinho.hasMany(models.pedido)
+models.pedido.belongsTo(models.carrinho)
 
 
 

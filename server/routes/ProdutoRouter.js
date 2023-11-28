@@ -11,6 +11,9 @@ router.post('/', upload.array("file"),controller.createProduto)
 //* exibir todos os produtos
 router.get('/', controller.getAllProduto)
 
+//* Pesquisa de produto
+router.get('/pesquisa', controller.searchProduto)
+
 //* Read
 router.get('/:id', controller.getOneProduto)
 
