@@ -1,8 +1,11 @@
 require("dotenv").config();
 
 const Produto = require("../models").produto;
+const Categoria = require("../models").categoria;
 const Imagem = require("../models").imagem;
-const { Op } = require("sequelize");
+const {
+  Op
+} = require("sequelize");
 
 const path = require("path");
 const fs = require("fs");
@@ -10,7 +13,7 @@ const fs = require("fs");
 const createProduto = async (req, res) => {
   try {
     const files = req.files;
-    
+
     let extensaoValida = true;
     // valida extensão
     files.forEach((file) => {
@@ -24,7 +27,9 @@ const createProduto = async (req, res) => {
       }
     });
 
-    if(!extensaoValida) return res.status(500).json({ msg: "Uma imagem selecionada com extensão inválida" });
+    if (!extensaoValida) return res.status(500).json({
+      msg: "Uma imagem selecionada com extensão inválida"
+    });
 
     let info = {
       nome: req.body.nome,
@@ -37,13 +42,15 @@ const createProduto = async (req, res) => {
     //Pegar produto recém adicionado
     const produtoRecente = await Produto.findOne({
       attributes: ["id"],
-      order: [["createdAt", "DESC"]],
+      order: [
+        ["createdAt", "DESC"]
+      ],
     });
-    
+
     const id = produtoRecente.id;
 
     // cadastra no banco de dados
-    for(let file of files) {
+    for (let file of files) {
       let nomeArquivo = file.filename;
       await Imagem.create({
         nomeArquivo: nomeArquivo,
@@ -51,9 +58,10 @@ const createProduto = async (req, res) => {
       })
     };
 
-    return res.status(200).json({msg: "Produto cadastrado com sucesso"});
-  } 
-  catch (error) {
+    return res.status(200).json({
+      msg: "Produto cadastrado com sucesso"
+    });
+  } catch (error) {
     console.log(error)
   }
 };
@@ -64,12 +72,16 @@ const getAllProduto = async (req, res) => {
     let produtos = await Produto.findAll({
       include: {
         model: Imagem,
-        order: [["isCapa", "DESC"]],
+        order: [
+          ["isCapa", "DESC"]
+        ],
       },
     });
     res.status(200).send(produtos);
   } catch (error) {
-    res.status(400).json({ error });
+    res.status(400).json({
+      error
+    });
   }
 };
 
@@ -80,13 +92,19 @@ const getOneProduto = async (req, res) => {
     let produto = await Produto.findOne({
       include: {
         model: Imagem,
-        order: [["isCapa", "ASC"]],
+        order: [
+          ["isCapa", "ASC"]
+        ],
       },
-      where: { id: id },
+      where: {
+        id: id
+      },
     });
     res.status(200).json(produto);
   } catch (error) {
-    res.status(400).json({ error });
+    res.status(400).json({
+      error
+    });
   }
 };
 
@@ -97,7 +115,7 @@ const updateProduto = async (req, res) => {
     // TRATAMENTO DE IMAGENS
     const files = req.files;
     console.log(files)
-    
+
     let extensaoValida = true;
     // valida extensão da imagem
     files.forEach((file) => {
@@ -110,13 +128,19 @@ const updateProduto = async (req, res) => {
       }
     });
 
-    if(!extensaoValida) return res.status(500).json({ msg: "Uma imagem selecionada com extensão inválida" });
+    if (!extensaoValida) return res.status(500).json({
+      msg: "Uma imagem selecionada com extensão inválida"
+    });
     
     let id = req.params.id;
-    const insertProduto = await Produto.update(req.body, { where: { id: id } });
-    if(insertProduto){
-    // cadastra no banco de dados
-      for(let file of files) {
+    const insertProduto = await Produto.update(req.body, {
+      where: {
+        id: id
+      }
+    });
+    if (insertProduto) {
+      // cadastra no banco de dados
+      for (let file of files) {
         let nomeArquivo = file.filename;
         await Imagem.create({
           nomeArquivo: nomeArquivo,
@@ -124,9 +148,13 @@ const updateProduto = async (req, res) => {
         })
       };
     }
-    res.status(200).json({msg: "Produto atualizado com sucesso" + req.body.nome});
+    res.status(200).json({
+      msg: "Produto atualizado com sucesso" + req.body.nome
+    });
   } catch (error) {
-    res.status(400).json({ msg:"Caiu no catch" });
+    res.status(400).json({
+      msg: "Caiu no catch"
+    });
   }
 };
 
@@ -134,8 +162,16 @@ const updateProduto = async (req, res) => {
 const deleteProduto = async (req, res) => {
   try {
     let id = req.params.id;
-    const images = await Imagem.findAll({ where: { produtoId: id } });
-    const deleteProduto = await Produto.destroy({ where: { id: id } });
+    const images = await Imagem.findAll({
+      where: {
+        produtoId: id
+      }
+    });
+    const deleteProduto = await Produto.destroy({
+      where: {
+        id: id
+      }
+    });
 
     if (deleteProduto) {
       images.forEach((image) => {
@@ -144,17 +180,29 @@ const deleteProduto = async (req, res) => {
       });
     }
 
-    res.status(200).json({msg: "Produto deletado com sucesso!"});
+    res.status(200).json({
+      msg: "Produto deletado com sucesso!"
+    });
   } catch (error) {
-    res.status(400).json({ error });
+    res.status(400).json({
+      error
+    });
   }
 };
 
 const deleteOneImagem = async (req, res) => {
   try {
     let id = req.params.id;
-    const image = await Imagem.findOne({ where: { id: id } });
-    const deleteImage = await Imagem.destroy({ where: { id: id } });
+    const image = await Imagem.findOne({
+      where: {
+        id: id
+      }
+    });
+    const deleteImage = await Imagem.destroy({
+      where: {
+        id: id
+      }
+    });
 
     if (deleteImage) {
       let nomeImagem = image.nomeArquivo;
@@ -163,38 +211,56 @@ const deleteOneImagem = async (req, res) => {
 
     res.status(200).send("imagem deletada");
   } catch (error) {
-    res.status(500).json({ error });
+    res.status(500).json({
+      error
+    });
   }
 };
 
 
 //* Procurar um produto
-const searchProduto = async (req,res)=>{
+const searchProduto = async (req, res) => {
   try {
-    let pesquisa = req.query.pesquisa;
+    let pesquisa = req.query.q;
 
-   produtos = await Produto.findAll({
-    where: { 
-      [Op.or]:[{
-          nome:{
-            [Op.like]: '%'+pesquisa+'%'
-          }
-        },
-        {
-          categoria:{
-            [Op.like]: '%'+pesquisa+'%'
-          }
-        }]
-    }, 
-    include: {
-      model: Imagem,
-      order: [["isCapa", "ASC"]],
-    },
-  })
+    let categoria = await Categoria.findOne({
+      where: {
+        titulo: {
+          [Op.like]: '%' + pesquisa + '%'
+        }
+      }
+    })
 
-    res.status(200).json({produtos})
+
+    let produtos = await Produto.findAll({
+      where: {
+        [Op.or]: [{
+            nome: {
+              [Op.like]: '%' + pesquisa + '%'
+            }
+          },
+          {
+            categoria: {
+              [Op.like]: '%' + (categoria != undefined ? categoria.id : " ") + '%'
+            }
+          }
+        ]
+      },
+      include: {
+        model: Imagem,
+        order: [
+          ["isCapa", "ASC"]
+        ],
+      },
+    })
+
+    res.status(200).json({
+      produtos
+    })
   } catch (error) {
-    res.status(500).json({msg: "Caiu no catch" + error.getMessage})
+    res.status(500).json({
+      msg: "Caiu no catch" + error
+    })
   }
 }
 

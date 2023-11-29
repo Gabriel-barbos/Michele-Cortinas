@@ -1,4 +1,4 @@
-import { SideBar } from "../../components/SideBar"
+import { SideBar } from "../../components/admin/SideBar"
 
 export function Dashboard({page}){
     return (

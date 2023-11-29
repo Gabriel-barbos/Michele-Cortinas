@@ -1,4 +1,4 @@
-import "../assets/css/produtos.css" 
+import "../../assets/css/produtos.css" 
 import ModalExcluir from './ModalExcluir';
 import ModalEditar from './ModalEditarProduto';
 

@@ -1,0 +1,47 @@
+.produtos-journey-grid {
+    display: flex;
+    gap: 10px;
+    width: 80%;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.produto-card-journey {
+    background: #fff;
+    width: 235px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    gap: 5px;
+    height: fit-content;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.12);
+    transition: .2s ease box-shadow;
+}
+
+.produto-card-journey:hover {
+    box-shadow: 0 1px 32px 16px rgba(0, 0, 0,.08)
+}
+
+
+.produto-card-journey-image {
+    height: 250px;
+    width: 100%;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.produto-card-journey-info {
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.product-card-old-price {
+    color: #ccc;
+    text-decoration: line-through;
+}
+
