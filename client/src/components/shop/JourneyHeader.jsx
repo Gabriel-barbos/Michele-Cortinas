@@ -1,4 +1,4 @@
-import Logo from '../components/Logo'
+import Logo from './Logo'
 
 const JourneyHeader = () => {
     return (
@@ -11,7 +11,7 @@ const JourneyHeader = () => {
                     <a href="">Contato</a>
                     <a href="">Sobre nós</a>
                     <a href="">Perguntas frequentes</a>
-                    <a href="">Área do cliente</a>
+                    <a href="" className="client-area">Área do cliente</a>
                 </div>
             </nav>  
         </header>

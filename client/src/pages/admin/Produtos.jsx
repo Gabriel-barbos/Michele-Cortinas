@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import '../../assets/css/categorias.css'
-import ModalPopup from '../../components/ModalAdicionarProduto';
+import ModalPopup from '../../components/admin/ModalAdicionarProduto';
 import axios from 'axios';
-import { ProdutoCard } from "../../components/ProdutoCard"
+import { ProdutoCard } from "../../components/admin/ProdutoCard"
 
 export function Produtos() {
     const [produtos, setProdutos] = useState([]);

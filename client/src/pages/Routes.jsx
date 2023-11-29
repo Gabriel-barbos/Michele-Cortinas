@@ -9,7 +9,7 @@ import { Registro } from "./admin/Registro.jsx";
 import { Perfil } from "./admin/Perfil.jsx";
 import { Logout } from "./admin/Logout.jsx";
 import { Dashboard } from "./admin/Dashboard.jsx";
-import Modalpopup from "../components/ModalAdicionarCategoria.jsx";
+import Modalpopup from "../components/admin/ModalAdicionarCategoria.jsx";
 import AuthGuard from "../hooks/useAuthGuard.jsx"
 import { Categorias } from "./admin/Categorias.jsx";
 

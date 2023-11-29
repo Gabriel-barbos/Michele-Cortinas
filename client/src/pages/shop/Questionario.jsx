@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 
-const Questionario = () => {
+const Questionario = ({stepHandler}) => {
     const [categorias, setCategorias] = useState([]); 
     const selectCategoryHandler = (category) => {
-        console.log(category)
+        stepHandler("category", category.label)
     }
     
     useEffect(() => {
@@ -31,9 +31,9 @@ const Questionario = () => {
         <div className="questionario-cards">
             {categorias.map((categoria, index) => {
                 return (
-                    <div className="questionario-card" key={index}>
+                    <div className="questionario-card" key={index} onClick={() => selectCategoryHandler(categoria)}>
                         <img src={categoria.img} className="questionario-card-image"/>
-                        <div className="questionario-card-info" onClick={() => {selectCategoryHandler(categoria.titulo)}}> 
+                        <div className="questionario-card-info"> 
                             <h3 className="questionario-card-label">{categoria.label}</h3>
                         </div>
                     </div>

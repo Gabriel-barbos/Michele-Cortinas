@@ -1,5 +1,5 @@
 import ImageItem from './ImageItem';
-import '../assets/css/image.css';
+import '../../assets/css/image.css';
 import axios from 'axios';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
