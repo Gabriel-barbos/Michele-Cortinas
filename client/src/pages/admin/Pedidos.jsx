@@ -1,13 +1,10 @@
-import { SideBar } from "../../components/SideBar"
-
-export function Pedidos(){
+import { PedidoADM } from "../components/PedidoADM";
+import '../assets/css/pedidosAdm.css'
+export function Pedidos() {
     return (
-        <div className="dashboard-container">
-            <div className="dashboard-content">
-            <header className="list-header">
-                <h1>Pedidos</h1>
-            </header>
-            </div>
-        </div>
+       <>
+       <h1>Pedidos</h1>
+       <PedidoADM />
+       </>
     )
 }
