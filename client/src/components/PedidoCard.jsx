@@ -1,33 +1,36 @@
 import styled from 'styled-components';
-import cortinaAzul from '../assets/img-teste/cortina-azul.jpg';
 
-export function PedidoCard(){
-return(
-    <>
-<Card>
-    <OrderImg src={cortinaAzul}/>
-        <Title>Pedido #001</Title>
-           <Color>Cor: cinza Concreto</Color>
-                <Value>Valor:R$ 550,50</Value>
-            <Description>
-                Cortina Azul com regulagem de brilho, anti-bacterias, persiana com cabo extra
-            </Description>
+export function PedidoCard(props) {
+    return (
+        <>
+            <Card>
+                <OrderImg src={props.img} />
+                <Title>
+                    Pedido 1
+                </Title>
+                <Color>
+                    {props.cor}
+                </Color>
+                <Value></Value>
+                <Description>
+                    {props.description}
+                </Description>
 
-<ApproveButton>Aprovar pedido</ApproveButton>
+                <ApproveButton>Aprovar pedido</ApproveButton>
 
-<WppButton>Entrar em contato com o cliente</WppButton>
+                <WppButton>Entrar em contato com o cliente</WppButton>
 
-<Client>Cliente: Danilo</Client>
-<Altura>Altura: 1.85 m</Altura>
-<Largura>Largura: 2.50 m</Largura>
-</Card>
-    
+                <Client>Cliente: Danilo</Client>
+                <Altura>{props.altura}</Altura>
+                <Largura>{props.largura}</Largura>
+            </Card>
 
-    </>
-)
+
+        </>
+    )
 }
 
-const Card = styled.div `
+const Card = styled.div`
     position: absolute;
     height: 190px;
     width: 1150px;
@@ -35,7 +38,7 @@ const Card = styled.div `
     background-color: #f1f1f1;
 `
 
-const Title = styled.h2 `
+const Title = styled.h2`
     margin: 0;
     position: absolute;
     height: 15.2%;
@@ -48,7 +51,7 @@ const Title = styled.h2 `
     display: inline-block;
 `
 
-const OrderImg = styled.img `
+const OrderImg = styled.img`
     position: absolute;
     height: 58.55%;
     width: 15.98%;
@@ -62,7 +65,7 @@ const OrderImg = styled.img `
     max-height: 100%;
     object-fit: cover;
 `
-const Color = styled.h3 `
+const Color = styled.h3`
     margin: 0;
     position: absolute;
     height: 11.05%;
@@ -75,7 +78,7 @@ const Color = styled.h3 `
     display: inline-block;
 `
 
-const Value = styled.h2 `
+const Value = styled.h2`
     margin: 0;
     position: absolute;
     top: 9.09%;
@@ -85,7 +88,7 @@ const Value = styled.h2 `
     font-family: inherit;
 `
 
-const Description = styled.p `
+const Description = styled.p`
     margin: 0;
     position: absolute;
     height: 33.16%;
@@ -96,7 +99,7 @@ const Description = styled.p `
     display: inline-block;
 `
 
-const ApproveButton = styled.button `
+const ApproveButton = styled.button`
         position: absolute;
         top: 10px;
         left: 28px;
@@ -124,7 +127,7 @@ const ApproveButton = styled.button `
         box-sizing: border-box;
 `
 
-const WppButton = styled.button `
+const WppButton = styled.button`
     position: absolute;
     height: 74.96%;
     width: 75.85%;
@@ -153,7 +156,7 @@ const WppButton = styled.button `
 
 `
 
-const Client = styled.h3 `
+const Client = styled.h3`
     position: absolute;
     height: 74.96%;
     width: 75.85%;
@@ -167,7 +170,7 @@ const Client = styled.h3 `
     display: inline-block;
 `
 
-const Largura = styled.h4 `
+const Largura = styled.h4`
     margin: 0;
     position: absolute;
     height: 22.18%;
@@ -181,7 +184,7 @@ const Largura = styled.h4 `
     display: inline-block;
 `
 
-const Altura = styled.h4 `
+const Altura = styled.h4`
     margin: 0;
     position: absolute;
     height: 22.18%;
