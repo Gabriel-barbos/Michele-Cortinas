@@ -11,7 +11,7 @@ const Pedido = require("../models").pedido;
 const addPedido = async (req, res) => {
   try {
     
-
+    
 
 
     res.status(200).json({msg: "Adicionado ao carrinho!"})
@@ -45,9 +45,9 @@ const calculaTotal = async(req,res) =>{
 const showPedidos = async (req, res) =>{
   try {
 
-    const pedidos = await Carrinho.findOne({
+    const pedidos = await Pedido.findOne({
       include:{
-        model: Pedido,
+        model: Carrinho,
       }
     })
 
