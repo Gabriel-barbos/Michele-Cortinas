@@ -71,7 +71,7 @@ const ModalEditar = (props) => {
             }
         ).then((response) => {
             console.log(response)
-            // window.location = "/dashboard/produtos"
+            window.location = "/dashboard/produtos"
             setSendingFiles(false)
         }).catch((err) => {  
             toast.warn(err.response.data.msg)

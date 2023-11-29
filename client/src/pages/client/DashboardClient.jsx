@@ -1,6 +1,6 @@
-import { SideBar } from "../../components/admin/SideBar"
+import { SideBar } from "../../components/client/SideBar"
 
-export function Dashboard({page}){
+export function DashboardClient({page}){
     return (
         <div className="dashboard-container">
             <SideBar active={page.type.name} />

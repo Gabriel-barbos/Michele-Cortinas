@@ -26,7 +26,7 @@ const ModalEditar = (props) => {
                 titulo: titulo,
                 slug: slug
             }
-        ).then(() => {
+        ).then((res) => {
             window.location = "/dashboard/categorias"
         })
     }

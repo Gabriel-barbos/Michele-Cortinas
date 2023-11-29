@@ -1,4 +1,4 @@
-import "../assets/css/sidebar.css"
+import "../../assets/css/sidebar.css"
 import LogoDashboard from "./LogoDashboard"
 
 export function SideBar(props) {

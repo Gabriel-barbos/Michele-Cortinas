@@ -4,25 +4,36 @@ export function PedidoCard(props) {
     return (
         <>
             <Card>
-                <OrderImg src={props.img} />
-                <Title>
-                    Pedido 1
-                </Title>
-                <Color>
-                    {props.cor}
-                </Color>
-                <Value></Value>
-                <Description>
-                    {props.description}
-                </Description>
+                <FirstSection>
+                    <Title>
+                        Pedido 1
+                    </Title>
+                    <OrderImg alt={"imagem"} />
+                </FirstSection>
 
+                <SecondSection>
+                    <Client>Cliente: Danilo</Client>
+                    <Color>
+                        Cor
+                    </Color>
+                    <Altura>Altura</Altura>
+                    <Largura>Largura</Largura>
+                </SecondSection>
+                <Description>
+                    Descrição
+                </Description>
+                <ThirdSection>
+                <Value>
+                    Valor: R$ 200,00
+                </Value>
                 <ApproveButton>Aprovar pedido</ApproveButton>
 
                 <WppButton>Entrar em contato com o cliente</WppButton>
+                </ThirdSection>
 
-                <Client>Cliente: Danilo</Client>
-                <Altura>{props.altura}</Altura>
-                <Largura>{props.largura}</Largura>
+
+               
+
             </Card>
 
 
@@ -31,169 +42,97 @@ export function PedidoCard(props) {
 }
 
 const Card = styled.div`
-    position: absolute;
-    height: 190px;
-    width: 1150px;
-    border-radius: 15px;
-    background-color: #f1f1f1;
+    width: 100%;
+    border-radius: 10px;
+    background-color: #fff;
+    display: flex;
+    gap: 40px;
+    padding: 20px;
 `
 
 const Title = styled.h2`
-    margin: 0;
-    position: absolute;
-    height: 15.2%;
-    width: 15.63%;
-    top: 4%;
-    left: 1.32%;
-    font-size: 22px;
-    font-weight: 700;
-    font-family: inherit;
-    display: inline-block;
+
 `
 
 const OrderImg = styled.img`
-    position: absolute;
-    height: 58.55%;
-    width: 15.98%;
-    top: 24.73%;
-    right: 82.7%;
-    bottom: 16.73%;
-    left: 1.32%;
-    border-radius: 15px;
-    max-width: 100%;
-    overflow: hidden;
-    max-height: 100%;
-    object-fit: cover;
+    min-height: 100px;
 `
-const Color = styled.h3`
-    margin: 0;
-    position: absolute;
-    height: 11.05%;
-    width: 14%;
-    top: 38.91%;
-    left: 18.33%;
-    font-size: inherit;
-    font-weight: 400;
-    font-family: inherit;
-    display: inline-block;
+const Color = styled.span`
+
 `
 
-const Value = styled.h2`
-    margin: 0;
-    position: absolute;
-    top: 9.09%;
-    left: 81.82%;
-    font-size: inherit;
-    font-weight: 700;
-    font-family: inherit;
+const Value = styled.h3`
+
 `
 
 const Description = styled.p`
-    margin: 0;
-    position: absolute;
-    height: 33.16%;
-    width: 18.91%;
-    top: 29.45%;
-    left: 34.75%;
-    color: rgb(70, 70, 70);
-    display: inline-block;
+
 `
 
 const ApproveButton = styled.button`
-        position: absolute;
-        top: 10px;
-        left: 28px;
+        display: flex;
         font-size: 18px;
         font-weight: 500;
-        font-family: var(--font-inter);
+        font-family: inherit;
         color: white;
-        text-align: center;
-        display: inline-block;
-        width: 174px;
-        height: 37px;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
     
         cursor: pointer;
         border: 3px solid #d3d3d3;
-        padding: 0;
+        padding: 10px;
+        margin: 20px 0;
         background-color: black;
-        position: absolute;
-        height: 22.8%;
-        width: 17.3%;
-        top: 60.82%;
-        right: 1.1%;
-        bottom: 19.38%;
-        left: 81.6%;
         border-radius: 6.25px;
-        box-sizing: border-box;
 `
 
 const WppButton = styled.button`
-    position: absolute;
-    height: 74.96%;
-    width: 75.85%;
-    top: 17.95%;
-    left: 11.02%;
-    font-size: 15px;
-    font-weight: 500;
-    font-family: var(--font-inter);
-    color: black;
-    text-align: center;
-    display: inline-block;
+        display: flex;
+        font-size: 18px;
+        font-weight: 500;
+        font-family: inherit;
+        color: black;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+    
+        cursor: pointer;
+        border: 3px solid #030303;
+        padding: 10px;
+        background-color: white;
+        border-radius: 6.25px;
+`
 
-    cursor: pointer;
-    border: 3px solid #030303;
-    padding: 0;
-    background-color: white;
-    position: absolute;
-    height: 22.8%;
-    width: 17.3%;
-    top: 30.64%;
-    right: 1.1%;
-    bottom: 53.56%;
-    left: 81.6%;
-    border-radius: 6.25px;
-    box-sizing: border-box;
+const Client = styled.span`
 
 `
 
-const Client = styled.h3`
-    position: absolute;
-    height: 74.96%;
-    width: 75.85%;
-    top: 26.95%;
-    left: -15.02%;
-    font-size: 16px;
-    font-weight: 600;
-    font-family: var(--font-inter);
-    color: black;
-    text-align: center;
-    display: inline-block;
+const Largura = styled.span`
+
 `
 
-const Largura = styled.h4`
-    margin: 0;
-    position: absolute;
-    height: 22.18%;
-    width: 12.98%;
-    top: 53.82%;
-    left: 18%;
-    font-size: inherit;
-    font-weight: 400;
-    font-family: inherit;
-    white-space: pre-wrap;
-    display: inline-block;
+const Altura = styled.span`
+
 `
 
-const Altura = styled.h4`
-    margin: 0;
-    position: absolute;
-    height: 22.18%;
-    width: 12.98%;
-    top: 63.82%;
-    left: 18%;
-    font-size: inherit;
-    font-weight: 400;
-    font-family: inherit;
-    white-space: pre-wrap;
-    display: inline-block;
+const FirstSection = styled.div `
+    display: flex;
+    flex-direction: column;
+`
+
+const SecondSection = styled.div `
+    display: flex;
+    flex-direction: column;
+`
+
+const ThirdSection = styled.div `
+    display: flex;
+    flex-direction: column;
+`
+
+const CardAction = styled.div `
+    
 `

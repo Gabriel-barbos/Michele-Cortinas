@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import '../../assets/css/categorias.css'
-import { CategoriaCard } from '../../components/CategoriaCard'
-import Modalpopup from '../../components/ModalAdicionarCategoria';
+import { CategoriaCard } from '../../components/admin/CategoriaCard'
+import Modalpopup from '../../components/admin/ModalAdicionarCategoria';
 import axios from 'axios';
 
 export function Categorias() {

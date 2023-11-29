@@ -6,6 +6,10 @@ const Produto = sequelize.define("produtos", {
     type: Sequelize.STRING,
     allowNull: true,
   },
+  descricao: {
+    type: Sequelize.STRING,
+    allowNull: true
+  },
   preco: {
     type: Sequelize.FLOAT,
     allowNull: true,

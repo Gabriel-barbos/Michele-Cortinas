@@ -1,18 +1,18 @@
 import { useState } from 'react';
-import '../assets/css/variacao.css'
+import '../../assets/css/variacao.css'
 import { TextField, Divider, Chip, Stack, Button } from "@mui/material";
-import InputFileUpload from "./InputFileUpload";
 
 const VariacaoInput = (props) => {
    
     const [nome, setNome] = useState("");
-    const [files, setFiles] = useState([])
+    const [color, setColor] = useState('#ffffff')
 
-    const [sendingFiles, setSendingFiles] = useState(false)
-    const [sendedFiles, setSendedFiles] = useState(false)
-    const uploadFileHandler = (e) => {
-        props.onAdd(props.id, null, e.target.files)
-        setSendedFiles(true)
+    const handleChangeColor = (e) => {
+        setColor(e.target.value)
+    }
+
+    const inputColor = () => {
+        props.onAdd(props.id, null, color)
     }
 
     return (
@@ -29,8 +29,10 @@ const VariacaoInput = (props) => {
                     }}
             ></TextField>
 
-            <InputFileUpload handler={uploadFileHandler} loaded={sendedFiles} loading={sendingFiles} />
-
+            <div className="variacao-cor-container">
+                <h4>Cor:</h4>        
+                <input type="color" value={color} onChange={handleChangeColor} onInput={inputColor} />
+            </div>
             <Button variant="outlined" color="error" onClick={() => props.onDelete(props.id)}>Excluir variação</Button>
             <Divider sx={{marginTop: "20px"}}></Divider>
         </Stack>  
