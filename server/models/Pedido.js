@@ -11,6 +11,9 @@ const Pedido = sequelize.define('pedidos', {
     },
     altura:{
       type:Sequelize.FLOAT
+    },
+    status:{
+      type: Sequelize.STRING
     }
   });
   
