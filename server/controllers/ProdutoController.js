@@ -50,17 +50,18 @@ const createProduto = async (req, res) => {
     const id = produtoRecente.id;
 
     if(produto && req.body.titulo != null){
-      let infoVariacao = {
-        titulo: req.body.titulo,
-        cor: req.body.cor
-      }
-      const insertVariacao = await Variacao.create({
-        titulo: req.body.titulo,
-        cor: req.body.cor,
-        produtoId: id
-      }) 
-    }
-
+      for (let variacao of variacoes) {
+        let infoVariacao = {
+          titulo: req.body.titulo,
+          cor: req.body.cor
+        }
+        const insertVariacao = await Variacao.create({
+          titulo: req.body.titulo,
+          cor: req.body.cor,
+          produtoId: id
+        }) 
+        }
+      };
     
     // cadastra no banco de dados
     for (let file of files) {
