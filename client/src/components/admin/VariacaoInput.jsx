@@ -5,14 +5,9 @@ import { TextField, Divider, Chip, Stack, Button } from "@mui/material";
 const VariacaoInput = (props) => {
    
     const [nome, setNome] = useState("");
-    const [color, setColor] = useState('#ffffff')
 
-    const handleChangeColor = (e) => {
-        setColor(e.target.value)
-    }
-
-    const inputColor = () => {
-        props.onAdd(props.id, null, color)
+    const inputColor = (e) => {
+        props.onAdd(props.id, null, e.target.value)
     }
 
     return (
@@ -31,7 +26,7 @@ const VariacaoInput = (props) => {
 
             <div className="variacao-cor-container">
                 <h4>Cor:</h4>        
-                <input type="color" value={color} onChange={handleChangeColor} onInput={inputColor} />
+                <input type="color" onLoad={inputColor} onInput={inputColor} />
             </div>
             <Button variant="outlined" color="error" onClick={() => props.onDelete(props.id)}>Excluir variação</Button>
             <Divider sx={{marginTop: "20px"}}></Divider>

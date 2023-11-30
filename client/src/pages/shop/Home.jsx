@@ -25,7 +25,7 @@ const Home = () => {
         },
         "product": {
             label: "PRODUTOS",
-            title: "Qual produto mais te agrada?",
+            title: "Quais produtos mais te agrada?",
             element: <Produtos stepHandler={stepHandler} />,
             value: ""
         }

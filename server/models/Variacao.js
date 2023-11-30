@@ -13,4 +13,3 @@ const Variacao = sequelize.define("variacao", {
 });
 
 module.exports = Variacao;
-

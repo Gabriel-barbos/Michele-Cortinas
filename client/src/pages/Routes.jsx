@@ -8,8 +8,7 @@ import { PedidosClient } from "./client/PedidosClient.jsx";
 import { Login } from "./admin/Login.jsx";
 import { Registro } from "./admin/Registro.jsx";
 import { Perfil } from "./admin/Perfil.jsx";
-import { PerfilClient } from "./client/PerfilClient.jsx";
-import { Logout } from "./admin/Logout.jsx";
+import { Logout } from "./Logout.jsx";
 import { Dashboard } from "./admin/Dashboard.jsx";
 import { DashboardClient } from "./client/DashboardClient.jsx";
 import Modalpopup from "../components/admin/ModalAdicionarCategoria.jsx";
@@ -29,9 +28,11 @@ export function AppRoutes(){
             <Routes>
                 <Route path="/" element={<Home />}/>
 
-                <Route path="/login" element={<Login />}/>
-                <Route path="/registrar" element={<Registro />}/>
-                <Route path="/perfil" element={<Perfil />} />
+                <Route path="/dashboard/login" element={<Login />}/>
+                <Route path="/dashboard/registrar" element={<Registro />}/>
+                <Route path="/dashboard/perfil" element={
+                    <Dashboard page={<Perfil />} />}
+                />
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/dashboard/categorias" element={
                     <Dashboard page={<Categorias />} />

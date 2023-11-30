@@ -11,7 +11,14 @@ const Produtos = ({stepHandler}) => {
     const productSelectedHandle = (id) => {
         axios.get('http://localhost:8081/produto/' + id)
         .then(({data}) => {
-            setProduto(data)
+            axios.get('http://localhost:8081/variacao/1')
+            .then((response) => {
+                let produto = {...data};
+                for(let variacao in response.data) {
+                    console.log(variacao)
+                }
+                setProduto(data)
+            })
         })
     }
 
@@ -41,8 +48,8 @@ const Produtos = ({stepHandler}) => {
                     setProduto(null)
                 }
             }}
-            style={{transform: produto !== null ? "translateY(0)" : "translateY(100%)"}}>
-                <ProdutoEscolha produto={produto} />
+            style={{opacity: produto !== null ? 1 : 0, zIndex: produto !== null ? 999 : -2}}>
+                {produto && <ProdutoEscolha produto={produto} />}
             </div>
             
         </div>

@@ -3,9 +3,8 @@ require("dotenv").config();
 const Produto = require("../models").produto;
 const Categoria = require("../models").categoria;
 const Imagem = require("../models").imagem;
-const {
-  Op
-} = require("sequelize");
+const Variacao = require("../models").variacao;
+const {Op} = require("sequelize");
 
 const path = require("path");
 const fs = require("fs");
@@ -39,16 +38,30 @@ const createProduto = async (req, res) => {
     };
     const produto = await Produto.create(info); // Insert produto
 
+    
     //Pegar produto recém adicionado
     const produtoRecente = await Produto.findOne({
       attributes: ["id"],
       order: [
         ["createdAt", "DESC"]
       ],
-    });
+    })
 
     const id = produtoRecente.id;
 
+    if(produto && req.body.titulo != null){
+      let infoVariacao = {
+        titulo: req.body.titulo,
+        cor: req.body.cor
+      }
+      const insertVariacao = await Variacao.create({
+        titulo: req.body.titulo,
+        cor: req.body.cor,
+        produtoId: id
+      }) 
+    }
+
+    
     // cadastra no banco de dados
     for (let file of files) {
       let nomeArquivo = file.filename;
@@ -57,10 +70,9 @@ const createProduto = async (req, res) => {
         produtoId: id,
       })
     };
+    
 
-    return res.status(200).json({
-      msg: "Produto cadastrado com sucesso"
-    });
+    return res.status(200).json({msg: "Produto cadastrado com sucesso"});
   } catch (error) {
     console.log(error)
   }
@@ -76,6 +88,7 @@ const getAllProduto = async (req, res) => {
         ],
       },
     });
+
     res.status(200).send(produtos);
   } catch (error) {
     res.status(400).json({
@@ -95,10 +108,16 @@ const getOneProduto = async (req, res) => {
           ["isCapa", "ASC"]
         ],
       },
+      include:{
+        model: Variacao
+      },
       where: {
         id: id
       },
     });
+
+
+
     res.status(200).json(produto);
   } catch (error) {
     res.status(400).json({

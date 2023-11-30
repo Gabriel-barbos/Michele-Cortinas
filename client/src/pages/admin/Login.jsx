@@ -5,10 +5,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export function Login() {
-    const token = sessionStorage.getItem("token")
+    const token = sessionStorage.getItem("token_admin")
 
     if(token){
-        return window.location = "/perfil"
+        return window.location = "/dashboard/perfil"
     }
 
   const [email, setEmail] = useState("");
@@ -29,8 +29,8 @@ export function Login() {
         senha: password
       }
     ).then((response) => {
-        sessionStorage.setItem("token", response.data.token)
-        window.location = "/perfil"
+        sessionStorage.setItem("token_admin", response.data.token)
+        window.location = "/dashboard/perfil"
     }).catch((err) => {
         toast.warn(err.response.data.msg);
         console.log(err)

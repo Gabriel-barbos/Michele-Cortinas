@@ -1,0 +1,26 @@
+.carrinho-container {
+    position: fixed;
+    background: #fff;
+    -webkit-box-shadow: -29px 0px 66px 0px rgba(0,0,0,0.27);
+    -moz-box-shadow: -29px 0px 66px 0px rgba(0,0,0,0.27);
+    box-shadow: -29px 0px 66px 0px rgba(0,0,0,0.27);
+    width: 25vw;
+    height: 100vh;
+    right: 0;
+    top: 0;
+    transition: .2s ease;
+    padding: 40px;
+    box-sizing: border-box;
+
+    transform: translateX(100%);
+}
+
+.carrinho-container.open {
+    transform: translateX(0);
+}
+
+.carrinho-container-header {
+    display: flex;
+    gap: 4px; 
+    align-items: center;
+}
