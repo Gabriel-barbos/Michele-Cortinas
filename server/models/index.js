@@ -28,11 +28,11 @@ models.imagem.belongsTo(models.produto);
 models.produto.hasMany(models.variacao)
 models.variacao.belongsTo(models.produto)
 
-//* Relacionamento Imagem x Variação de produto
-models.variacao.hasMany(models.imagem, {
-  onDelete: "cascade",
-});
-models.imagem.belongsTo(models.variacao);
+// //* Relacionamento Imagem x Variação de produto
+// models.variacao.hasMany(models.imagem, {
+//   onDelete: "cascade",
+// });
+// models.imagem.belongsTo(models.variacao);
 //* Relacionamento Cliente x Telefone  1-N
 models.cliente.hasMany(models.telefone,{
   onDelete: "cascade"
@@ -59,6 +59,6 @@ models.produto.belongsTo(models.categoria);
 
 
 
-// sequelize.sync({ force: true });
+sequelize.sync({ force: true });
 
 module.exports = models;
