@@ -11,7 +11,6 @@ models.categoria = require("./Categoria.js");
 models.variacao = require("./Variacao.js");
 models.endereco = require("./Endereco.js");
 models.telefone = require("./Telefone.js");
-models.produtocores = require("./ProdutoCores.js");
 
 //* Relacionamento Cliente x Pedido
 models.cliente.hasMany(models.pedido); //Um Cliente pode ter vários Pedidos

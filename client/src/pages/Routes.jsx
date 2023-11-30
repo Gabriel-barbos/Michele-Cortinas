@@ -46,13 +46,13 @@ export function AppRoutes(){
                 <Route path="/modal" element={<Modalpopup />}/>
 
 
-                <Route path="/client/dashboard/perfil" element={
+                {/* <Route path="/client/dashboard/perfil" element={
                 <DashboardClient page={<PerfilClient />}/>
                 }/>
             
                 <Route path="/client/dashboard/pedidos" element={
                 <DashboardClient page={<PedidosClient />}/>
-                }/> 
+                }/>  */}
             </Routes>
         </Router>
     )
