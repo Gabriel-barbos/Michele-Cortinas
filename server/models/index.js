@@ -11,7 +11,6 @@ models.categoria = require("./Categoria.js");
 models.variacao = require("./Variacao.js");
 models.endereco = require("./Endereco.js");
 models.telefone = require("./Telefone.js");
-models.produtocores = require("./ProdutoCores.js");
 
 //* Relacionamento Cliente x Pedido
 models.cliente.hasMany(models.pedido); //Um Cliente pode ter vários Pedidos
@@ -25,7 +24,9 @@ models.imagem.belongsTo(models.produto);
 
 
 //* Relacionamento Variação de produto x Produto
-models.produto.hasMany(models.variacao)
+models.produto.hasMany(models.variacao, {
+  onDelete: "cascade",
+});
 models.variacao.belongsTo(models.produto)
 
 // //* Relacionamento Imagem x Variação de produto
@@ -33,6 +34,7 @@ models.variacao.belongsTo(models.produto)
 //   onDelete: "cascade",
 // });
 // models.imagem.belongsTo(models.variacao);
+
 //* Relacionamento Cliente x Telefone  1-N
 models.cliente.hasMany(models.telefone,{
   onDelete: "cascade"
@@ -59,6 +61,6 @@ models.produto.belongsTo(models.categoria);
 
 
 
-sequelize.sync({ force: true });
+// sequelize.sync({ force: true });
 
 module.exports = models;

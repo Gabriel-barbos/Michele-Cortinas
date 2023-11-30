@@ -50,7 +50,7 @@ const createProduto = async (req, res) => {
     const id = produtoRecente.id;
 
     if(produto && req.body.titulo != null){
-      for (let variacao of variacoes) {
+      // for (let variacao of variacoes) {
         let infoVariacao = {
           titulo: req.body.titulo,
           cor: req.body.cor
@@ -60,7 +60,7 @@ const createProduto = async (req, res) => {
           cor: req.body.cor,
           produtoId: id
         }) 
-        }
+        // }
       };
     
     // cadastra no banco de dados
@@ -103,15 +103,14 @@ const getOneProduto = async (req, res) => {
   try {
     let id = req.params.id;
     let produto = await Produto.findOne({
-      include: {
+      include: [{
         model: Imagem,
-        order: [
-          ["isCapa", "ASC"]
-        ],
+        order: [["isCapa", "ASC"]],
       },
-      include:{
-        model: Variacao
-      },
+      {
+        model: Variacao,
+      }
+    ],
       where: {
         id: id
       },
