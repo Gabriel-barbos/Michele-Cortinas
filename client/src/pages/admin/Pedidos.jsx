@@ -1,5 +1,3 @@
-import { SideBar } from "../../components/admin/SideBar"
-
 export function Pedidos(){
     return (
         <div className="dashboard-container">
