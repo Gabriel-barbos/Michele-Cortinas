@@ -19,13 +19,6 @@ const createVariacao = async (req, res) => {
       res.json({ msg: "Enviada com sucesso vamo q vamo" });
   
   } catch (error) {
-    const files = req.files;
-
-    files.forEach((file) => {
-      let nomeImagem = file.filename;
-      fs.unlinkSync("./public/imagens/" + nomeImagem);
-    });
-
     res.status(500).json({ error, msg: "caiu no catch" });
   }
 };
