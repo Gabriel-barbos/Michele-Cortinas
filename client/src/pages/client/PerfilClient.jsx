@@ -5,7 +5,7 @@ import { useJwt } from "react-jwt";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export function PerfilClient() {
+export default function PerfilClient() {
     const token = sessionStorage.getItem("token")
 
     if(!token){

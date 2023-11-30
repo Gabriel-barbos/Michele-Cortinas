@@ -56,10 +56,34 @@ export default function AdicionarEndereco(props) {
                             }}
                         >
                         </TextField>
-                        <TextField variant="outlined" label="slug" className={slug !== "" ? "has-val input" : "input"}
+                        <TextField variant="outlined" label="cep" className={cep !== "" ? "has-val input" : "input"}
+                            type="number"
+                            value={cep}
+                            onChange={(e) => setCep(slugFormat(e.target.value))}
+                        >
+                        </TextField>
+                        <TextField variant="outlined" label="cidade" className={cidade !== "" ? "has-val input" : "input"}
                             type="text"
-                            value={slug}
-                            onChange={(e) => setSlug(slugFormat(e.target.value))}
+                            value={cidade}
+                            onChange={(e) => {
+                                setCidade(e.target.value); 
+                            }}
+                        >
+                        </TextField>
+                        <TextField variant="outlined" label="bairro" className={bairro !== "" ? "has-val input" : "input"}
+                            type="text"
+                            value={bairro}
+                            onChange={(e) => {
+                                setBairro(e.target.value); 
+                            }}
+                        >
+                        </TextField>
+                        <TextField variant="outlined" label="complemento" className={complemento !== "" ? "has-val input" : "input"}
+                            type="text"
+                            value={complemento}
+                            onChange={(e) => {
+                                setComplemento(e.target.value); 
+                            }}
                         >
                         </TextField>
                         <Button onClick={submitHandler} color="primary" variant="contained">Cadastrar</Button>

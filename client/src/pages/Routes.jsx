@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 
 import { PedidosClient } from "./client/PedidosClient.jsx";
+import PerfilClient from "./client/PerfilClient.jsx"
 import { Login } from "./admin/Login.jsx";
 import { Registro } from "./admin/Registro.jsx";
 import { Perfil } from "./admin/Perfil.jsx";
