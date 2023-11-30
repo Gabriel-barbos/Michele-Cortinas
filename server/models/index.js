@@ -6,22 +6,33 @@ models.cliente = require("./Cliente.js");
 models.pedido = require("./Pedido.js");
 models.variacao = require("./Variacao.js");
 models.produto = require("./Produto.js");
+models.cor = require("./Cor.js");
 models.imagem = require("./Imagem.js");
 models.categoria = require("./Categoria.js");
 models.variacao = require("./Variacao.js");
 models.endereco = require("./Endereco.js");
 models.telefone = require("./Telefone.js");
 models.carrinho = require("./Carrinho.js");
+models.produtocores = require("./ProdutoCores.js");
 
 //* Relacionamento Cliente x Pedido
 models.cliente.hasMany(models.pedido); //Um Cliente pode ter vários Pedidos
 models.pedido.belongsTo(models.cliente); // Cada Pedido está relacionado a um Cliente
+
+//* Relacionamento Cor x Produto N - N
+models.produto.belongsToMany(models.cor, { through: models.produtocores });
+models.cor.belongsToMany(models.produto, { through: models.produtocores });
+
 
 //* Relacionamento Produto x Imagem 1-N
 models.produto.hasMany(models.imagem, {
   onDelete: "cascade",
 });
 models.imagem.belongsTo(models.produto);
+
+//* Relacionamento Produto x Cor 1-N
+models.produto.hasMany(models.cor);
+models.cor.belongsTo(models.produto);
 
 //* Relacionamento Variação de produto x Produto
 models.produto.hasMany(models.variacao)
@@ -47,15 +58,17 @@ models.endereco.belongsTo(models.cliente)
 
 
 // //* Relacionamento Carrinho x Cliente 1-1
-// models.cliente.hasOne(model.carrinho)
-// models.carrinho.belongsTo(models.cliente)
+models.cliente.hasOne(models.carrinho,{
+  onDelete: "cascade"
+})
+models.carrinho.belongsTo(models.cliente)
 
 // //* Relacionamento Carrinho x Pedido 1-N
-// models.carrinho.hasMany(models.pedido)
-// models.pedido.belongsTo(models.carrinho)
+models.carrinho.hasMany(models.pedido)
+models.pedido.belongsTo(models.carrinho)
 
 
 
-// sequelize.sync({ force: true });
+sequelize.sync({ force: true });
 
 module.exports = models;

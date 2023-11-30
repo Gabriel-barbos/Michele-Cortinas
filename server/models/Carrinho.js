@@ -7,5 +7,5 @@ const Carrinho = sequelize.define("carrinhos", {
   }
 });
 
-module.exports = Carrinho;
+module.exports = Carrinho; 
 

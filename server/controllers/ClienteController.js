@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { cliente } = require("../models");
 const { exit } = require("process");
+const Carrinho = require("../models/Carrinho");
 
 require("dotenv").config();
 
@@ -64,7 +65,11 @@ const register = async (req, res) => {
     return res.status(422).json({ msg: "E-mail já cadastrado" });
   }
 
-  const insertCliente = await Cliente.create(info);
+  const insertCliente = await Cliente.create(info)
+  if(insertCliente){
+    clienteId = insertCliente.id
+    insertCarrinho = await Carrinho.create({clienteId : clienteId})
+  }
 
   //* Adicionar endereco e telefone do cliente
   if(insertCliente){
