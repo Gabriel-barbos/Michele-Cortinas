@@ -51,7 +51,6 @@ const ModalPopup = (props) => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
-        submitVariacoes();
         let formData = new FormData();    //formdata object
 
         setSendingFiles(true)
@@ -59,11 +58,11 @@ const ModalPopup = (props) => {
         for(let file of files) {
             formData.append("file", file)
         }
-
         formData.append("nome", nome)
         formData.append("preco", preco)
         formData.append("descricao", descricao)
         formData.append("categoria", categoria)
+        formData.append("variacoes", JSON.stringify({variacoes: variacoes}))
         
         axios.post(
             "http://localhost:8081/produto/",
@@ -81,22 +80,6 @@ const ModalPopup = (props) => {
             toast.warn(err.response.data.msg)
             setSendingFiles(false)
         })
-    }
-
-    const submitVariacoes = () => {
-        for(let variacao of variacoes){
-            axios.post(
-                "http://localhost:8081/variacao/",
-                {
-                    titulo: variacao.titulo,
-                    cor: variacao.cor
-                }
-            ).then((response) => {
-                console.log(response)
-            }).catch((err) => {  
-                toast.warn(err.response.data.msg)
-            })
-        }
     }
 
     const addVariacaoHandler = () => {

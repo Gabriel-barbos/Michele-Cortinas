@@ -9,13 +9,17 @@ const fs = require("fs");
 const createVariacao = async (req, res) => {
   try {
 
-      let info = {
+      // let info = {
+      //   titulo: req.body.titulo,
+      //   cor: req.body.cor,
+      //   produtoId: req.params.id
+      // };
+
+      const variacao = await Variacao.create({
         titulo: req.body.titulo,
         cor: req.body.cor,
-        produtoId: req.params.id
-      };
-
-      const variacao = await Variacao.create(info); // Insert variação
+        produtoId: req.body.id
+      }); // Insert variação
       res.json({ msg: "Enviada com sucesso vamo q vamo" });
   
   } catch (error) {

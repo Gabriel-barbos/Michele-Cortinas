@@ -90,6 +90,7 @@ const ModalEditar = (props) => {
             setPreco(data.preco)
             setCategoria(data.categoria)
             setImagens(data.imagens)
+            console.log(data)
         })
     }, [props.id])
 
