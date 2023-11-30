@@ -77,6 +77,7 @@ const getAllProduto = async (req, res) => {
         ],
       },
     });
+
     res.status(200).send(produtos);
   } catch (error) {
     res.status(400).json({
@@ -100,6 +101,9 @@ const getOneProduto = async (req, res) => {
         id: id
       },
     });
+
+
+
     res.status(200).json(produto);
   } catch (error) {
     res.status(400).json({

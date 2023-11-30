@@ -110,7 +110,7 @@ export function Perfil() {
                 <button className="login-form-btn dangerous" onClick={excluirContaHandler}>Excluir conta</button>
             </div>
             <div className="text-center">
-                <a className="txt2" href="logout">
+                <a className="txt2" href="/logout">
                 Sair da conta
                 </a>
             </div>

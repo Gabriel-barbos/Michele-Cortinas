@@ -2,23 +2,14 @@ const { sequelize, Sequelize } = require("../config/db");
 const Pedido = require("./Pedido");
 
 const Variacao = sequelize.define("variacao", {
-  nome: {
+  titulo: {
     type: Sequelize.STRING,
     allowNull: true,
   },
-  preco: {
-    type: Sequelize.FLOAT,
-    allowNull: true,
-  },
-  descricao: {
-    type: Sequelize.STRING,
-    allowNull: true,
-  },
-  categoria: {
+  cor: {
     type: Sequelize.STRING,
     allowNull: true,
   },
 });
 
 module.exports = Variacao;
-

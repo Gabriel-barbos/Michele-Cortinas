@@ -48,17 +48,10 @@ const ModalPopup = (props) => {
         setFiles(e.target.files);
         setSendedFiles(true)
     }
-    
-    const submitVariacoes = () => {
-        for(let variacao of variacoes){
-            console.log(variacao)
-        }
-    }
 
     const submitHandler = async (e) => {
         e.preventDefault();
         submitVariacoes();
-        return
         let formData = new FormData();    //formdata object
 
         setSendingFiles(true)
@@ -90,6 +83,22 @@ const ModalPopup = (props) => {
         })
     }
 
+    const submitVariacoes = () => {
+        for(let variacao of variacoes){
+            axios.post(
+                "http://localhost:8081/variacao/",
+                {
+                    titulo: variacao.titulo,
+                    cor: variacao.cor
+                }
+            ).then((response) => {
+                console.log(response)
+            }).catch((err) => {  
+                toast.warn(err.response.data.msg)
+            })
+        }
+    }
+
     const addVariacaoHandler = () => {
         setVariacoes(variacoes => [...variacoes, {id: variacoes.length, titulo: "", cor: ""}])
     }
@@ -98,10 +107,10 @@ const ModalPopup = (props) => {
         setVariacoes(variacoes.filter(v => v.id != id));
     }
 
-    const applyVariacaoHandler = (id, titulo, cores) => {
+    const applyVariacaoHandler = (id, titulo, cor) => {
         const variacaoIndex = variacoes.findIndex(v => v.id == id);
         let variacoesCopy = [...variacoes];
-        variacoesCopy[variacaoIndex] = {id: id, titulo: titulo || variacoesCopy[variacaoIndex].titulo, cores: cores || variacoesCopy[variacaoIndex].cores }
+        variacoesCopy[variacaoIndex] = {id: id, titulo: titulo || variacoesCopy[variacaoIndex].titulo, cor: cor || variacoesCopy[variacaoIndex].cor }
         setVariacoes(variacoesCopy);
     }
 

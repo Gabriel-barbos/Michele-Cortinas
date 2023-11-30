@@ -7,7 +7,7 @@ import {
 import { Login } from "./admin/Login.jsx";
 import { Registro } from "./admin/Registro.jsx";
 import { Perfil } from "./admin/Perfil.jsx";
-import { Logout } from "./admin/Logout.jsx";
+import { Logout } from "./Logout.jsx";
 import { Dashboard } from "./admin/Dashboard.jsx";
 import Modalpopup from "../components/admin/ModalAdicionarCategoria.jsx";
 import AuthGuard from "../hooks/useAuthGuard.jsx"
@@ -28,7 +28,9 @@ export function AppRoutes(){
 
                 <Route path="/dashboard/login" element={<Login />}/>
                 <Route path="/dashboard/registrar" element={<Registro />}/>
-                <Route path="/perfil" element={<Perfil />} />
+                <Route path="/dashboard/perfil" element={
+                    <Dashboard page={<Perfil />} />}
+                />
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/dashboard/categorias" element={
                     <Dashboard page={<Categorias />} />

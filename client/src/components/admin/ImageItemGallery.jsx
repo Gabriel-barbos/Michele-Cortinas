@@ -8,7 +8,7 @@ const ImageItemGallery = ({images}) => {
     const [sessionImages, setSessionImages] = useState(images);
 
     const deleteImage = (id) => {
-        axios.delete('http://localhost:8081/imagem/' + id)
+        axios.delete('http://localhost:8081/produto/delete/image/' + id)
         .then((response) => {
             toast.success("Imagem excluída com sucesso")
             setSessionImages(sessionImages.filter((i) => i.id != id));

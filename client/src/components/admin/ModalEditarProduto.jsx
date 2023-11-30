@@ -10,11 +10,13 @@ import InputFileUpload from "./InputFileUpload";
 
 const ModalEditar = (props) => {
     const [open, openchange] = useState(false);
+    
     const functionopenpopup = () => {
         openchange(true);
     }
     const closepopup = () => {
         openchange(false);
+        window.location = "/dashboard/produtos"
     }
 
     const uploadFileHandler = (e) => {

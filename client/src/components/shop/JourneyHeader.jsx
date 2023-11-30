@@ -1,4 +1,5 @@
 import Logo from './Logo'
+import CarrinhoButton from './CarrinhoButton'
 
 const JourneyHeader = () => {
     return (
@@ -12,6 +13,7 @@ const JourneyHeader = () => {
                     <a href="">Sobre nós</a>
                     <a href="">Perguntas frequentes</a>
                     <a href="" className="client-area">Área do cliente</a>
+                    <CarrinhoButton />
                 </div>
             </nav>  
         </header>
