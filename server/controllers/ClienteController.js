@@ -2,7 +2,6 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { cliente } = require("../models");
 const { exit } = require("process");
-const Carrinho = require("../models/Carrinho");
 
 require("dotenv").config();
 

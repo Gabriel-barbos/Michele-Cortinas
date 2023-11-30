@@ -13,10 +13,6 @@ const Produto = sequelize.define("produtos", {
   preco: {
     type: Sequelize.FLOAT,
     allowNull: true,
-  },
-  categoria: {
-    type: Sequelize.STRING,
-    allowNull: true,
   }
   
 });

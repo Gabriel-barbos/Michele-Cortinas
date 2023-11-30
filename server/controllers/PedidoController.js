@@ -5,13 +5,13 @@ const Pedido = require("../models").pedido;
 const createPedido = async (req,res) =>{
     try {
         let info = {
-          data: Date.now,
           largura: req.body.largura,
           altura: req.body.altura,
-          clienteId: req.body.id
+          clienteId: req.body.clienteId,
+          produtoId: req.body.produtoId
         }
-
-        const insertPedido = Pedido.Create(info)
+        console.log(info)
+        const insertPedido = await Pedido.create(info, { produtoId : req.body.produtoId})
 
         res.status(200).json({insertPedido})
     } catch (error) {
