@@ -1,15 +1,20 @@
 const { sequelize, Sequelize } = require("../config/db");
 
-const Categoria = sequelize.define("categorias", {
-  titulo: {
+const Admin = sequelize.define("admins", {
+  nome: {
     type: Sequelize.STRING,
     allowNull: true,
-    unique: true
   },
-  slug: {
+  descricao: {
     type: Sequelize.STRING,
+    allowNull: true
+  },
+  preco: {
+    type: Sequelize.FLOAT,
     allowNull: true,
   }
+  
 });
 
-module.exports = Categoria;
+module.exports = Admin;
+

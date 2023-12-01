@@ -15,22 +15,23 @@ const createProduto = async (req, res) => {
 
     let extensaoValida = true;
     // valida extensão
-    files.forEach((file) => {
-      const extensao = path.extname(file.originalname);
+    // files.forEach((file) => {
+    //   const extensao = path.extname(file.originalname);
 
-      const extensoesValidas = [".jpg", ".png", ".webp", ".jpeg"];
-      if (!extensoesValidas.includes(extensao)) {
-        let nomeImagem = file.filename;
-        fs.unlinkSync("./public/imagens/" + nomeImagem);
-        extensaoValida = false;
-      }
-    });
+    //   const extensoesValidas = [".jpg", ".png", ".webp", ".jpeg"];
+    //   if (!extensoesValidas.includes(extensao)) {
+    //     let nomeImagem = file.filename;
+    //     fs.unlinkSync("./public/imagens/" + nomeImagem);
+    //     extensaoValida = false;
+    //   }
+    // });
 
     if (!extensaoValida) return res.status(500).json({
       msg: "Uma imagem selecionada com extensão inválida"
     });
 
-    let info = {
+  
+    let info ={
       nome: req.body.nome,
       preco: req.body.preco,
       descricao: req.body.descricao,
@@ -48,6 +49,8 @@ const createProduto = async (req, res) => {
 
     const id = produtoRecente.id;
 
+
+    console.log(req.body)
     if(produto){
       let variacoes = JSON.parse(req.body.variacoes).variacoes;
       

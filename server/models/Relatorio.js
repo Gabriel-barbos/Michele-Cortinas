@@ -1,6 +1,6 @@
 const { sequelize, Sequelize } = require("../config/db");
 
-const Categoria = sequelize.define("categorias", {
+const Relatorio = sequelize.define("relatorios", {
   titulo: {
     type: Sequelize.STRING,
     allowNull: true,
@@ -12,4 +12,4 @@ const Categoria = sequelize.define("categorias", {
   }
 });
 
-module.exports = Categoria;
+module.exports = Relatorio;
