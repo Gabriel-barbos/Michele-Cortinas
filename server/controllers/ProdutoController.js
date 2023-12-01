@@ -117,7 +117,6 @@ const getOneProduto = async (req, res) => {
     });
 
 
-
     res.status(200).json(produto);
   } catch (error) {
     res.status(400).json({
