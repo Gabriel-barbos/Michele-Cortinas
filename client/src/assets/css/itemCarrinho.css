@@ -1,0 +1,103 @@
+.img-prod-icon {
+  position: absolute;
+  top: 0rem;
+  left: 0rem;
+  width: 9.56rem;
+  height: 11.13rem;
+  object-fit: cover;
+}
+.delete-btn {
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  background-color: #bebebe;
+  position: absolute;
+  top: 0.75rem;
+  left: 0.63rem;
+  border-radius: 32px;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.group-item {
+  position: absolute;
+  top: -0.15rem;
+  left: -0.19rem;
+  width: 0.97rem;
+  height: 0.97rem;
+}
+.vector-group {
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  top: 1.25rem;
+  left: 1.13rem;
+  width: 0.53rem;
+  height: 0.53rem;
+}
+.imgbtn {
+  align-self: stretch;
+  position: relative;
+  width: 9.56rem;
+}
+.titulo-prod {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  font-weight: 400;
+  font-family: inherit;
+}
+.desc-prod {
+  margin: 0;
+  position: relative;
+  font-size: 1rem;
+  color: #595959;
+  display: inline-block;
+  width: 36.94rem;
+}
+.left-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.63rem;
+}
+.detalhes {
+  margin: 0;
+}
+.valor2 {
+  margin: 0;
+  position: relative;
+  font-size: 2rem;
+  font-weight: 400;
+  font-family: inherit;
+}
+.right-items {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2rem;
+  font-size: 1rem;
+}
+.item-cart {
+  position: absolute;
+  top: 21.75rem;
+  left: 7.63rem;
+  border-radius: 11px;
+  background-color: #f4f4f4;
+  width: 74.81rem;
+  height: 11.13rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0rem 2.5rem 0rem 0rem;
+  box-sizing: border-box;
+  text-align: left;
+  font-size: 1.5rem;
+  color: #000;
+  font-family: inherit;
+}

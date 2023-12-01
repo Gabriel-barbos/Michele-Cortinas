@@ -17,10 +17,7 @@ export function ItemCheckout(props){
         <p className="largura">Largura:</p>
         <p className="altura">Altura:</p>
       </div>
-      <button className="editBtn">
-        <div className="editBtnChild" />
-        <div className="editar">editar</div>
-      </button>
+    
       <button className="deleteBtn">
         <div className="deleteBtnChild" />
         <div className="excluir">excluir</div>

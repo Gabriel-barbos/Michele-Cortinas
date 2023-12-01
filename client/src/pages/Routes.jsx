@@ -19,8 +19,9 @@ import '../assets/css/dashboard.css'
 import '../assets/css/login.css'
 import { Produtos } from "./Produtos.jsx";
 import { Checkout } from "./Checkout.jsx";
-import { ItemCheckout } from "../components/ItemCheckout.jsx";
+import { ItemCarrinho } from "../components/itemCarrinho.jsx";
 import { PedidosADM } from "./PedidosAdm.jsx";
+import { Carrinho } from "./Carrinho.jsx";
 export function AppRoutes(){
     return (
         <Router>
@@ -28,6 +29,7 @@ export function AppRoutes(){
                 <Route path="/login" element={<Login />}/>
                 <Route path="/registrar" element={<Registro />}/>
                 <Route path="/produtoUnico" element={<ProdutoUnico />} />
+                <Route path="/carrinho" element={<Carrinho />} />
                 <Route path="/perfil" element={<Perfil />} />
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/Checkout" element={<Checkout />}/>
@@ -40,7 +42,7 @@ export function AppRoutes(){
                 <Route path="/dashboard/produtos" element={
                     <Dashboard page={<Produtos />} />
                 }/>
-                <Route path="/modal" element={<ItemCheckout />}/>
+                <Route path="/modal" element={<ItemCarrinho />}/>
 
             </Routes>
         </Router>

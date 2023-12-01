@@ -22,8 +22,7 @@ return(
 </button>
 
 <h3 className='cliente'>Cliente: Danilo </h3>
-<h4 className='altura'> Altura: 1.85 m</h4>
-<h4 className='largura'> Largura: 2.50 m</h4>
+
 </div>
     
 
