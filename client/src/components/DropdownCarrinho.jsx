@@ -1,22 +1,27 @@
 import { useState } from "react"
+import '../assets/css/dropdownCarrinho.css'
 export function DropdownCarrinho(){
-    const [isActive, setIsActive] = useState(false);
-    return(
-        <div className="dropdown">
-        <div className="dropdown-btn" onClick={e => setIsActive(!isActive)}>Casa
-        <span className="fas fa-caret-down"></span>
-        </div>
-       {isActive &&(
-         <div className="dropdown-list">
-         <div className="endereco-item">
-             Casa 1
-         </div>
-         <div className="endereco-item">
-             Trabalho
-         </div>
-     </div>
-       )}
-        </div>
+   
+    const [selectedOption, setSelectedOption] = useState(null);
+    const options = ["CASA", "APARTAMENTO", "TRABALHO"];
+  
+    const handleSelect = (option) => {
+      setSelectedOption(option);
+    };
+
+return(
+<div className="dropdown">
+    
+      <select onChange={(e) => handleSelect(e.target.value)}>
+        <option value="" disabled selected>Casa</option>
+        {options.map((option, index) => (
+          <option key={index} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+
+</div>
     )
 }
 

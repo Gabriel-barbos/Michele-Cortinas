@@ -4,26 +4,29 @@ import cortinaAzul from '../assets/img-teste/cortina-azul.jpg';
 export function PedidoADM(){
 return(
     <>
-<div className="order-box">
-    <img className='order-img' src={cortinaAzul}/>
-        <h2 className='title'> Pedido #001</h2>
-            <h3 className='cor'>Cor: cinza Concreto</h3>
-                <h2 className='valor'>Valor: 550,50 R$</h2>
-            <p className='desc'>
-                Cortina Azul com regulagem de brilho, anti-bacterias, persiana com cabo extra
-            </p>
+      <div className="pedido-adm">
 
-<button className='approve-btn'>
-    Aprovar pedido
-</button>
+        <div className="img-and-title">
+            <img className="imagem-produto" alt="" src={cortinaAzul} />
+            <div className="name-prod">Cortina X</div>
+          </div>
+          
+        <div className="status">
+          <div className="status-txt">Status:</div>
+          <div className="current-status">Em produção</div>
+        </div>
+        <div className="order-details">
+            <p className="largura-prod">Largura: 1,20m</p>
+            <p className="altura-prod">Altura: 1,80m</p>
+            <p className="cor-prod">Cor: Bege</p>
+        </div>
 
-<button className='wpp-btn'>
-    Entrar em contato com o cliente
-</button>
+        <div className="valor-prod">R$4894.76</div>
 
-<h3 className='cliente'>Cliente: Danilo </h3>
-
-</div>
+        <button className="cancel">
+        <div className="cancelar-pedido">Cancelar pedido</div>
+      </button>
+      </div>
     
 
     </>

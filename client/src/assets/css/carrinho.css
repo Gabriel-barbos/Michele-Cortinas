@@ -18,6 +18,10 @@
     text-align: left;
   }
 
+  .list-items{
+    height: 800px;
+  }
+
   .continue-btn {
     cursor: pointer;
     border: 1px solid #000;
@@ -60,16 +64,16 @@
     box-sizing: border-box; 
     height: 20vh;
   }
-  .total,
-  .valor {
+  .total-pedido,
+  .valor-pedido {
     position: absolute;
-    top: 4.19rem;
+    top: 3.19rem;
     left: 7.56rem;
     font-size: 1rem;
   }
-  .valor {
+  .valor-pedido {
     margin: 0;
-    top: 5.75rem;
+    top: 4.2rem;
     font-size: 2.25rem;
     font-weight: 400;
     font-family: inherit;
@@ -98,7 +102,7 @@
   .endereo-mini {
     position: absolute;
     top: 4.25rem;
-    left: 29.06rem;
+    left: 27rem;
   }
   .logradouro {
     display: block;
@@ -115,7 +119,7 @@
   .endereco {
     margin: 0;
     position: absolute;
-    top: 4.25rem;
+    top: 3rem;
     left: 37.56rem;
     color: rgba(255, 255, 255, 0.44);
     display: inline-block;

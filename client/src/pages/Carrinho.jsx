@@ -16,6 +16,8 @@ export function Carrinho(){
 
 <ItemCarrinho />
 <ItemCarrinho groupButtonTop="34.44rem" />
+<ItemCarrinho groupButtonTop="46.44rem" />
+
 </div>
 
 <div className='fix-footer-position'>
@@ -25,8 +27,8 @@ export function Carrinho(){
 <div className='carrinho-footer'>
 
 <div className="footer1">
-        <div className="total">Total:</div>
-        <h2 className="valor">R$9321,20</h2>
+        <div className="total-pedido">Total:</div>
+        <h2 className="valor-pedido">R$9321,20</h2>
         <button className="send-order-btn">
           <div className="efetuar-pedido-">Efetuar pedido </div>
         </button>

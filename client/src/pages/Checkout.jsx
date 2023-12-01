@@ -8,10 +8,9 @@ export function Checkout() {
       <header className="header" />
       <h1 className="title ">Checkout</h1>
       
-      <ItemCheckout top={50} left={100}/>
       <div className="checkoutCard">
         <div className="checkoutBox" />
-        <h2 className="total">TOTAL: 750 R$</h2>
+        <h2 className="total-compra">TOTAL: 750 R$</h2>
         <button className="sendBtn">
           <div className="enviar">Enviar Pedido</div>
         </button>
@@ -20,7 +19,7 @@ export function Checkout() {
           <div className="enderecoBox1" />
           <div className="enderecoDeEntrega">Endereço de entrega:</div>
           <div className="alterar">alterar</div>
-          <div className="endereco">
+          <div className="endereco-cli">
             <p>rua da Bahia, 345 - ap 416 <br />
               Cidade baixa <br />
               Xique-Xique,BA <br />

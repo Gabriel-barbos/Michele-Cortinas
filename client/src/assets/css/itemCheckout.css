@@ -48,7 +48,7 @@
   left: 18.84%;
   color: gray;
 }
-.valor{
+.valor-item{
   position: absolute;
   top: 11.76%;
   left: 79.4%;
@@ -64,6 +64,9 @@
   left: 79.4%;
 }
 
+.larguraAltura{
+  left: 50px;
+}
 .editBtnChild {
   position: absolute;
   height: 100%;
