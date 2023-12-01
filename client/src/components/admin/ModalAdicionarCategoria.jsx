@@ -20,6 +20,9 @@ const Modalpopup = (props) => {
     const submitHandler = async (e) => {
         e.preventDefault();
 
+        if(titulo == "" || slug == ""){
+            return toast.warn("Nenhum campo pode estar em branco")
+        }
         axios.post(
             "http://localhost:8081/categoria/",
             {
@@ -54,6 +57,7 @@ const Modalpopup = (props) => {
     }
     return (
         <div style={{ textAlign: 'center' }}>
+            <ToastContainer />
             <Button onClick={functionopenpopup} color="primary" variant="contained">Adicionar</Button>
             <Dialog
                 open={open} onClose={closepopup} fullWidth maxWidth="sm">

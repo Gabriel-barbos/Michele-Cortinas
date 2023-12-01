@@ -12,8 +12,10 @@ import Clientes from "./admin/Clientes.jsx";
 import Modalpopup from "../components/admin/ModalAdicionarCategoria.jsx";
 import { Categorias } from "./admin/Categorias.jsx";
 
+import { Painel } from "./client/Painel.jsx";
 import { Registro } from "./client/Registro.jsx"
 import { LoginClient } from "./client/Login.jsx"
+import PerfilClient from "./client/PerfilClient.jsx";
 
 import '../assets/css/login.css'
 import '../assets/css/dashboard.css'
@@ -21,6 +23,7 @@ import '../assets/css/login.css'
 import Home from "./shop/Home"
 import { Produtos } from "./admin/Produtos.jsx";
 import { Pedidos } from "./admin/Pedidos.jsx";
+
 
 export function AppRoutes(){
     return (
@@ -50,6 +53,10 @@ export function AppRoutes(){
 
                 <Route path="/registrar" element={<Registro />}/>
                 <Route path="/entrar" element={<LoginClient />}/>
+
+                <Route path="/painel" element={
+                    <Painel page={<PerfilClient />} />
+                } />
 
                 {/* <Route path="/client/dashboard/perfil" element={
                 <DashboardClient page={<PerfilClient />}/>

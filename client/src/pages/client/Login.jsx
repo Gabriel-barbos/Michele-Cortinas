@@ -4,11 +4,13 @@ import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import JourneyHeader from "../../components/shop/JourneyHeader";
+
 export function LoginClient() {
     const token = sessionStorage.getItem("token_client")
 
     if(token){
-        return window.location = "/painel/perfil"
+        return window.location = "/"
     }
 
   const [email, setEmail] = useState("");
@@ -30,7 +32,7 @@ export function LoginClient() {
       }
     ).then((response) => {
         sessionStorage.setItem("token_client", response.data.token)
-        window.location = "/dashboard/perfil"
+        window.location = "/painel"
     }).catch((err) => {
         toast.warn(err.response.data.msg);
         console.log(err)
@@ -41,6 +43,7 @@ export function LoginClient() {
   return (
     <div className="login-body">
     <ToastContainer />
+    <JourneyHeader />
     <div className="container-login">
     <span className="login-form-title">Bem-vindo(a)</span>
 
@@ -76,7 +79,7 @@ export function LoginClient() {
 
           <div className="text-center">
             <span className="txt1">Não possui conta?</span>
-            <a className="txt2" href="registrar">
+            <a className="txt2" href="/registrar">
               Criar conta
             </a>
           </div>
