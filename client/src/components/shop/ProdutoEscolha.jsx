@@ -96,7 +96,7 @@ const ProdutoEscolha = ({produto, closeHandle}) => {
                         <Link underline="hover" target="_blank" href="https://www.youtube.com/watch?v=ANojN_BLoWA&pp=ygUiY29tbyBtZWRpciB1bWEgamFuZWxhIHBhcmEgY29ydGluYQ%3D%3D" fontSize="small">Não sabe medir? Veja esse vídeo</Link>
                     </Stack>
 
-                    <h3 className='produto-escolha-info-label'><ColorLensOutlinedIcon /> Opcional: Escolha uma cor</h3>
+                    {variacoes.length > 0 && <h3 className='produto-escolha-info-label'><ColorLensOutlinedIcon /> Opcional: Escolha uma cor</h3>}    
                     <div className="produto-escolha-colors">
                         {variacoes.map((variacao, index) => {
                             return(

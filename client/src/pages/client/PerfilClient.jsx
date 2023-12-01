@@ -6,12 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function PerfilClient() {
-    const token = sessionStorage.getItem("token")
-
-    if(!token){
-        return window.location = "/login"
-    }
-
+    const token = sessionStorage.getItem("token_client")
     const { decodedToken, isExpired } = useJwt(token);
 
     const [email, setEmail] = useState("");

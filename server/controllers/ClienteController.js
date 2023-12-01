@@ -67,8 +67,6 @@ const register = async (req, res) => {
   const insertCliente = await Cliente.create(info)
   //* Adicionar endereco e telefone do cliente
   if(insertCliente){
-
-    let numero = req.body.numero
     let endereco = {
       rua: req.body.nome,
       cep: req.body.cep,

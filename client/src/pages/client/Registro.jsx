@@ -5,6 +5,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { telefoneMask } from '../../components/TelefoneMask'
+import { IconButton, Link } from "@mui/material";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 export function Registro() {
   const [email, setEmail] = useState("");
@@ -44,6 +46,11 @@ export function Registro() {
     
     <div className="login-body">
     <ToastContainer />
+    <Link href="/">
+      <IconButton sx={{position: "fixed", left: "10px", top: "10px"}} >
+        <ArrowBackIcon />
+      </IconButton>
+    </Link>
     <div className="container-login">
     <span className="login-form-title">Crie sua conta</span>
 
@@ -111,7 +118,7 @@ export function Registro() {
 
           <div className="text-center">
             <span className="txt1">Já possui uma conta?</span>
-            <a className="txt2" href="login">
+            <a className="txt2" href="/entrar">
               Entrar
             </a>
           </div>
