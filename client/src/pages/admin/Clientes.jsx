@@ -1,6 +1,7 @@
 import { Table, TableContainer, TableHead, TableRow, TableCell, TableBody, Paper, Button } from "@mui/material"
 import axios from "axios"
 import { useEffect, useState } from "react";
+import ModalInfo from "../../components/shop/ButtonModal";
 
 const Clientes = () => {
     function createData(primeiro_nome, sobrenome, email, btn_endereco, btn_telefone) {
@@ -17,7 +18,10 @@ const Clientes = () => {
 
    
     return (
+        <>
+        
         <TableContainer component={Paper}>
+
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
                 <TableRow>
@@ -37,13 +41,14 @@ const Clientes = () => {
                         <TableCell>{cliente.nome}</TableCell>
                         <TableCell>{cliente.sobrenome}</TableCell>
                         <TableCell>{cliente.email}</TableCell>
-                        <TableCell><Button variant="outlined">Ver endereços</Button></TableCell>
-                        <TableCell><Button variant="outlined">Ver telefones</Button></TableCell>
+                        <TableCell><ModalInfo label="Ver endereços" title={"Telefones de " + cliente.nome} content="olaaa" /></TableCell>
+                        <TableCell><ModalInfo label="Ver telefones" /></TableCell>
                     </TableRow>
                 ))}
                 </TableBody>
             </Table>
         </TableContainer>
+        </>
     )
 }
 

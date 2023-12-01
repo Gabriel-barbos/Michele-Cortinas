@@ -42,9 +42,9 @@ export function Login() {
     <div className="login-body">
     <ToastContainer />
     <div className="container-login">
-    <span className="login-form-title">Bem-vindo(a)</span>
+    <span className="login-form-title">Área restrita</span>
 
-    <span className="login-form-subtitle">Faça login para poder realizar pedidos e ter acesso a descontos promocionais</span>
+    <span className="login-form-subtitle">Faça login com a conta de adminstrador</span>
 
       <div className="wrap-login">
         <form className="login-form" onSubmit={loginSubmitHandler}>
@@ -72,13 +72,6 @@ export function Login() {
 
           <div className="container-login-form-btn">
             <button className="login-form-btn" type="submit">Entrar</button>
-          </div>
-
-          <div className="text-center">
-            <span className="txt1">Não possui conta?</span>
-            <a className="txt2" href="registrar">
-              Criar conta
-            </a>
           </div>
         </form>
       </div>
