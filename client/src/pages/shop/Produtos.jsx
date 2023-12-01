@@ -32,6 +32,10 @@ const Produtos = ({stepHandler}) => {
 
     }, [])
 
+    const closeProdutoEscolha = () => {
+        window.location = "/"
+    }
+
     return (
         <div className="produtos-journey-grid">
             {produtos.map((p) => {
@@ -49,7 +53,7 @@ const Produtos = ({stepHandler}) => {
                 }
             }}
             style={{opacity: produto !== null ? 1 : 0, zIndex: produto !== null ? 999 : -2}}>
-                {produto && <ProdutoEscolha produto={produto} />}
+                {produto && <ProdutoEscolha produto={produto} closeHandle={closeProdutoEscolha} />}
             </div>
             
         </div>

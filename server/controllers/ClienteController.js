@@ -65,11 +65,6 @@ const register = async (req, res) => {
   }
 
   const insertCliente = await Cliente.create(info)
-  if(insertCliente){
-    clienteId = insertCliente.id
-    insertCarrinho = await Carrinho.create({clienteId : clienteId})
-  }
-
   //* Adicionar endereco e telefone do cliente
   if(insertCliente){
 
@@ -88,12 +83,11 @@ const register = async (req, res) => {
       attributes: ["id"],
       order: [["createdAt", "DESC"]],
     });
-    clienteId = clienteRecente.id
+    let clienteId = clienteRecente.id
     const insertTelefone = await Telefone.create({
-      numero: numero,
+      numero: req.body.telefone,
       clienteId: clienteId
     });
-    const insertEndereco = await Endereco.create(endereco);
     res.status(200).json({ msg: "Cliente cadastrado com sucesso!"});
   }else{
     return res.status(500).json({ msg: "Erro ao cadastrar Usuário"})

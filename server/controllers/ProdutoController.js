@@ -34,11 +34,10 @@ const createProduto = async (req, res) => {
       nome: req.body.nome,
       preco: req.body.preco,
       descricao: req.body.descricao,
-      categoria: req.body.categoria
+      categoriaId: req.body.categoria
     };
     const produto = await Produto.create(info); // Insert produto
 
-    
     //Pegar produto recém adicionado
     const produtoRecente = await Produto.findOne({
       attributes: ["id"],
@@ -53,10 +52,9 @@ const createProduto = async (req, res) => {
       let variacoes = JSON.parse(req.body.variacoes).variacoes;
       
       for (let variacao of variacoes) {
-        console.log(variacao) 
         const insertVariacao = await Variacao.create({
           titulo: variacao.titulo,
-          cor: variacao.cor,
+          cor: variacao.cor != "" ? variacao.cor : "#000000",
           produtoId: id
         }) 
       }
@@ -257,9 +255,7 @@ const searchProduto = async (req, res) => {
             }
           },
           {
-            categoria: {
-              [Op.like]: '%' + (categoria != undefined ? categoria.id : " ") + '%'
-            }
+            categoriaId: categoria.id
           }
         ]
       },

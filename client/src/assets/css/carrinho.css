@@ -4,15 +4,15 @@
     -webkit-box-shadow: -29px 0px 66px 0px rgba(0,0,0,0.27);
     -moz-box-shadow: -29px 0px 66px 0px rgba(0,0,0,0.27);
     box-shadow: -29px 0px 66px 0px rgba(0,0,0,0.27);
-    width: 25vw;
+    width: 30vw;
     height: 100vh;
     right: 0;
     top: 0;
-    transition: .2s ease;
-    padding: 40px;
+    transition: .8s cubic-bezier(0.42, 0, 0.2, 1.03);
+    padding: 20px;
     box-sizing: border-box;
-
-    transform: translateX(100%);
+    z-index: 999;
+    transform: translateX(110%);
 }
 
 .carrinho-container.open {
@@ -23,4 +23,56 @@
     display: flex;
     gap: 4px; 
     align-items: center;
+    margin-bottom: 10px;
+}
+
+.produto-carrinho-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 75px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    position: relative;
+}
+
+.produto-card-left {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.produto-carrinho-card-img {
+    height: 100%;
+} 
+
+.produto-carrinho-card-img img {
+    height: 100%;
+} 
+
+.produto-carrinho-card-sizes {
+    display: flex;
+    gap: 5px;
+}
+
+.produto-carrinho-card-nome {
+    font-size: .9rem;
+}
+
+.produto-carrinho-card-sizes {
+    font-size: .8rem;
+}
+
+.produto-carrinho-card-price-label {
+    font-size: 1rem;
+}
+
+.produto-carrinho-card-close {
+    position: absolute !important;
+    right: -5px;
+    top: -5px;
+    transform: scale(.8);
 }

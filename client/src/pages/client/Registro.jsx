@@ -4,17 +4,19 @@ import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import { telefoneMask } from '../../components/TelefoneMask'
 
 export function Registro() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [nome, setNome] = useState("");
   const [sobrenome, setSobrenome] = useState("");
+  const [telefone, setTelefone] = useState("")
 
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    if(email == "" || password == "" || nome == "" || sobrenome == ""){
+    if(email == "" || password == "" || nome == "" || sobrenome == "", telefone == ""){
       return toast.warn("Nenhum campo pode estar vazio")
     }
 
@@ -28,10 +30,11 @@ export function Registro() {
             email: email,
             senha: password,
             nome: nome,
-            sobrenome: sobrenome
+            sobrenome: sobrenome,
+            telefone: telefone
           }
     ).then(() => {
-        window.location = "/login"
+        window.location = "/entrar"
     }).catch((err) => {
         toast.warn(err.response.data.msg)
     })
@@ -86,6 +89,19 @@ export function Registro() {
               onChange={(e) => setPassword(e.target.value)}
             />
             <span className="focus-input" data-placeholder="Senha"></span>
+          </div>
+
+          <div className="wrap-input">
+            <input
+              className={telefone !== "" ? "has-val input" : "input"}
+              type="text"
+              value={telefoneMask(telefone)}
+              onChange={(e) => {
+                setTelefone(e.target.value)
+              }}
+              maxLength={15}
+            />
+            <span className="focus-input" data-placeholder="Telefone"></span>
           </div>
 
 

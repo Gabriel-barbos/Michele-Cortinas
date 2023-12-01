@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import StraightenOutlinedIcon from '@mui/icons-material/StraightenOutlined';
 import ColorLensOutlinedIcon from '@mui/icons-material/ColorLensOutlined';
+import AdicionarCarrinho from './AdicionarCarrinho';
 
 function wc_hex_is_light(color) {
     const hex = color.replace('#', '');
@@ -14,24 +15,15 @@ function wc_hex_is_light(color) {
     return brightness > 155;
 }
 
-const ProdutoEscolha = ({produto}) => {
+const ProdutoEscolha = ({produto, closeHandle}) => {
     const [largura, setLargura] = useState(1);
     const [altura, setAltura] = useState(1);
     const [preco, setPreco] = useState(produto.preco)
     const [imagens, setImages] = useState(produto.imagens)
 
-    const [cores, setCores] = useState([
-        {    
-            titulo: "Uma cor legal",
-            hex: "#000000",
-            ativo: true,
-        },
-        {    
-            titulo: "Outra cor legal",
-            hex: "#ffaa12",
-            ativo: false,
-        }
-    ])
+    const [variacoes, setVariacoes] = useState(produto.variacaos.map((v) => ({
+        ...v, ativo: false
+    })))
 
     useEffect(() => {
         setPreco(produto.preco * largura * altura)
@@ -45,12 +37,26 @@ const ProdutoEscolha = ({produto}) => {
     }
 
     const selectColorHandle = (index) => {
-        let newCoresArr = [...cores];
-        for(let i in cores) {
+        let newCoresArr = [...variacoes];
+        for(let i in variacoes) {
+            if(i == index){
+                newCoresArr[i].ativo = !newCoresArr[i].ativo;
+                continue;
+            }
             newCoresArr[i].ativo = false
         }
-        newCoresArr[index].ativo = true;
-        setCores(newCoresArr)
+        console.log(newCoresArr[index].ativo)
+        setVariacoes(newCoresArr)
+    }
+
+    const handleBuy = () => {
+        let variacaoAtiva = variacoes.find(v => v.ativo == true)
+        if(variacaoAtiva){
+            AdicionarCarrinho(produto.id, largura, altura, variacaoAtiva.id)
+        } else {
+            AdicionarCarrinho(produto.id, largura, altura)
+        }
+        closeHandle()
     }
 
     return (
@@ -87,22 +93,22 @@ const ProdutoEscolha = ({produto}) => {
                             setAltura(Number(e.target.value.replace(",", ".")))}
                         } label="Altura (ex.: 2,20)" variant="outlined" sx={{width: "100%"}} />
 
-                        <Link underline="hover"  fontSize="small">Não sabe medir? Veja esse vídeo</Link>
+                        <Link underline="hover" target="_blank" href="https://www.youtube.com/watch?v=ANojN_BLoWA&pp=ygUiY29tbyBtZWRpciB1bWEgamFuZWxhIHBhcmEgY29ydGluYQ%3D%3D" fontSize="small">Não sabe medir? Veja esse vídeo</Link>
                     </Stack>
 
                     <h3 className='produto-escolha-info-label'><ColorLensOutlinedIcon /> Opcional: Escolha uma cor</h3>
                     <div className="produto-escolha-colors">
-                        {cores.map((cor, index) => {
+                        {variacoes.map((variacao, index) => {
                             return(
-                                <div class={`produto-escolha-color ${cor.ativo ? "ativo" : ""} ${wc_hex_is_light(cor.hex) ? "dark" : ""}`} onClick={() => selectColorHandle(index)}>
-                                    <span class="produto-escolha-color-hex" style={{backgroundColor: cor.hex}} />
-                                    <h5>{cor.titulo}</h5>
+                                <div class={`produto-escolha-color ${variacao.ativo ? "ativo" : ""} ${wc_hex_is_light(variacao.cor) ? "dark" : ""}`} onClick={() => selectColorHandle(index)}>
+                                    <span class="produto-escolha-color-hex" style={{backgroundColor: variacao.cor}} />
+                                    <h5>{variacao.titulo}</h5>
                                 </div>
                             )
                         })}
                     </div>
                 </div>
-                <div className="produto-escolha-buy">
+                <div className="produto-escolha-buy" onClick={() => handleBuy()}>
                     <p style={{display: "flex", alignItems: "center", gap: "5px", color: "#aaa"}}>Inserir no carrinho <ArrowForwardIcon /></p>
                     <h2>{preco.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</h2>
                     <span className="produto-escolha-buy-warning"><InfoOutlinedIcon  /> Cálculo baseado na metragem oferecida de <br /> {largura}m x {altura}m</span>

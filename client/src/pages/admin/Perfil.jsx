@@ -6,10 +6,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export function Perfil() {
-    const token = sessionStorage.getItem("token")
+    const token = sessionStorage.getItem("token_admin")
 
     if(!token){
-        return window.location = "/login"
+        return window.location = "/dashboard/login"
     }
 
     const { decodedToken, isExpired } = useJwt(token);

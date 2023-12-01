@@ -1,5 +1,5 @@
 import Logo from './Logo'
-import CarrinhoButton from './CarrinhoButton'
+import { CarrinhoButton } from './Carrinho'
 
 const JourneyHeader = () => {
     return (
