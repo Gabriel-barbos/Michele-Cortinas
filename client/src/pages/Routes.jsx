@@ -4,17 +4,16 @@ import {
     Route,
 } from "react-router-dom";
 
-import { PedidosClient } from "./client/PedidosClient.jsx";
-import PerfilClient from "./client/PerfilClient.jsx"
 import { Login } from "./admin/Login.jsx";
-import { Registro } from "./admin/Registro.jsx";
 import { Perfil } from "./admin/Perfil.jsx";
 import { Logout } from "./Logout.jsx";
 import { Dashboard } from "./admin/Dashboard.jsx";
-import { DashboardClient } from "./client/DashboardClient.jsx";
+import Clientes from "./admin/Clientes.jsx";
 import Modalpopup from "../components/admin/ModalAdicionarCategoria.jsx";
-import AuthGuard from "../hooks/useAuthGuard.jsx"
 import { Categorias } from "./admin/Categorias.jsx";
+
+import { Registro } from "./client/Registro.jsx"
+import { LoginClient } from "./client/Login.jsx"
 
 import '../assets/css/login.css'
 import '../assets/css/dashboard.css'
@@ -30,7 +29,6 @@ export function AppRoutes(){
                 <Route path="/" element={<Home />}/>
 
                 <Route path="/dashboard/login" element={<Login />}/>
-                <Route path="/dashboard/registrar" element={<Registro />}/>
                 <Route path="/dashboard/perfil" element={
                     <Dashboard page={<Perfil />} />}
                 />
@@ -41,11 +39,17 @@ export function AppRoutes(){
                 <Route path="/dashboard/produtos" element={
                     <Dashboard page={<Produtos />} />
                 }/>
+
+                <Route path="/dashboard/clientes" element={
+                    <Dashboard page={<Clientes />} />
+                }/>
                 <Route path="/dashboard/pedidos" element={
                     <Dashboard page={<Pedidos />} />
                 }/>
                 <Route path="/modal" element={<Modalpopup />}/>
 
+                <Route path="/registrar" element={<Registro />}/>
+                <Route path="/entrar" element={<LoginClient />}/>
 
                 {/* <Route path="/client/dashboard/perfil" element={
                 <DashboardClient page={<PerfilClient />}/>

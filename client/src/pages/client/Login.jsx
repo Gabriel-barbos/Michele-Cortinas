@@ -4,11 +4,11 @@ import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export function Login() {
-    const token = sessionStorage.getItem("token")
+export function LoginClient() {
+    const token = sessionStorage.getItem("token_client")
 
     if(token){
-        return window.location = "/perfil"
+        return window.location = "/painel/perfil"
     }
 
   const [email, setEmail] = useState("");
@@ -29,7 +29,7 @@ export function Login() {
         senha: password
       }
     ).then((response) => {
-        sessionStorage.setItem("token", response.data.token)
+        sessionStorage.setItem("token_client", response.data.token)
         window.location = "/dashboard/perfil"
     }).catch((err) => {
         toast.warn(err.response.data.msg);

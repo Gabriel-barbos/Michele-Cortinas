@@ -9,12 +9,11 @@ const Home = () => {
 
     const stepHandler = (stepName, value) => {
         sessionStorage.setItem(stepName, value)
-        console.log(stepName)
         setStepsObj({...stepsObj, [stepName]: {...stepsObj[stepName], value: value}})
         setCurrentStep(Object.keys(stepsObj).indexOf(stepName) + 1)
     }
 
-    const [currentStep, setCurrentStep] = useState(0);
+    const [currentStep, setCurrentStep] = useState(sessionStorage.getItem("current_step") || 0);
 
     const [stepsObj, setStepsObj] = useState({
         "category": {
@@ -34,6 +33,7 @@ const Home = () => {
     const [loadingContent, setLoadingContent] = useState(true);
 
     useEffect(() => {
+        sessionStorage.setItem("current_step", currentStep);
         setLoadingContent(true)
         setInterval(() => {
             setLoadingContent(false)
@@ -41,15 +41,16 @@ const Home = () => {
     }, [currentStep])
 
 
+
     return (
         <div className='home-body'>
             <JourneyHeader />
             <div className="journey-stepper-container">
                 <div className="journey-stepper">
-                    <Stepper activeStep={currentStep}>
+                    <Stepper activeStep={Number(currentStep)}>
                     {Object.values(stepsObj).map((step) => (
                         <Step key={step.label}>
-                        <StepLabel>{step.label}</StepLabel>
+                            <StepLabel>{step.label}</StepLabel>
                         </Step>
                     ))}
                     </Stepper>

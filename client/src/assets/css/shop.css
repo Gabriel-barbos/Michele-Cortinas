@@ -26,20 +26,40 @@ body, html {
 .menu-items a {
     color: #000;
     text-decoration: none;
+    border-radius: 20px;
+    padding: 7px 10px;
+    transition: .2s ease;
+}
+
+.menu-items a:hover {
+    background: #ddd;
 }
 
 .menu-items a.client-area{
-    padding: 7px 10px;
     border: 1px solid #ccc;
-    border-radius: 20px;
-    transition: .2s ease;
 } 
 
 .menu-items a.client-area:hover{
-    background: #000;
+    background: #9B27AF;
     color: #fff;
-    border-color: #000;
+    border-color: #9B27AF;
 } 
+
+.menu-items a.admin-area {
+    padding: 7px;
+    color: #ccc;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-items a.admin-area:hover {
+    color: #fff;
+    background: #ccc;
+}
+
 
 .journey-content {
     width: 100%;
@@ -113,11 +133,12 @@ body, html {
     height: 100vh;
     width: 100vw;
     z-index: 999;
-    transition: .8s ease;
+    transition: .2s ease-in-out;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #ffffff30;
+    /* background-color: #ffffff; */
     backdrop-filter: blur(10px);
     box-shadow: 2px 2px 32px 16px rgba(0, 0, 0, .04);
 }
@@ -127,6 +148,8 @@ body, html {
     height: 80vh;
     border-radius: 5px;
     
+    
+    border: 1px solid #ccc;
     overflow: hidden;
     background: #fff;
     display: flex;
@@ -186,6 +209,9 @@ body, html {
     padding: 10px;
     box-sizing: border-box;
     height: 20%;
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
 }
 
 .produto-escolha-gallery-images img {
@@ -194,6 +220,7 @@ body, html {
     border-radius: 4px;
     padding: 4px;
     box-sizing: border-box;
+    aspect-ratio: 1/1;
     border: 1px solid #ccc;
 }
 
