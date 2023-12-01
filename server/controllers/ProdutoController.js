@@ -50,7 +50,7 @@ const createProduto = async (req, res) => {
     const id = produtoRecente.id;
 
 
-    return console.log(req.body)
+    console.log(req.body)
     if(produto){
       let variacoes = JSON.parse(req.body.variacoes).variacoes;
       

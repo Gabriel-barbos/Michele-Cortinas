@@ -53,7 +53,7 @@ const register = async (req, res) => {
     nome: req.body.nome,
     sobrenome: req.body.sobrenome,
     email: req.body.email,
-    senha: await bcrypt.hash(req.body.senha, 10),
+    senha: await bcrypt.hash(req.body.senha, 10)
   };
 
 
@@ -138,6 +138,22 @@ const deleteCliente = async (req, res) => {
   }
 };
 
+const addEndereco = async (req,res) =>{
+  try {
+    const insertEndereco = Endereco.create({
+      rua: req.body.rua,
+      cep: req.body.cep,
+      cidade: req.body.cidade,
+      bairro: req.body.bairro,
+      complemento: req.body.complemento,
+      clienteId: req.body.id
+    });
+    res.status(200).json({msg:"Endereço adicionado com sucesso!"});
+  } catch (error) {
+    res.status(500).json({msg:"Erro ao adicionar endereço"});
+  }
+}
+
 module.exports = {
   login,
   register,
@@ -145,4 +161,5 @@ module.exports = {
   getOneCliente,
   updateCliente,
   deleteCliente,
+  addEndereco
 };

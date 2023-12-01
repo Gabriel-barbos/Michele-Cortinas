@@ -9,6 +9,8 @@ router.post("/auth/login", controller.login)
 //* Create cliente
 router.post('/auth/register', controller.register)
 
+router.post('/endereco', controller.addEndereco)
+
 //* exibir todos os clientes
 router.get('/',controller.getAllCliente)
 

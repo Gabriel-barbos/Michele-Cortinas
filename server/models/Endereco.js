@@ -6,7 +6,7 @@ const Endereco = sequelize.define("enderecos", {
     allowNull: true,
   },
   cep: {
-    type: Sequelize.FLOAT,
+    type: Sequelize.STRING,
     allowNull: true,
   },
   cidade: {

@@ -1,8 +1,10 @@
 const { sequelize, Sequelize } = require("../config/db");
+const Admin = require("./Admin.js");
 
 const models = {};
 
 models.cliente = require("./Cliente.js");
+models.admin = require("./Admin.js");
 models.pedido = require("./Pedido.js");
 models.variacao = require("./Variacao.js");
 models.produto = require("./Produto.js");
@@ -11,6 +13,7 @@ models.categoria = require("./Categoria.js");
 models.variacao = require("./Variacao.js");
 models.endereco = require("./Endereco.js");
 models.telefone = require("./Telefone.js");
+models.relatorio = require("./Relatorio.js");
 
 //* Relacionamento Cliente x Pedido
 models.cliente.hasMany(models.pedido); //Um Cliente pode ter vários Pedidos
@@ -55,12 +58,20 @@ models.pedido.belongsTo(models.produto);
 
 
 //* Relacionamento Categoria x Produto 1 - N
-
-models.categoria.hasMany(models.produto); //Um Cliente pode ter vários Pedidos
+models.categoria.hasMany(models.produto); 
 models.produto.belongsTo(models.categoria);
 
+//* Relacionamento Admin x Relatório 1 -N
+models.admin.hasMany(models.relatorio); 
+models.relatorio.belongsTo(models.admin);
 
 
 // sequelize.sync({ force: true });
 
 module.exports = models;
+
+models.admin.create({
+  nome: "admin1",
+  email: "admin@gmail.com",
+  senha: "123"
+})
