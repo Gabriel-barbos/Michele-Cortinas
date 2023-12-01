@@ -9,10 +9,6 @@ import JourneyHeader from "../../components/shop/JourneyHeader";
 export function LoginClient() {
     const token = sessionStorage.getItem("token_client")
 
-    if(token){
-        return window.location = "/"
-    }
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -32,7 +28,7 @@ export function LoginClient() {
       }
     ).then((response) => {
         sessionStorage.setItem("token_client", response.data.token)
-        window.location = "/painel"
+        window.location = "/"
     }).catch((err) => {
         toast.warn(err.response.data.msg);
         console.log(err)

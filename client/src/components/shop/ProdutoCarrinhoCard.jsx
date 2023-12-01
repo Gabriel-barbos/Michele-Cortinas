@@ -15,6 +15,8 @@ const ProdutoCarrinhoCard = ({produto, onDelete, index}) => {
 
         axios.get("http://localhost:8081/variacao/" + produto.variacao)
         .then(({data}) => {
+            console.table(produto)
+            console.log(data)
             setVariacaoFromBD(data.titulo)
         })
     }, [produto])
