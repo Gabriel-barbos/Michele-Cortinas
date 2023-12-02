@@ -36,8 +36,22 @@ const deletePedido = async (req, res) => {
   }
 };
 
+const atualizarStatus = async (req,res) =>{
+  try {
+    let status = req.body.status
+    const updateStatus = await Pedido.update({
+      status: status
+    })
+
+    res.status(200).json({msg:"Status atualizado para: "+ status});
+  } catch (error) {
+    res.status(400).json({msg: "Erro ao atualizar status"});
+  }
+}
+
 module.exports = {
     createPedido,
     updatePedido,
     deletePedido,
+    atualizarStatus
 };

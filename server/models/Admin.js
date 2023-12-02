@@ -5,11 +5,11 @@ const Admin = sequelize.define("admins", {
     type: Sequelize.STRING,
     allowNull: true,
   },
-  descricao: {
+  email: {
     type: Sequelize.STRING,
     allowNull: true
   },
-  preco: {
+  senha: {
     type: Sequelize.FLOAT,
     allowNull: true,
   }

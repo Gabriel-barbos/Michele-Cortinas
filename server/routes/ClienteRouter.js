@@ -9,7 +9,7 @@ router.post("/auth/login", controller.login)
 //* Create cliente
 router.post('/auth/register', controller.register)
 
-router.post('/endereco', controller.addEndereco)
+
 
 //* exibir todos os clientes
 router.get('/',controller.getAllCliente)
@@ -22,5 +22,18 @@ router.put('/:id', authentication ,controller.updateCliente)
 
 //* delete
 router.delete('/:id',authentication,controller.deleteCliente)
+
+
+//* ========================== ROTAS ENDEREÇO =================
+router.post('/endereco', controller.addEndereco)
+router.put('/endereco/:id', controller.updateEndereco)
+router.delete('/endereco/:id',controller.deleteEndereco)
+
+
+
+//* ========================== ROTAS ENDEREÇO =================
+router.post('/telefone', controller.addTelefone)
+router.put('/telefone/:id', controller.updateTelefone)
+router.delete('/telefone/:id',controller.deleteTelefone)
 
 module.exports = router
