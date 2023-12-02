@@ -6,10 +6,17 @@ import {
 
 import { Login } from "./admin/Login.jsx";
 import { Perfil } from "./admin/Perfil.jsx";
+import Enderecos from "./client/Enderecos.jsx";
 import { Logout } from "./Logout.jsx";
 import { Dashboard } from "./admin/Dashboard.jsx";
+
+import DashboardClient from "./client/DashboardClient.jsx";
+import PerfilClient from "./client/PerfilClient.jsx";
+import PedidosClient from "./client/PedidosClient.jsx";
+import Telefones from "./client/Telefones.jsx";
+import LandingPage from "./shop/LandingPage.jsx";
+
 import Clientes from "./admin/Clientes.jsx";
-import Modalpopup from "../components/admin/ModalAdicionarCategoria.jsx";
 import { Categorias } from "./admin/Categorias.jsx";
 import { Produtos } from "./admin/Produtos.jsx";
 import { Pedidos } from "./admin/Pedidos.jsx";
@@ -51,7 +58,6 @@ export function AppRoutes(){
                 <Route path="/dashboard/pedidos" element={
                     <Dashboard page={<Pedidos />} />
                 }/>
-                <Route path="/modal" element={<Modalpopup />}/>
 
                 <Route path="/registrar" element={<Registro />}/>
                 <Route path="/entrar" element={<LoginClient />}/>
@@ -68,9 +74,19 @@ export function AppRoutes(){
                 <DashboardClient page={<PerfilClient />}/>
                 }/>
             
-                <Route path="/client/dashboard/pedidos" element={
+                <Route path="/painel/pedidos" element={
                 <DashboardClient page={<PedidosClient />}/>
-                }/>  */}
+                }/>
+                
+                <Route path="/painel/enderecos" element={
+                <DashboardClient page={<Enderecos />}/>
+                }/>
+
+                <Route path="/painel/telefones" element={
+                <DashboardClient page={<Telefones />}/>
+                }/>
+
+                <Route path="/intro" element={<LandingPage/>}/>
             </Routes>
         </Router>
     )
