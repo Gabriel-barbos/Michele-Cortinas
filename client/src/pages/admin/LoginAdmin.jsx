@@ -23,7 +23,7 @@ export function LoginAdmin() {
     }
 
     axios.post(
-      "http://localhost:8081/cliente/auth/login",
+      "http://localhost:8081/admin/auth/login",
       {
         email: email,
         senha: password

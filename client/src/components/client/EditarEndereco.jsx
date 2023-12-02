@@ -15,6 +15,7 @@ export default function EditarEndereco(props) {
         openchange(false);
     }
 
+    const [nome, setNome] = useState("")
     const [rua, setRua] = useState("");
     const [cep, setCep] = useState("");
     const [cidade, setCidade] = useState("");
@@ -24,13 +25,25 @@ export default function EditarEndereco(props) {
     const submitHandler = async (e) => {
         e.preventDefault();
         
+        axios.put(
+            `http://localhost:8081/cliente/endereco/${props.id}`, {
+                nome: nome,
+                rua: rua,
+                cep: cep,
+                cidade: cidade,
+                bairro: bairro,
+                complemento: complemento
+            }
+        )
+        window.location = "/painel/enderecos"
         
     }
 
     useEffect(() => {
         axios.get(
-            `http://localhost:8081/endereco/${props.id}`
+            `http://localhost:8081/cliente/endereco/${props.id}`
         ).then(({data}) => {
+            setNome(data.nome)
             setRua(data.rua);
             setCep(data.cep);
             setCidade(data.cidade);
@@ -47,7 +60,15 @@ export default function EditarEndereco(props) {
                 <DialogTitle>Editar Endereço <IconButton onClick={closepopup} style={{ float: 'right' }}><CloseIcon color="primary"></CloseIcon></IconButton>  </DialogTitle>
                 <DialogContent>
                     <Stack spacing={2} margin={2}>
-                        <TextField variant="outlined" label="rua" className={rua !== "" ? "has-val input" : "input"}
+                        <TextField variant="outlined" label="Nome" className={nome !== "" ? "has-val input" : "input"}
+                            type="text"
+                            value={nome}
+                            onChange={(e) => {
+                                setNome(e.target.value); 
+                            }}
+                        >
+                        </TextField>
+                        <TextField variant="outlined" label="Rua" className={rua !== "" ? "has-val input" : "input"}
                             type="text"
                             value={rua}
                             onChange={(e) => {
@@ -55,13 +76,13 @@ export default function EditarEndereco(props) {
                             }}
                         >
                         </TextField>
-                        <TextField variant="outlined" label="cep" className={cep !== "" ? "has-val input" : "input"}
+                        <TextField variant="outlined" label="Cep" className={cep !== "" ? "has-val input" : "input"}
                             type="number"
                             value={cep}
                             onChange={(e) => setCep(e.target.value)}
                         >
                         </TextField>
-                        <TextField variant="outlined" label="cidade" className={cidade !== "" ? "has-val input" : "input"}
+                        <TextField variant="outlined" label="Cidade" className={cidade !== "" ? "has-val input" : "input"}
                             type="text"
                             value={cidade}
                             onChange={(e) => {
@@ -69,7 +90,7 @@ export default function EditarEndereco(props) {
                             }}
                         >
                         </TextField>
-                        <TextField variant="outlined" label="bairro" className={bairro !== "" ? "has-val input" : "input"}
+                        <TextField variant="outlined" label="Bairro" className={bairro !== "" ? "has-val input" : "input"}
                             type="text"
                             value={bairro}
                             onChange={(e) => {
@@ -77,7 +98,7 @@ export default function EditarEndereco(props) {
                             }}
                         >
                         </TextField>
-                        <TextField variant="outlined" label="complemento" className={complemento !== "" ? "has-val input" : "input"}
+                        <TextField variant="outlined" label="Complemento" className={complemento !== "" ? "has-val input" : "input"}
                             type="text"
                             value={complemento}
                             onChange={(e) => {
