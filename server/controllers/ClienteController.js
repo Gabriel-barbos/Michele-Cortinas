@@ -10,6 +10,7 @@ const Endereco = require("../models").endereco;
 const Telefone = require("../models").telefone;
 
 const login = async (req, res) => {
+
   const email = req.body.email;
   const senha = req.body.senha;
 
@@ -23,7 +24,7 @@ const login = async (req, res) => {
 
   const cliente = await Cliente.findOne({ where: { email: email } });
   if (!cliente) {
-    return res.status(500).json({ msg: "Cliente não encontrado" });
+    return res.status(500).json({ msg: "Usuário não encontrado" });
   }
 
   const checkSenha = await bcrypt.compare(senha, cliente.senha);
@@ -86,9 +87,9 @@ const register = async (req, res) => {
       numero: req.body.telefone,
       clienteId: clienteId
     });
-    res.status(200).json({ msg: "Cliente cadastrado com sucesso!"});
+    res.status(200).json({ msg: "Usuário cadastrado com sucesso!"});
   }else{
-    return res.status(500).json({ msg: "Erro ao cadastrar Usuário"})
+    return res.status(500).json({ msg: "Erro ao cadastrar usuário"})
   }
   
 
@@ -98,8 +99,23 @@ const register = async (req, res) => {
 // Pegar todos os clientes
 
 const getAllCliente = async (req, res) => {
-  let clientes = await Cliente.findAll();
-  res.status(200).send(clientes);
+  try {
+    let id = req.params.id;
+    let clienteEnderecoTel = await Cliente.findAll({
+      include:[
+        {
+        model: Endereco,
+        },{
+          model: Telefone,
+        }]
+      });
+      //* retorna tudooo
+      if(clienteEnderecoTel!= null) return res.status(200).send(clienteEnderecoTel);
+      
+      
+  } catch (error) {
+    res.status(400).json({ error });
+  }
 };
 
 // Pegar um cliente
@@ -150,13 +166,6 @@ const getOneCliente = async (req, res) => {
         return res.status(200).json({clienteEndereco})
       }
       
-      else if(clienteEndereco == null || !clienteEndereco){
-        
-      }
-
-      
-      
-    
   } catch (error) {
     res.status(400).json({ error });
   }

@@ -5,10 +5,10 @@ const controller = require("../controllers/AdminController")
 
 
 //* Create produto
-router.post('/auth/register', controller.register)
+router.post('/register', controller.register)
 
 
-router.post('/auth/login', controller.register)
+router.post('/auth/login', controller.login)
 
 //* update
 router.put('/:id',controller.updateAdmin)
