@@ -291,3 +291,7 @@ body, html {
 .produto-escolha-color.ativo {
     border-color: #000;
 }
+
+.pedido-container {
+    padding: 0 40px;
+}

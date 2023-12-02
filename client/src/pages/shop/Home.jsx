@@ -17,7 +17,7 @@ const Home = () => {
 
     const [stepsObj, setStepsObj] = useState({
         "category": {
-            label: "QUESTIONÁRIO",
+            label: "CATEGORIAS",
             title: "O que você deseja?",
             element: <Questionario stepHandler={stepHandler} />,
             value: ""
