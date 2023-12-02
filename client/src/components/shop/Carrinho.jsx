@@ -42,7 +42,7 @@ export const Carrinho = ({show, changeHandle, closeHandle}) => {
         if(!token){
             return toast.warn("Você deve estar logado para fazer um pedido")
         } else {
-            return alert("foi")
+            console.log(localStorage.getItem("cart"))
         }
     }
 

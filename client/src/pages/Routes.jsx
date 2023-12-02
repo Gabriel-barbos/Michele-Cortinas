@@ -10,6 +10,9 @@ import Enderecos from "./client/Enderecos.jsx";
 import { Logout } from "./Logout.jsx";
 import { Dashboard } from "./admin/Dashboard.jsx";
 
+/* remover */
+import { Register } from "./admin/Register.jsx";
+
 import DashboardClient from "./client/DashboardClient.jsx";
 import PerfilClient from "./client/PerfilClient.jsx";
 import PedidosClient from "./client/PedidosClient.jsx";
@@ -24,7 +27,6 @@ import { Pedidos } from "./admin/Pedidos.jsx";
 import { Painel } from "./client/Painel.jsx";
 import { Registro } from "./client/Registro.jsx"
 import { Login } from "./client/Login.jsx"
-import Pedido from "./client/Pedido.jsx"
 
 import '../assets/css/login.css'
 import '../assets/css/dashboard.css'
@@ -57,16 +59,16 @@ export function AppRoutes(){
                 <Route path="/dashboard/pedidos" element={
                     <Dashboard page={<Pedidos />} />
                 }/>
+                
+                <Route path="/dashboard/entrar" element={
+                    <Register />
+                }/>
 
                 <Route path="/registrar" element={<Registro />}/>
                 <Route path="/entrar" element={<Login />}/>
 
                 <Route path="/painel" element={
                     <Painel page={<PerfilClient />} />
-                } />
-
-                <Route path="/pedido" element={
-                    <Pedido />
                 } />
 
                 {/* <Route path="/client/dashboard/perfil" element={
