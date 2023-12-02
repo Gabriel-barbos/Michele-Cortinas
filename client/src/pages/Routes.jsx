@@ -76,14 +76,15 @@ export function AppRoutes(){
                 <Route path="/painel/pedidos" element={
                 <DashboardClient page={<PedidosClient />}/>
                 }/>
-                
+                */}
                 <Route path="/painel/enderecos" element={
                 <DashboardClient page={<Enderecos />}/>
                 }/>
-
+                
+                
                 <Route path="/painel/telefones" element={
                 <DashboardClient page={<Telefones />}/>
-                }/> */}
+                }/> 
 
                 <Route path="/intro" element={<LandingPage/>}/>
             </Routes>

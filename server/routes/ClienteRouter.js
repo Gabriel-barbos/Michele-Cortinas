@@ -27,7 +27,8 @@ router.delete('/:id',controller.deleteCliente)
 //* ========================== ROTAS ENDEREÇO =================
 router.post('/endereco', controller.addEndereco)
 router.put('/endereco/:id', controller.updateEndereco)
-router.delete('/endereco/:id',controller.deleteEndereco)
+router.delete('/endereco/:id', controller.deleteEndereco)
+router.get('/endereco/:id', controller.getOneEndereco)
 
 
 

@@ -1,17 +1,17 @@
 import styled from "styled-components"
 import ModalExcluir from "../admin/ModalExcluir"
 import EditarEndereco from "./EditarEndereco"
-export default function EnderecoCard() {
+export default function EnderecoCard({endereco}) {
     
     return (
         <Card>
             <Info>
-                <Title>Casa</Title>
-                <Description>Rua dos Bagres 68 <br/> Jardim Beija Flor <br /> Xique-Xique, Bahia</Description>
+                <Title>{endereco.nome}</Title>
+                <Description>{endereco.rua} <br/> {endereco.complemento && <>{endereco.complemento} <br /></>}{endereco.bairro}, {endereco.cidade}</Description>
             </Info>
             <Action>
-                <EditarEndereco/>
-                <ModalExcluir></ModalExcluir>
+                <EditarEndereco id={endereco.id} />
+                {/* <ModalExcluir></ModalExcluir> */}
             </Action>
         </Card>
     )

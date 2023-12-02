@@ -68,14 +68,6 @@ const register = async (req, res) => {
   const insertCliente = await Cliente.create(info)
   //* Adicionar endereco e telefone do cliente
   if(insertCliente){
-    let endereco = {
-      rua: req.body.nome,
-      cep: req.body.cep,
-      cidade: req.body.cidade,
-      bairro: req.body.bairro,
-      complemento: req.body.complemento
-    }
-
     //* Caso o insert de cliente dê certo, realiza o insert de endereço e telefone
 
     const clienteRecente = await Cliente.findOne({
@@ -199,16 +191,27 @@ const deleteCliente = async (req, res) => {
 const addEndereco = async (req,res) =>{
   try {
     const insertEndereco = Endereco.create({
+      nome: req.body.nome,
       rua: req.body.rua,
       cep: req.body.cep,
       cidade: req.body.cidade,
       bairro: req.body.bairro,
       complemento: req.body.complemento,
-      clienteId: req.body.id
+      clienteId: req.body.clienteId
     });
     res.status(200).json({msg:"Endereço adicionado com sucesso!"});
   } catch (error) {
     res.status(500).json({msg:"Erro ao adicionar endereço"});
+  }
+}
+
+const getOneEndereco = async (req, res) => {
+  try {
+    let id = req.params.id;
+    let endereco = await Endereco.findOne({ where: { id: id } });
+    res.status(200).send(endereco);
+  } catch (error) {
+    res.status(400).json({ error });
   }
 }
 
@@ -290,6 +293,7 @@ module.exports = {
   addEndereco,
   updateEndereco,
   deleteEndereco,
+  getOneEndereco,
   addTelefone,
   updateTelefone,
   deleteTelefone,

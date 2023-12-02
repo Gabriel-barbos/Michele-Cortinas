@@ -21,6 +21,9 @@ const Questionario = ({stepHandler}) => {
                     case 'persianas':
                         img = "/assets/img/persiana-example.webp"
                         break;
+                    default:
+                        img = "/assets/img/living-room.webp"
+                        break;
                 }
                 setCategorias(categorias => [...categorias, {img: img, label: category.titulo}])
             }
