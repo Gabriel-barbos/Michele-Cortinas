@@ -59,7 +59,6 @@ export const Carrinho = ({show, changeHandle, closeHandle}) => {
                 let pedidosPromises = []
                 for(let [i, produto] of res.entries()){
                     let valorTotal = products[i].altura * products[i].largura * produto.data.preco;
-                    console.log("cliente ", clientId)
                     const body = {
                         largura: products[i].largura,
                         altura: products[i].altura,
