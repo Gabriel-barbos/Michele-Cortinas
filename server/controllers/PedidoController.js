@@ -8,7 +8,9 @@ const Pedido = require("../models").pedido;
 const createPedido = async (req,res) =>{
     try {
       
-        const insertPedido = await Pedido.create({
+      let insertPedido
+      if (req.body.variacaoId) {
+        insertPedido = await Pedido.create({
           largura: req.body.largura,
           altura: req.body.altura,
           valorTotal: req.body.valorTotal,
@@ -17,10 +19,20 @@ const createPedido = async (req,res) =>{
           variacaoId: req.body.variacaoId,
           status: 0
          })
+      }else{
+        insertPedido = await Pedido.create({
+          largura: req.body.largura,
+          altura: req.body.altura,
+          valorTotal: req.body.valorTotal,
+          clienteId: req.body.clienteId,
+          produtoId: req.body.produtoId
+         })
+      }
+         if(insertPedido) insertPedido.status = 0
 
         res.status(200).json({insertPedido})
     } catch (error) {
-       res.status(500).json({msg: "Erro ao adicionar pedido: " + error}) 
+       res.status(500).json({msg: "Erro ao adicionar pedido"+ error}) 
     }
 }
 
