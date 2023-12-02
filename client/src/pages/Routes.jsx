@@ -9,19 +9,16 @@ import { Perfil } from "./admin/Perfil.jsx";
 import Enderecos from "./client/Enderecos.jsx";
 import { Logout } from "./Logout.jsx";
 import { Dashboard } from "./admin/Dashboard.jsx";
+import { Registro } from "./client/Registro.jsx";
 
-import DashboardClient from "./client/DashboardClient.jsx";
-import PerfilClient from "./client/PerfilClient.jsx";
-import PedidosClient from "./client/PedidosClient.jsx";
-import Telefones from "./client/Telefones.jsx";
 import LandingPage from "./shop/LandingPage.jsx";
 
 import Clientes from "./admin/Clientes.jsx";
 import { Categorias } from "./admin/Categorias.jsx";
 
 import { Painel } from "./client/Painel.jsx";
-import { Registro } from "./client/Registro.jsx"
-import { LoginClient } from "./client/Login.jsx"
+import Relatorios from "./admin/Relatorios.jsx";
+//import { LoginClient } from "./client/LoginClient.jsx"
 import PerfilClient from "./client/PerfilClient.jsx";
 
 import '../assets/css/login.css'
@@ -58,12 +55,12 @@ export function AppRoutes(){
                 }/>
 
                 <Route path="/registrar" element={<Registro />}/>
-                <Route path="/entrar" element={<LoginClient />}/>
+                {/*<Route path="/entrar" element={<LoginClient />}/> */}
 
                 <Route path="/painel" element={
                     <Painel page={<PerfilClient />} />
                 } />
-
+                <Route path="/relatorios" element={<Relatorios/>}/>
                 {/* <Route path="/client/dashboard/perfil" element={
                 <DashboardClient page={<PerfilClient />}/>
                 }/>
@@ -78,7 +75,7 @@ export function AppRoutes(){
 
                 <Route path="/painel/telefones" element={
                 <DashboardClient page={<Telefones />}/>
-                }/>
+                }/>*/}
 
                 <Route path="/intro" element={<LandingPage/>}/>
             </Routes>
