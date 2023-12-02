@@ -15,6 +15,9 @@ import PerfilClient from "./client/PerfilClient.jsx";
 import PedidosClient from "./client/PedidosClient.jsx";
 import Telefones from "./client/Telefones.jsx";
 import LandingPage from "./shop/LandingPage.jsx";
+import { Contato } from "./client/Contato.jsx";
+import { Sobre } from "./client/Sobre.jsx";
+import { Perguntas } from "./client/Perguntas.jsx";
 
 import Clientes from "./admin/Clientes.jsx";
 import { Categorias } from "./admin/Categorias.jsx";
@@ -31,7 +34,7 @@ import '../assets/css/dashboard.css'
 import '../assets/css/login.css'
 import Home from "./shop/Home"
 
-
+import { StaticPage } from "../components/StaticPage.jsx";
 
 export function AppRoutes(){
     return (
@@ -65,9 +68,9 @@ export function AppRoutes(){
                     <Painel page={<PerfilClient />} />
                 } />
 
-                <Route path="/pedido" element={
-                    <Pedido />
-                } />
+                <Route path="/duvidas" element={<StaticPage page={<Perguntas />}/>} />
+                <Route path="/contato" element={<StaticPage page={<Contato/>} />} />       
+                <Route path="/sobre" element={<StaticPage page={<Sobre/>} />} />         
 
                 {/* <Route path="/client/dashboard/perfil" element={
                 <DashboardClient page={<PerfilClient />}/>

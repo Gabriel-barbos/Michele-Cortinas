@@ -15,9 +15,9 @@ const JourneyHeader = ({noCart}) => {
                     </Link>
                 </div>
                 <div className="menu-items">
-                    <a href="">Contato</a>
-                    <a href="">Sobre nós</a>
-                    <a href="">Perguntas frequentes</a>
+                    <a href="/contato">Contato</a>
+                    <a href="/sobre">Sobre nós</a>
+                    <a href="/duvidas">Perguntas frequentes</a>
                     <a href="/dashboard/login" className="admin-area"><LockOutlinedIcon /></a>
                     {!logado && <a href="/entrar" className="client-area">Entrar na conta</a>}
                     {logado && <a href="/painel" className="client-area">Área do cliente</a>}

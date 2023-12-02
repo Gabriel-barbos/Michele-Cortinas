@@ -1,0 +1,164 @@
+.right-box {
+  position: absolute;
+  height: 100%;
+  width: 65.02%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 37.98%;
+  border-radius: 0 10.39px 10.39px 0;
+  background-color: #d9d9d9;
+  }
+  .contate-nos {
+    margin: 0;
+    position: absolute;
+    height: 10.55%;
+    width: 22.29%;
+    top: 2.26%;
+    left: 38.89%;
+    font-size: inherit;
+    font-weight: 400;
+    font-family: inherit;
+    color: #000;
+    display: inline-block;
+  }
+  .left-box {
+    position: absolute;
+    height: 100%;
+    width: 37.98%;
+    top: 0;
+    right: 62.02%;
+    bottom: 0;
+    left: 0;
+    border-radius: 15px 0 0 15px;
+    background-color:#3d5290;
+  }
+  
+  .form-nome {
+    border: 0;
+    background-color: transparent;
+    height: 10.25%;
+    top: 14.47%;
+    bottom: 75.29%;
+  }
+  .form-email,
+  .form-msg,
+  .form-nome {
+    position: absolute;
+    width: 41.88%;
+    right: 17.36%;
+    left: 40.76%;
+  }
+  .form-email {
+    border: 0;
+    background-color: transparent;
+    height: 11.29%;
+    top: 21.78%;
+    bottom: 56.93%;
+  }
+  .form-msg {
+    height: 30.28%;
+    top: 28.29%;
+    bottom: 19.43%;
+  }
+  .localizao {
+    margin: 0;
+    position: absolute;
+    top: 2.26%;
+    left: 0.97%;
+    font-size: inherit;
+    font-weight: 600;
+    font-family: inherit;
+  }
+  .rua-nome {
+    margin: 0;
+  }
+  .rua {
+    height: 5.87%;
+    width: 17.98%;
+    top: 16.58%;
+    font-size: 1.39rem;
+    font-weight: 400;
+    display: inline-block;
+  }
+  .bairro,
+  .rua,
+  .siga-nos {
+    margin: 0;
+    position: absolute;
+    left: 0.97%;
+    font-family: inherit;
+  }
+  .bairro {
+    top: 24.69%;
+    font-size: 1.39rem;
+    font-weight: 400;
+  }
+  .siga-nos {
+    height: 8.74%;
+    width: 13.68%;
+    top: 42.33%;
+    font-size: inherit;
+    font-weight: 600;
+    display: inline-block;
+  }
+  .insta-icon {
+    width: 5.63%;
+    top: 54.92%;
+    right: 93.4%;
+    bottom: 36.59%;
+    height: 60px;
+    left: 0.97%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+    object-fit: cover;
+  }
+  .enviar-botao,
+  .insta-icon,
+  .wpp-icon {
+    position: absolute;
+    height: 11.09%;
+  }
+  .wpp-icon {
+    width: 5.56%;
+    top: 54.22%;
+    right: 87.84%;
+    bottom: 36.59%;
+    left: 6.6%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+    object-fit: cover;
+    height: 52px;
+  }
+  .enviar-botao {
+    width: 13.19%;
+    top: 35.56%;
+    right: 46.05%;
+    bottom: 4.35%;
+    left: 40.76%;
+  }
+  .contato-card {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 0.63rem;
+    left: 14.88rem;
+    border-radius: 15px;
+    width: 62.31rem;
+    height: 28.73rem;
+  }
+  .contato-page {
+    position: relative;
+    background-color: #ffffff;
+    width: 100%;
+    height: 64rem;
+    overflow: hidden;
+    text-align: left;
+    font-size: 1.73rem;
+    color: #fff;
+    font-family: inherit;
+    height: 500px;
+  }
+  
