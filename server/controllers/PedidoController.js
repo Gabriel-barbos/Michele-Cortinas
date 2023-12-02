@@ -1,4 +1,5 @@
 const { cliente, produto, variacao } = require("../models");
+const Variacao = require("../models/Variacao");
 
 require("dotenv").config();
 
@@ -14,9 +15,8 @@ const createPedido = async (req,res) =>{
           clienteId: req.body.clienteId,
           produtoId: req.body.produtoId,
           variacaoId: req.body.variacaoId,
-          status: req.body.status
          })
-        //  if(insertPedido) insertPedido.status = "Realizado"
+         if(insertPedido) insertPedido.status = 0
 
         res.status(200).json({insertPedido})
     } catch (error) {
@@ -35,6 +35,9 @@ const getAllPedido = async (req, res) =>{
       },
       {
         model: produto
+      },
+      {
+        model:variacao
       }
     ]
     })
@@ -57,8 +60,10 @@ const getOnePedido = async (req,res) =>{
       },
       {
         model: produto
-      }
-    ]
+      },
+      {
+        model: variacao
+      }]
     })
     res.status(200).json({onePedido})
   } catch (error) {

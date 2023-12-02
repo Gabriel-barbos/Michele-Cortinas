@@ -5,7 +5,7 @@ const controller = require("../controllers/AdminController")
 
 
 //* Create produto
-router.post('/register', controller.register)
+router.post('/auth/register', controller.register)
 
 
 router.post('/auth/login', controller.login)

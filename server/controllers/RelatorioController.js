@@ -11,8 +11,8 @@ const Relatorio = require("../models").relatorio;
 const createRelatorio = async (req, res) => {
   try {
     const qtdPedidosRealizados = await Pedido.count();
-    const qtdPedidosIncompletos = await Pedido.count({where:{status: "cancelado"}});
-    const qtdPedidosFinalizados = await Pedido.count({where:{status: "finalizado"}});
+    const qtdPedidosIncompletos = await Pedido.count({where:{status: 5}});
+    const qtdPedidosFinalizados = await Pedido.count({where:{status: 4}});
 
     if(qtdPedidosRealizados == null){qtdPedidosRealizados=0}
     if(qtdPedidosIncompletos == null){qtdPedidosIncompletos=0}
