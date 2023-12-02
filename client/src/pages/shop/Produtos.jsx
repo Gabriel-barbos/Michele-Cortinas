@@ -37,7 +37,10 @@ const Produtos = ({stepHandler}) => {
     }
 
     return (
+        
         <div className="produtos-journey-grid">
+            {produtos.length <= 0 && <p>Nenhum produto cadastrado para essa categoria</p>}
+
             {produtos.map((p) => {
                 return (
                 <>

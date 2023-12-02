@@ -9,6 +9,7 @@ import { Perfil } from "./admin/Perfil.jsx";
 import Enderecos from "./client/Enderecos.jsx";
 import { Logout } from "./Logout.jsx";
 import { Dashboard } from "./admin/Dashboard.jsx";
+import { Registro } from "./client/Registro.jsx";
 
 /* remover */
 import { Register } from "./admin/Register.jsx";
@@ -25,7 +26,8 @@ import { Produtos } from "./admin/Produtos.jsx";
 import { Pedidos } from "./admin/Pedidos.jsx";
 
 import { Painel } from "./client/Painel.jsx";
-import { Registro } from "./client/Registro.jsx"
+import Relatorios from "./admin/Relatorios.jsx";
+//import { LoginClient } from "./client/LoginClient.jsx"
 import { Login } from "./client/Login.jsx"
 
 import '../assets/css/login.css'
@@ -70,7 +72,7 @@ export function AppRoutes(){
                 <Route path="/painel" element={
                     <Painel page={<PerfilClient />} />
                 } />
-
+                <Route path="/relatorios" element={<Relatorios/>}/>
                 {/* <Route path="/client/dashboard/perfil" element={
                 <DashboardClient page={<PerfilClient />}/>
                 }/>

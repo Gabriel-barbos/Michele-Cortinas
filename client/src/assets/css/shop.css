@@ -60,6 +60,40 @@ body, html {
     background: #ccc;
 }
 
+.menu-actions {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.menu-mobile {
+    display: none !important;
+}
+
+@media screen and (max-width: 768px) {
+    .menu-items {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        font-size: 1.4rem;
+        background: #fff;
+        transition: .2s ease;
+        transform: translateX(100%);
+    }
+
+    .menu-mobile {
+        display: inherit !important;
+    }
+    
+    .menu-items.open {
+        transform: translateX(0);
+    }
+}
 
 .journey-content {
     width: 100%;
@@ -85,10 +119,13 @@ body, html {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 40px;
 }
 
 .journey-header{
     margin-bottom: 40px;
+    padding: 0 10px;
+    text-align: center;
 }
 
 .questionario-cards {

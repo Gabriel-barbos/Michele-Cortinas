@@ -6,6 +6,9 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { useState } from 'react';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import { ToastContainer, toast } from 'react-toastify';
+import axios from 'axios';
+import { useJwt } from 'react-jwt';
+
 export const CarrinhoButton = () => {
     const [showCarrinho, setShowCarrinho] = useState(false);
     const [itensNoCarrinho, setItensNoCarrinho] = useState(localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")).products : []) 
@@ -25,6 +28,10 @@ export const CarrinhoButton = () => {
 }
 
 export const Carrinho = ({show, changeHandle, closeHandle}) => {
+    const token = sessionStorage.getItem("token_client")
+
+    const { decodedToken, isExpired } = useJwt(token);
+
     const [carrinho, setCarrinho] = useState(localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")).products : []);
 
     const deleteHandle = (index) => {
@@ -38,11 +45,38 @@ export const Carrinho = ({show, changeHandle, closeHandle}) => {
     }
 
     const checkoutHandle = () => {
-        let token = sessionStorage.getItem("token_client");
         if(!token){
             return toast.warn("Você deve estar logado para fazer um pedido")
         } else {
-            console.log(localStorage.getItem("cart"))
+            let products = JSON.parse(localStorage.getItem("cart")).products;
+           
+            for(let product of products){
+                axios.get("http://localhost:8081/produto/" + product.id).then(({data}) => {
+                    let valorTotal = data.preco * product.largura * product.altura;
+                    const clientId = decodedToken.id
+
+                    const body = {
+                        largura: product.largura,
+                        altura: product.altura,
+                        valorTotal: valorTotal,
+                        clientId: clientId,
+                        produtoId: product.id,
+                        variacaoId: product.variacao
+                    }
+
+                    
+                    axios.post("http://localhost:8081/pedido", {
+                        largura: product.largura,
+                        altura: product.altura,
+                        valorTotal: valorTotal,
+                        clientId: clientId,
+                        produtoId: product.id,
+                        variacaoId: product.variacao
+                    }).then(() => {
+                        console.log("enviado")
+                    })
+                })
+            }
         }
     }
 
