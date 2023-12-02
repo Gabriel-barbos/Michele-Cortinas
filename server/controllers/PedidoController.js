@@ -15,9 +15,8 @@ const createPedido = async (req,res) =>{
           clienteId: req.body.clienteId,
           produtoId: req.body.produtoId,
           variacaoId: req.body.variacaoId,
+          status: 0
          })
-         
-         if(insertPedido) insertPedido.status = 0
 
         res.status(200).json({insertPedido})
     } catch (error) {

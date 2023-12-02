@@ -58,28 +58,28 @@ export const Carrinho = ({show, changeHandle, closeHandle}) => {
             Promise.all(getProdutosPromises).then((res) => {
                 let pedidosPromises = []
                 for(let [i, produto] of res.entries()){
-                    let valorTotal = products[i].altura * products[i].largura * produto.preco;
-                    const clientId = decodedToken.id
-    
+                    let valorTotal = products[i].altura * products[i].largura * produto.data.preco;
+                    console.log("cliente ", clientId)
                     const body = {
                         largura: products[i].largura,
                         altura: products[i].altura,
                         valorTotal: valorTotal,
-                        clientId: clientId,
-                        produtoId: products[i].altura.id
+                        clienteId: decodedToken.id,
+                        produtoId: products[i].id
                     }
 
                     if(products[i].variacao != ""){
                         body.variacao = products[i].variacao
                     }
 
+                    console.log(body)
                     let createPedidosPromises = []
 
                     pedidosPromises.push(axios.post("http://localhost:8081/pedido", body))
                 }
                 Promise.all(pedidosPromises).then((res) => {
-                    localStorage.removeItem("cart")
-                    window.location = "/painel/pedidos"
+                    // localStorage.removeItem("cart")
+                    // window.location = "/painel/pedidos"
                 })
             })
 
