@@ -15,19 +15,20 @@ router.post('/auth/register', controller.register)
 router.get('/',controller.getAllCliente)
 
 //* Read
-router.get('/:id', authentication, controller.getOneCliente)
+router.get('/:id',  controller.getOneCliente)
 
 //* update
-router.put('/:id', authentication ,controller.updateCliente)
+router.put('/:id', controller.updateCliente)
 
 //* delete
-router.delete('/:id',authentication,controller.deleteCliente)
+router.delete('/:id',controller.deleteCliente)
 
 
 //* ========================== ROTAS ENDEREÇO =================
 router.post('/endereco', controller.addEndereco)
 router.put('/endereco/:id', controller.updateEndereco)
-router.delete('/endereco/:id',controller.deleteEndereco)
+router.delete('/endereco/:id', controller.deleteEndereco)
+router.get('/endereco/:id', controller.getOneEndereco)
 
 
 

@@ -13,13 +13,17 @@ const Clientes = () => {
         axios.get("http://localhost:8081/cliente")
         .then(({data}) => {
             setClientes(data)
+            console.log(data)
         })    
     }, [])
 
    
     return (
         <>
-        
+        <header className="list-header">
+            <h1>Clientes cadastrados</h1>
+        </header>
+
         <TableContainer component={Paper}>
 
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -28,7 +32,7 @@ const Clientes = () => {
                     <TableCell>Primeiro Nome</TableCell>
                     <TableCell>Sobrenome</TableCell>
                     <TableCell>E-mail</TableCell>
-                    <TableCell>Endereço(s)</TableCell>
+                    <TableCell>Endereço</TableCell>
                     <TableCell>Telefone(s)</TableCell>
                 </TableRow>
                 </TableHead>
@@ -41,8 +45,8 @@ const Clientes = () => {
                         <TableCell>{cliente.nome}</TableCell>
                         <TableCell>{cliente.sobrenome}</TableCell>
                         <TableCell>{cliente.email}</TableCell>
-                        <TableCell><ModalInfo label="Ver endereços" title={"Endereços de " + cliente.nome} content="olaaa" /></TableCell>
-                        <TableCell><ModalInfo label="Ver telefones" title={"Telefones de " + cliente.nome} /></TableCell>
+                        <TableCell>{cliente.endereco ? cliente.endereco.rua : "Não cadastrado"}</TableCell>
+                        <TableCell><ModalInfo label="Ver telefones" title={"Telefones de " + cliente.nome} content={cliente.telefones} /></TableCell>
                     </TableRow>
                 ))}
                 </TableBody>

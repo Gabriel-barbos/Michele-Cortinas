@@ -10,6 +10,7 @@ const Endereco = require("../models").endereco;
 const Telefone = require("../models").telefone;
 
 const login = async (req, res) => {
+
   const email = req.body.email;
   const senha = req.body.senha;
 
@@ -23,7 +24,7 @@ const login = async (req, res) => {
 
   const cliente = await Cliente.findOne({ where: { email: email } });
   if (!cliente) {
-    return res.status(500).json({ msg: "Cliente não encontrado" });
+    return res.status(500).json({ msg: "Usuário não encontrado" });
   }
 
   const checkSenha = await bcrypt.compare(senha, cliente.senha);
@@ -67,14 +68,6 @@ const register = async (req, res) => {
   const insertCliente = await Cliente.create(info)
   //* Adicionar endereco e telefone do cliente
   if(insertCliente){
-    let endereco = {
-      rua: req.body.nome,
-      cep: req.body.cep,
-      cidade: req.body.cidade,
-      bairro: req.body.bairro,
-      complemento: req.body.complemento
-    }
-
     //* Caso o insert de cliente dê certo, realiza o insert de endereço e telefone
 
     const clienteRecente = await Cliente.findOne({
@@ -86,9 +79,9 @@ const register = async (req, res) => {
       numero: req.body.telefone,
       clienteId: clienteId
     });
-    res.status(200).json({ msg: "Cliente cadastrado com sucesso!"});
+    res.status(200).json({ msg: "Usuário cadastrado com sucesso!"});
   }else{
-    return res.status(500).json({ msg: "Erro ao cadastrar Usuário"})
+    return res.status(500).json({ msg: "Erro ao cadastrar usuário"})
   }
   
 
@@ -98,8 +91,23 @@ const register = async (req, res) => {
 // Pegar todos os clientes
 
 const getAllCliente = async (req, res) => {
-  let clientes = await Cliente.findAll();
-  res.status(200).send(clientes);
+  try {
+    let id = req.params.id;
+    let clienteEnderecoTel = await Cliente.findAll({
+      include:[
+        {
+        model: Endereco,
+        },{
+          model: Telefone,
+        }]
+      });
+      //* retorna tudooo
+      if(clienteEnderecoTel!= null) return res.status(200).send(clienteEnderecoTel);
+      
+      
+  } catch (error) {
+    res.status(400).json({ error });
+  }
 };
 
 // Pegar um cliente
@@ -150,13 +158,6 @@ const getOneCliente = async (req, res) => {
         return res.status(200).json({clienteEndereco})
       }
       
-      else if(clienteEndereco == null || !clienteEndereco){
-        
-      }
-
-      
-      
-    
   } catch (error) {
     res.status(400).json({ error });
   }
@@ -190,16 +191,27 @@ const deleteCliente = async (req, res) => {
 const addEndereco = async (req,res) =>{
   try {
     const insertEndereco = Endereco.create({
+      nome: req.body.nome,
       rua: req.body.rua,
       cep: req.body.cep,
       cidade: req.body.cidade,
       bairro: req.body.bairro,
       complemento: req.body.complemento,
-      clienteId: req.body.id
+      clienteId: req.body.clienteId
     });
     res.status(200).json({msg:"Endereço adicionado com sucesso!"});
   } catch (error) {
     res.status(500).json({msg:"Erro ao adicionar endereço"});
+  }
+}
+
+const getOneEndereco = async (req, res) => {
+  try {
+    let id = req.params.id;
+    let endereco = await Endereco.findOne({ where: { id: id } });
+    res.status(200).send(endereco);
+  } catch (error) {
+    res.status(400).json({ error });
   }
 }
 
@@ -281,6 +293,7 @@ module.exports = {
   addEndereco,
   updateEndereco,
   deleteEndereco,
+  getOneEndereco,
   addTelefone,
   updateTelefone,
   deleteTelefone,

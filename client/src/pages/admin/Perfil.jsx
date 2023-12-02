@@ -15,18 +15,15 @@ export function Perfil() {
     const { decodedToken, isExpired } = useJwt(token);
 
     const [email, setEmail] = useState("");
-    const [nome, setNome] = useState("");
-    const [sobrenome, setSobrenome] = useState("");
+    const [senha, setSenha] = useState("");
+
            
     useEffect(()=>{
         if(decodedToken){
             axios.get(`http://localhost:8081/cliente/${decodedToken.id}`)
             .then((response) => {
-                const { nome, sobrenome, email } = response.data;
-                setNome(nome)
-                setSobrenome(sobrenome)
+                const { email } = response.data;
                 setEmail(email)
-
                 toast.success("Perfil autenticado com sucesso")
             })
         }
@@ -36,7 +33,7 @@ export function Perfil() {
     const submitHandler = async (e) => {
         e.preventDefault();
 
-        if(email == "" || nome == "" || sobrenome == ""){
+        if(email == "" || senha == ""){
             return toast.warn("Nenhum campo pode estar vazio")
         }
 
@@ -44,8 +41,7 @@ export function Perfil() {
             `http://localhost:8081/cliente/${decodedToken.id}`,
             {
                 email: email,
-                nome: nome,
-                sobrenome: sobrenome
+                senha: senha 
             }
         ).then(() => {
             toast.success("Informações atualizadas")
@@ -71,30 +67,11 @@ export function Perfil() {
         <div className="container">
         <ToastContainer />
         <div className="container-login">
-        <span className="login-form-title">Olá, {nome}</span>
+        <span className="login-form-title">Olá, administrador</span>
         <span className="login-form-subtitle">Atualize as informações do seu perfil</span>
         <div className="wrap-login">
             <form className="login-form" onSubmit={submitHandler}>
-            <div className="wrap-input">
-                <input
-                className={nome !== "" ? "has-val input" : "input"}
-                type="text"
-                value={nome}
-                onChange={(e) => setNome(e.target.value)}
-                />
-                <span className="focus-input" data-placeholder="Nome"></span>
-            </div>
-
-            <div className="wrap-input">
-                <input
-                className={sobrenome !== "" ? "has-val input" : "input"}
-                type="text"
-                value={sobrenome}
-                onChange={(e) => setSobrenome(e.target.value)}
-                />
-                <span className="focus-input" data-placeholder="Sobrenome"></span>
-            </div>
-
+            
             <div className="wrap-input">
                 <input
                 className={email !== "" ? "has-val input" : "input"}
@@ -104,6 +81,17 @@ export function Perfil() {
                 />
                 <span className="focus-input" data-placeholder="Email"></span>
             </div>
+
+            <div className="wrap-input">
+                <input
+                className={senha !== "" ? "has-val input" : "input"}
+                type="password"
+                value={senha}
+                onChange={(e) => setSenha(e.target.value)}
+                />
+                <span className="focus-input" data-placeholder="Senha"></span>
+            </div>
+
 
             <div className="container-login-form-btn">
                 <button className="login-form-btn">Salvar informações</button>

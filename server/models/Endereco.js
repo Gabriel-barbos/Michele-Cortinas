@@ -1,6 +1,10 @@
 const { sequelize, Sequelize } = require("../config/db");
 
 const Endereco = sequelize.define("enderecos", {
+  nome: {
+    type: Sequelize.STRING,
+    allowNull: true
+  },
   rua: {
     type: Sequelize.STRING,
     allowNull: true,

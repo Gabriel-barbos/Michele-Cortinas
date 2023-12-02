@@ -8,7 +8,7 @@ const controller = require("../controllers/AdminController")
 router.post('/auth/register', controller.register)
 
 
-router.post('/auth/login', controller.register)
+router.post('/auth/login', controller.login)
 
 //* update
 router.put('/:id',controller.updateAdmin)

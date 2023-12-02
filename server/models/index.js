@@ -1,5 +1,4 @@
 const { sequelize, Sequelize } = require("../config/db");
-const Admin = require("./Admin.js");
 
 const models = {};
 
@@ -64,6 +63,9 @@ models.produto.belongsTo(models.categoria);
 //* Relacionamento Admin x Relatório 1 -N
 models.admin.hasMany(models.relatorio); 
 models.relatorio.belongsTo(models.admin);
+
+models.variacao.hasOne(models.pedido); 
+models.pedido.belongsTo(models.variacao);
 
 
 // sequelize.sync({ force: true });

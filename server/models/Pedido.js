@@ -9,7 +9,7 @@ const Pedido = sequelize.define('pedidos', {
       type:Sequelize.FLOAT
     },
     status:{
-      type: Sequelize.STRING
+      type: Sequelize.INTEGER
     },
     valorTotal:{
       type: Sequelize.FLOAT

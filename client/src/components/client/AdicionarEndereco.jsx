@@ -16,7 +16,7 @@ export default function AdicionarEndereco(props) {
     }
 
     
-
+    const [nome, setNome] = useState("")
     const [rua, setRua] = useState("");
     const [cep, setCep] = useState("");
     const [cidade, setCidade] = useState("");
@@ -26,19 +26,23 @@ export default function AdicionarEndereco(props) {
     const submitHandler = async (e) => {
         e.preventDefault();
 
+        // return console.log(props.clienteId)
+
         axios.post(
-            "http://localhost:8081/endereco/",
+            "http://localhost:8081/cliente/endereco/",
             {
+                nome: nome,
                 rua: rua,
                 cep: cep,
                 cidade: cidade,
                 bairro: bairro,
-                complemento: complemento
+                complemento: complemento,
+                clienteId: props.clienteId
             }
         ).then(() => {
             window.location = "/painel/enderecos"
         }).catch((err) => {
-            toast.warn(err.response.data.msg)
+            console.log(err.response)
         })
     }
     
@@ -50,7 +54,15 @@ export default function AdicionarEndereco(props) {
                 <DialogTitle>Novo Endereço <IconButton onClick={closepopup} style={{ float: 'right' }}><CloseIcon color="primary"></CloseIcon></IconButton>  </DialogTitle>
                 <DialogContent>
                     <Stack spacing={2} margin={2}>
-                        <TextField variant="outlined" label="rua" className={rua !== "" ? "has-val input" : "input"}
+                        <TextField variant="outlined" label="Nome" className={nome !== "" ? "has-val input" : "input"}
+                            type="text"
+                            value={nome}
+                            onChange={(e) => {
+                                setNome(e.target.value); 
+                            }}
+                        >
+                        </TextField>
+                        <TextField variant="outlined" label="Rua" className={rua !== "" ? "has-val input" : "input"}
                             type="text"
                             value={rua}
                             onChange={(e) => {
@@ -58,13 +70,13 @@ export default function AdicionarEndereco(props) {
                             }}
                         >
                         </TextField>
-                        <TextField variant="outlined" label="cep" className={cep !== "" ? "has-val input" : "input"}
+                        <TextField variant="outlined" label="Cep" className={cep !== "" ? "has-val input" : "input"}
                             type="number"
                             value={cep}
-                            onChange={(e) => setCep(slugFormat(e.target.value))}
+                            onChange={(e) => setCep(e.target.value)}
                         >
                         </TextField>
-                        <TextField variant="outlined" label="cidade" className={cidade !== "" ? "has-val input" : "input"}
+                        <TextField variant="outlined" label="Cidade" className={cidade !== "" ? "has-val input" : "input"}
                             type="text"
                             value={cidade}
                             onChange={(e) => {
@@ -72,7 +84,7 @@ export default function AdicionarEndereco(props) {
                             }}
                         >
                         </TextField>
-                        <TextField variant="outlined" label="bairro" className={bairro !== "" ? "has-val input" : "input"}
+                        <TextField variant="outlined" label="Bairro" className={bairro !== "" ? "has-val input" : "input"}
                             type="text"
                             value={bairro}
                             onChange={(e) => {
@@ -80,7 +92,7 @@ export default function AdicionarEndereco(props) {
                             }}
                         >
                         </TextField>
-                        <TextField variant="outlined" label="complemento" className={complemento !== "" ? "has-val input" : "input"}
+                        <TextField variant="outlined" label="Complemento" className={complemento !== "" ? "has-val input" : "input"}
                             type="text"
                             value={complemento}
                             onChange={(e) => {
