@@ -7,7 +7,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import JourneyHeader from "../../components/shop/JourneyHeader";
 
 export function Login() {
-    const token = sessionStorage.getItem("token_client")
+  const token = sessionStorage.getItem("token_client")
+  if(token){
+      return window.location = "/"
+  }
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
