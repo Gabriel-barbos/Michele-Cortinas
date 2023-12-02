@@ -66,8 +66,6 @@ export const Carrinho = ({show, changeHandle, closeHandle}) => {
                         console.log("enviado")
                     })
                 })
-    
-                
             }
         }
     }

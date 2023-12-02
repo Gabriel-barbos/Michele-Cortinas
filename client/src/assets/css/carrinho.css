@@ -5,6 +5,7 @@
     -moz-box-shadow: -29px 0px 66px 0px rgba(0,0,0,0.27);
     box-shadow: -29px 0px 66px 0px rgba(0,0,0,0.27);
     width: 30vw;
+    min-width: 400px;
     height: 100vh;
     right: 0;
     top: 0;
@@ -13,6 +14,12 @@
     box-sizing: border-box;
     z-index: 999;
     transform: translateX(110%);
+}
+
+@media screen and (max-width: 768px) {
+    .carrinho-container {
+        width: 100vw;
+    }
 }
 
 .carrinho-container.open {
