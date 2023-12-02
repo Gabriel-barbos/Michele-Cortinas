@@ -41,7 +41,9 @@ const getAllVariacao = async (req, res) => {
 const getOneVariacao = async (req, res) => {
   try {
     let id = req.params.id;
-    let variacao = await Variacao.findOne();
+    let variacao = await Variacao.findOne({
+      where:{id:id}
+    });
     res.status(200).json(variacao);
   } catch (error) {
     res.status(400).json({ error });

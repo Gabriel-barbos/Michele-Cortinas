@@ -10,7 +10,7 @@ const Admin = sequelize.define("admins", {
     allowNull: true
   },
   senha: {
-    type: Sequelize.FLOAT,
+    type: Sequelize.STRING,
     allowNull: true,
   }
   

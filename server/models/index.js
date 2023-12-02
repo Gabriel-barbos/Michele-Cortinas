@@ -1,5 +1,4 @@
 const { sequelize, Sequelize } = require("../config/db");
-const Admin = require("./Admin.js");
 
 const models = {};
 

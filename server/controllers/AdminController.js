@@ -5,12 +5,12 @@ const { exit } = require("process");
 
 require("dotenv").config();
 
-const Admin = require("../models").admin;
 const register = async (req, res) => {
+
   let info = {
     nome: req.body.nome,
     email: req.body.email,
-    senha: await bcrypt.hash(req.body.senha, 10),
+    senha: await bcrypt.hash(req.body.senha, 10)
   };
 
 
@@ -25,7 +25,7 @@ const register = async (req, res) => {
   //* Adicionar endereco e telefone do Admin
   if(insertAdmin){
 
-    res.status(200).json({ msg: "Cliente cadastrado com sucesso!"});
+    res.status(200).json({ msg: "Usuário cadastrado com sucesso!"});
   }else{
     return res.status(500).json({ msg: "Erro ao cadastrar Usuário"})
   }
@@ -33,20 +33,22 @@ const register = async (req, res) => {
 };
 
 const login = async (req, res) => {
+  console.log(req.body)
+
     const email = req.body.email;
     const senha = req.body.senha;
   
     if (!email) {
-      res.status(422).json({ msg: "O email é obrigatório" });
+      return res.status(422).json({ msg: "O email é obrigatório" });
     }
   
     if (!senha || senha.length < 5) {
-      res.status(422).json({ msg: "senha inválida" });
+      return res.status(422).json({ msg: "senha inválida" });
     }
   
-    const admin = await Admin.findOne({ where: { email: email } });
+    const admin = await Admin.findOne({where:{email:email}});
     if (!admin) {
-      return res.status(500).json({ msg: "Cliente não encontrado" });
+      return res.status(500).json({ msg: "Usuário não encontrado" });
     }
   
     const checkSenha = await bcrypt.compare(senha, admin.senha);
