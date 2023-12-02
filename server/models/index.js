@@ -72,7 +72,7 @@ models.pedido.belongsTo(models.variacao, {
 });
 
 
-// sequelize.sync({ force: true });
+ //sequelize.sync({ force: true });
 
 module.exports = models;
 

@@ -1,6 +1,9 @@
 import { Table, TableContainer, TableHead, TableRow, TableCell, TableBody, Paper, Button } from "@mui/material"
 import axios from "axios"
 import { useEffect, useState } from "react";
+import ModalExcluir from "../../components/admin/ModalExcluir";
+import GerarRelatorio from "../../components/admin/GerarRelatorio";
+import RelatorioCard from "../../components/admin/RelatorioCard";
 
 export default function Relatorios() {
     function createData(maisVendCategoria, ticketMedio, qtdPedidosRealizados, qtdPedidosIncompletos, qtdPedidosFinalizados) {
@@ -9,16 +12,17 @@ export default function Relatorios() {
 
     const [relatorios, setRelatorios] = useState([])
     useEffect(() => {
-        axios.get("http://localhost:8081/cliente")
+        axios.get("http://localhost:8081/relatorio")
         .then(({data}) => {
-            setClientes(data)
+            setRelatorios(data)
         })    
     }, [])
 
    
     return (
         <>
-        
+        <h1>Relatórios</h1>
+        <GerarRelatorio></GerarRelatorio>
         <TableContainer component={Paper}>
 
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -33,15 +37,13 @@ export default function Relatorios() {
                 </TableHead>
                 <TableBody>
                 {relatorios.map((relatorio) => (
-                    <TableRow
-                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                    >
-                        <TableCell>{relatorio.maisVendCategoria}</TableCell>
-                        <TableCell>{cliente.ticketMedio}</TableCell>
-                        <TableCell>{cliente.qtdPedidosRealizados}</TableCell>
-                        <TableCell>{cliente.qtdPedidosIncompletos}</TableCell>
-                        <TableCell>{cliente.qtdPedidosFinalizados}</TableCell>
-                    </TableRow>
+                    <RelatorioCard
+                    maisVendCategoria={relatorio.maisVendCategoria}
+                    ticketMedio={relatorio.ticketMedio}
+                    qtdPedidosRealizados={relatorio.qtdPedidosRealizados}
+                    qtdPedidosIncompletos={relatorio.qtdPedidosIncompletos}
+                    qtdPedidosFinalizados={relatorio.qtdPedidosFinalizados}
+                    ></RelatorioCard>
                 ))}
                 </TableBody>
             </Table>

@@ -4,9 +4,9 @@ import ModalExcluir from "../admin/ModalExcluir";
 export default function TelefoneCard() {
     return (
         <Card>
-            <Info>11 95555-5555</Info>
+            <Info>{props.numero}</Info>
             <Action>
-                <span>teste</span>
+                
             </Action>
         </Card>
     )

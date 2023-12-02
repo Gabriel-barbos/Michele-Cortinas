@@ -61,6 +61,9 @@ export function AppRoutes(){
                 <Route path="/dashboard/pedidos" element={
                     <Dashboard page={<Pedidos />} />
                 }/>
+                <Route path="/dashboard/relatorios" element={
+                    <Dashboard page={<Relatorios />} />
+                }/>
                 
                 <Route path="/dashboard/entrar" element={
                     <Register />
@@ -72,7 +75,7 @@ export function AppRoutes(){
                 <Route path="/painel" element={
                     <Painel page={<PerfilClient />} />
                 } />
-                <Route path="/relatorios" element={<Relatorios/>}/>
+                
                 {/* <Route path="/client/dashboard/perfil" element={
                 <DashboardClient page={<PerfilClient />}/>
                 }/>
