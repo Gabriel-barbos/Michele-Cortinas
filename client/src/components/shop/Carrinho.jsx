@@ -60,19 +60,15 @@ export const Carrinho = ({show, changeHandle, closeHandle}) => {
                         altura: product.altura,
                         valorTotal: valorTotal,
                         clientId: clientId,
-                        produtoId: product.id,
-                        variacaoId: product.variacao
+                        produtoId: product.id
+                    }
+
+                    if(product.variacao != ""){
+                        body.variacaoId = product.variacao
                     }
 
                     
-                    axios.post("http://localhost:8081/pedido", {
-                        largura: product.largura,
-                        altura: product.altura,
-                        valorTotal: valorTotal,
-                        clientId: clientId,
-                        produtoId: product.id,
-                        variacaoId: product.variacao
-                    }).then(() => {
+                    axios.post("http://localhost:8081/pedido", body).then(() => {
                         console.log("enviado")
                     })
                 })

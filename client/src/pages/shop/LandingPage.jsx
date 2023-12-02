@@ -21,7 +21,6 @@ export default function LandingPage() {
         <LandingPageHeader></LandingPageHeader>
         <Wrap>
         <Intro>
-            <ImgIntro src={IntroImagem}></ImgIntro>
             <IntroInformations>
                 <IntroText>
                     <Title>
@@ -40,7 +39,7 @@ export default function LandingPage() {
         <Wrap>
         <Qualidades>
         
-            <ImgQualidades src={CortinaQualidades}alt="cortina"/>
+            <ImgQualidades src={CortinaQualidades} alt="cortina"/>
             <InfoQualidades>
                 <Title>
                 Qualidade em <strong>todos</strong> os sentidos.
@@ -98,6 +97,8 @@ const Intro = styled.div `
   align-items: center;
   justify-content: center;
   background-color:black;
+    background-size: cover;
+background-image: url("http://127.0.0.1:5173/src/assets/icons/primeira.jpeg");
 `
 
 const IntroText = styled.div `
@@ -120,13 +121,6 @@ const IntroInformations = styled.div `
     padding: 15px;
     min-height: 100vh;
     
-    
-`
-
-const ImgIntro = styled.img `
-    width: 100%;
-    height: 100%;
-    opacity: 0.6;
     
 `
 
