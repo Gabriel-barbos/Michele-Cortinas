@@ -247,16 +247,9 @@ const searchProduto = async (req, res) => {
 
 
     let produtos = await Produto.findAll({
-      where: {
-        [Op.or]: [{
-            nome: {
-              [Op.like]: '%' + pesquisa + '%'
-            }
-          },
-          {
+      where: {    
             categoriaId: categoria.id
-          }
-        ]
+
       },
       include: {
         model: Imagem,

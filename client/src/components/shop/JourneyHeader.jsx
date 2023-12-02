@@ -3,6 +3,7 @@ import { CarrinhoButton } from './Carrinho'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { IconButton, Link } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import { useState } from 'react';
 
 const JourneyHeader = ({noCart}) => {
     const logado = sessionStorage.getItem("token_client");
@@ -16,7 +17,7 @@ const JourneyHeader = ({noCart}) => {
                         <Logo />
                     </Link>
                 </div>
-                <div className={`menu-items`}>
+                <div className={`menu-items ${menuOpen ? "open" : false}`}>
                     <a href="">Contato</a>
                     <a href="">Sobre nós</a>
                     <a href="">Perguntas frequentes</a>
@@ -26,7 +27,7 @@ const JourneyHeader = ({noCart}) => {
                 </div>
                 <div className="menu-actions">
                     {!noCart && <CarrinhoButton />}
-                    <IconButton>
+                    <IconButton onClick={() => setMenuOpen(!menuOpen)} className="menu-mobile">
                         <MenuIcon />
                     </IconButton>
                 </div>

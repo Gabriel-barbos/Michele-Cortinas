@@ -54,15 +54,21 @@ export const Carrinho = ({show, changeHandle, closeHandle}) => {
                 axios.get("http://localhost:8081/produto/" + product.id).then(({data}) => {
                     let valorTotal = data.preco * product.largura * product.altura;
                     const clientId = decodedToken.id
-                    
-                    axios.post("http://localhost:8081/pedido", {
+
+                    const body = {
                         largura: product.largura,
                         altura: product.altura,
                         valorTotal: valorTotal,
                         clientId: clientId,
-                        produtoId: product.id,
-                        variacaoId: product.variacao
-                    }).then(() => {
+                        produtoId: product.id
+                    }
+
+                    if(product.variacao != ""){
+                        body.variacaoId = product.variacao
+                    }
+
+                    
+                    axios.post("http://localhost:8081/pedido", body).then(() => {
                         console.log("enviado")
                     })
                 })

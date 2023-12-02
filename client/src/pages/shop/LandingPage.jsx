@@ -39,7 +39,7 @@ export default function LandingPage() {
         <Wrap>
         <Qualidades>
         
-            <ImgQualidades src={CortinaQualidades}alt="cortina"/>
+            <ImgQualidades src={CortinaQualidades} alt="cortina"/>
             <InfoQualidades>
                 <Title>
                 Qualidade em <strong>todos</strong> os sentidos.
