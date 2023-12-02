@@ -50,33 +50,39 @@ export const Carrinho = ({show, changeHandle, closeHandle}) => {
         } else {
             let products = JSON.parse(localStorage.getItem("cart")).products;
            
+            let getProdutosPromises = []
             for(let product of products){
-                axios.get("http://localhost:8081/produto/" + product.id).then(({data}) => {
-                    let valorTotal = data.preco * product.largura * product.altura;
-                    const clientId = decodedToken.id
+                getProdutosPromises.push(axios.get("http://localhost:8081/produto/" + product.id))
+            }
 
+            Promise.all(getProdutosPromises).then((res) => {
+                let pedidosPromises = []
+                for(let [i, produto] of res.entries()){
+                    let valorTotal = products[i].altura * products[i].largura * produto.data.preco;
+                    console.log("cliente ", clientId)
                     const body = {
-                        largura: product.largura,
-                        altura: product.altura,
+                        largura: products[i].largura,
+                        altura: products[i].altura,
                         valorTotal: valorTotal,
-                        clientId: clientId,
-                        produtoId: product.id,
-                        variacaoId: product.variacao
+                        clienteId: decodedToken.id,
+                        produtoId: products[i].id
                     }
 
-                    
-                    axios.post("http://localhost:8081/pedido", {
-                        largura: product.largura,
-                        altura: product.altura,
-                        valorTotal: valorTotal,
-                        clientId: clientId,
-                        produtoId: product.id,
-                        variacaoId: product.variacao
-                    }).then(() => {
-                        console.log("enviado")
-                    })
+                    if(products[i].variacao != ""){
+                        body.variacao = products[i].variacao
+                    }
+
+                    console.log(body)
+                    let createPedidosPromises = []
+
+                    pedidosPromises.push(axios.post("http://localhost:8081/pedido", body))
+                }
+                Promise.all(pedidosPromises).then((res) => {
+                    // localStorage.removeItem("cart")
+                    // window.location = "/painel/pedidos"
                 })
-            }
+            })
+
         }
     }
 

@@ -17,6 +17,7 @@ const createPedido = async (req,res) =>{
           clienteId: req.body.clienteId,
           produtoId: req.body.produtoId,
           variacaoId: req.body.variacaoId,
+          status: 0
          })
       }else{
         insertPedido = await Pedido.create({

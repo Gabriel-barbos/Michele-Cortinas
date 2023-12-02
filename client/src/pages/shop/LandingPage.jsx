@@ -19,9 +19,8 @@ export default function LandingPage() {
     return (
         <>
         <LandingPageHeader></LandingPageHeader>
-        <Wrap>
+        <WrapIntro>
         <Intro>
-            <ImgIntro src={IntroImagem}></ImgIntro>
             <IntroInformations>
                 <IntroText>
                     <Title>
@@ -35,12 +34,12 @@ export default function LandingPage() {
             </IntroInformations>
             
         </Intro> 
-        </Wrap>
+        </WrapIntro>
         
         <Wrap>
         <Qualidades>
         
-            <ImgQualidades src={CortinaQualidades}alt="cortina"/>
+            <ImgQualidades src={CortinaQualidades} alt="cortina"/>
             <InfoQualidades>
                 <Title>
                 Qualidade em <strong>todos</strong> os sentidos.
@@ -81,6 +80,17 @@ export default function LandingPage() {
         
     )
 }
+
+const WrapIntro = styled.div `
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    height: 100vh;
+    width: 100%;
+    background-image: url("assets/img/primeira.jpeg");
+`
 
 const Wrap = styled.div `
     margin: 0 auto;
@@ -123,12 +133,6 @@ const IntroInformations = styled.div `
     
 `
 
-const ImgIntro = styled.img `
-    width: 100%;
-    height: 100%;
-    opacity: 0.6;
-    
-`
 
 const Title = styled.span `
     font-size: 48px;
