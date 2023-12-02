@@ -77,8 +77,8 @@ export const Carrinho = ({show, changeHandle, closeHandle}) => {
                     pedidosPromises.push(axios.post("http://localhost:8081/pedido", body))
                 }
                 Promise.all(pedidosPromises).then((res) => {
-                    // localStorage.removeItem("cart")
-                    // window.location = "/painel/pedidos"
+                    localStorage.removeItem("cart")
+                    window.location = "/painel/pedidos"
                 })
             })
 

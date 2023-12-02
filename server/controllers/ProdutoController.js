@@ -8,6 +8,7 @@ const {Op} = require("sequelize");
 
 const path = require("path");
 const fs = require("fs");
+const Pedido = require("../models/Pedido");
 
 const createProduto = async (req, res) => {
   try {

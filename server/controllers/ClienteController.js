@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { cliente, endereco } = require("../models");
+const { cliente, endereco, variacao, produto } = require("../models");
 const { exit } = require("process");
 
 require("dotenv").config();
@@ -8,6 +8,7 @@ require("dotenv").config();
 const Cliente = require("../models").cliente;
 const Endereco = require("../models").endereco;
 const Telefone = require("../models").telefone;
+const Pedido = require("../models").pedido;
 
 const login = async (req, res) => {
 
@@ -281,7 +282,28 @@ const deleteTelefone = async (req,res) =>{
   }
 }
 
+const getAllPedidosFromUser = async(req, res) => {
+  try {
+    let allPedidos = await Pedido.findAll({
+      where: {
+        clienteId: req.params.id
+      }, include:[{
+          model: cliente
+        },
+        {
+          model: produto
+        },
+        {
+          model:variacao
+        }
+      ]
+    })
 
+    res.status(200).json({allPedidos});
+  } catch (error) {
+    res.status(500).json({msg: "Ocorreu um erro: " + error});
+  }
+}
 
 module.exports = {
   login,
@@ -297,4 +319,5 @@ module.exports = {
   addTelefone,
   updateTelefone,
   deleteTelefone,
+  getAllPedidosFromUser
 };

@@ -28,8 +28,6 @@ const createPedido = async (req,res) =>{
           produtoId: req.body.produtoId
          })
       }
-         if(insertPedido) insertPedido.status = 0
-
         res.status(200).json({insertPedido})
     } catch (error) {
        res.status(500).json({msg: "Erro ao adicionar pedido"+ error}) 
@@ -87,7 +85,7 @@ const getOnePedido = async (req,res) =>{
 const updatePedido = async (req,res) =>{
   try {
     let id = req.params.id
-    const updatePedido = await Pedido.update(req.body,{where:{id:id}})
+    const updatePedido = await Pedido.update({status: req.body.status},{where:{id:id}})
     res.status(200).json({msg:"Atualizado com sucesso!"});
   } catch (error) {
     res.status(400).json({error});

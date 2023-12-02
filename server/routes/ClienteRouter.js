@@ -37,4 +37,6 @@ router.post('/telefone', controller.addTelefone)
 router.put('/telefone/:id', controller.updateTelefone)
 router.delete('/telefone/:id',controller.deleteTelefone)
 
+router.get('/pedidos/:id', controller.getAllPedidosFromUser)
+
 module.exports = router
