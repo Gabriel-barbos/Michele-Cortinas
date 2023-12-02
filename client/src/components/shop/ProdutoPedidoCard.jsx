@@ -1,5 +1,7 @@
 export const ProdutoPedidoCard = ({produto}) => {
     return (
-        <p>{produto.nome}</p>
+        <div className="produto-pedido-card">
+
+        </div>
     )
 }
