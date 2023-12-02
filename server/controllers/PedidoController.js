@@ -16,11 +16,12 @@ const createPedido = async (req,res) =>{
           produtoId: req.body.produtoId,
           variacaoId: req.body.variacaoId,
          })
+         
          if(insertPedido) insertPedido.status = 0
 
         res.status(200).json({insertPedido})
     } catch (error) {
-       res.status(500).json({msg: "Erro ao adicionar pedido"}) 
+       res.status(500).json({msg: "Erro ao adicionar pedido: " + error}) 
     }
 }
 

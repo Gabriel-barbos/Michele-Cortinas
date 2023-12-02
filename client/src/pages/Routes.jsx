@@ -28,7 +28,6 @@ import { Pedidos } from "./admin/Pedidos.jsx";
 import { Painel } from "./client/Painel.jsx";
 import Relatorios from "./admin/Relatorios.jsx";
 //import { LoginClient } from "./client/LoginClient.jsx"
-import { Registro } from "./client/Registro.jsx"
 import { Login } from "./client/Login.jsx"
 
 import '../assets/css/login.css'
