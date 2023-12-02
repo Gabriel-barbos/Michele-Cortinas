@@ -13,6 +13,7 @@ const Clientes = () => {
         axios.get("http://localhost:8081/cliente")
         .then(({data}) => {
             setClientes(data)
+            console.log(data)
         })    
     }, [])
 
@@ -41,8 +42,8 @@ const Clientes = () => {
                         <TableCell>{cliente.nome}</TableCell>
                         <TableCell>{cliente.sobrenome}</TableCell>
                         <TableCell>{cliente.email}</TableCell>
-                        <TableCell><ModalInfo label="Ver endereços" title={"Telefones de " + cliente.nome} content="olaaa" /></TableCell>
-                        <TableCell><ModalInfo label="Ver telefones" /></TableCell>
+                        <TableCell><ModalInfo label="Ver endereços" title={"Endereços de " + cliente.nome} content="olaaa" /></TableCell>
+                        <TableCell><ModalInfo label="Ver telefones" title={"Telefones de " + cliente.nome} /></TableCell>
                     </TableRow>
                 ))}
                 </TableBody>

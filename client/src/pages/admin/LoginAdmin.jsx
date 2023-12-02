@@ -4,7 +4,7 @@ import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export function Login() {
+export function LoginAdmin() {
     const token = sessionStorage.getItem("token_admin")
 
     if(token){
@@ -44,7 +44,7 @@ export function Login() {
     <div className="container-login">
     <span className="login-form-title">Área restrita</span>
 
-    <span className="login-form-subtitle">Faça login com a conta de adminstrador</span>
+    <span className="login-form-subtitle">Faça login com a conta de administrador</span>
 
       <div className="wrap-login">
         <form className="login-form" onSubmit={loginSubmitHandler}>

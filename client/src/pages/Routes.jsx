@@ -4,25 +4,33 @@ import {
     Route,
 } from "react-router-dom";
 
-import { Login } from "./admin/Login.jsx";
+import { LoginAdmin } from "./admin/LoginAdmin.jsx"
 import { Perfil } from "./admin/Perfil.jsx";
+import Enderecos from "./client/Enderecos.jsx";
 import { Logout } from "./Logout.jsx";
 import { Dashboard } from "./admin/Dashboard.jsx";
+
+import DashboardClient from "./client/DashboardClient.jsx";
+import PerfilClient from "./client/PerfilClient.jsx";
+import PedidosClient from "./client/PedidosClient.jsx";
+import Telefones from "./client/Telefones.jsx";
+import LandingPage from "./shop/LandingPage.jsx";
+
 import Clientes from "./admin/Clientes.jsx";
-import Modalpopup from "../components/admin/ModalAdicionarCategoria.jsx";
 import { Categorias } from "./admin/Categorias.jsx";
+import { Produtos } from "./admin/Produtos.jsx";
+import { Pedidos } from "./admin/Pedidos.jsx";
 
 import { Painel } from "./client/Painel.jsx";
 import { Registro } from "./client/Registro.jsx"
-import { LoginClient } from "./client/Login.jsx"
-import PerfilClient from "./client/PerfilClient.jsx";
+import { Login } from "./client/Login.jsx"
+import Pedido from "./client/Pedido.jsx"
 
 import '../assets/css/login.css'
 import '../assets/css/dashboard.css'
 import '../assets/css/login.css'
 import Home from "./shop/Home"
-import { Produtos } from "./admin/Produtos.jsx";
-import { Pedidos } from "./admin/Pedidos.jsx";
+
 
 
 export function AppRoutes(){
@@ -31,7 +39,7 @@ export function AppRoutes(){
             <Routes>
                 <Route path="/" element={<Home />}/>
 
-                <Route path="/dashboard/login" element={<Login />}/>
+                <Route path="/dashboard/login" element={<LoginAdmin />}/>
                 <Route path="/dashboard/perfil" element={
                     <Dashboard page={<Perfil />} />}
                 />
@@ -49,22 +57,35 @@ export function AppRoutes(){
                 <Route path="/dashboard/pedidos" element={
                     <Dashboard page={<Pedidos />} />
                 }/>
-                <Route path="/modal" element={<Modalpopup />}/>
 
                 <Route path="/registrar" element={<Registro />}/>
-                <Route path="/entrar" element={<LoginClient />}/>
+                <Route path="/entrar" element={<Login />}/>
 
                 <Route path="/painel" element={
                     <Painel page={<PerfilClient />} />
+                } />
+
+                <Route path="/pedido" element={
+                    <Pedido />
                 } />
 
                 {/* <Route path="/client/dashboard/perfil" element={
                 <DashboardClient page={<PerfilClient />}/>
                 }/>
             
-                <Route path="/client/dashboard/pedidos" element={
+                <Route path="/painel/pedidos" element={
                 <DashboardClient page={<PedidosClient />}/>
-                }/>  */}
+                }/>
+                
+                <Route path="/painel/enderecos" element={
+                <DashboardClient page={<Enderecos />}/>
+                }/>
+
+                <Route path="/painel/telefones" element={
+                <DashboardClient page={<Telefones />}/>
+                }/> */}
+
+                <Route path="/intro" element={<LandingPage/>}/>
             </Routes>
         </Router>
     )

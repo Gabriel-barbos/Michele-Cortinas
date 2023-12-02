@@ -45,7 +45,7 @@ const ProdutoEscolha = ({produto, closeHandle}) => {
             }
             newCoresArr[i].ativo = false
         }
-        console.log(newCoresArr[index].ativo)
+        console.log(newCoresArr[index])
         setVariacoes(newCoresArr)
     }
 

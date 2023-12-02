@@ -8,7 +8,6 @@ require("dotenv").config();
 const register = async (req, res) => {
 
   let info = {
-    nome: req.body.nome,
     email: req.body.email,
     senha: await bcrypt.hash(req.body.senha, 10)
   };
@@ -76,7 +75,9 @@ const login = async (req, res) => {
     try {
       let id = req.params.id;
   
-      const updateAdmin = await Admin.update(req.body, { where: { id: id } });
+      const updateAdmin = await Admin.update(
+        {email: req.body.email, senha: await bcrypt.hash(req.body.senha, 10)},
+        { where: { id: id } });
       res.status(200).send(updateAdmin);
     } catch (error) {
       res.status(400).json({ error });
