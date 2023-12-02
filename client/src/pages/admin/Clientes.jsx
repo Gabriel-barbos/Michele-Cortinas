@@ -20,7 +20,10 @@ const Clientes = () => {
    
     return (
         <>
-        
+        <header className="list-header">
+            <h1>Clientes cadastrados</h1>
+        </header>
+
         <TableContainer component={Paper}>
 
             <Table sx={{ minWidth: 650 }} aria-label="simple table">

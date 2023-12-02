@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
+import { FormControl, Select, MenuItem, InputLabel} from '@mui/material';
+
+import { statusDict } from '../statusDict';
+
 export function PedidoAdminCard(props) {
+
     return (    
         <>
             <Card>
@@ -19,7 +24,6 @@ export function PedidoAdminCard(props) {
                     </Color>
                     <Altura><strong>Altura:</strong> 5m</Altura>
                     <Largura><strong>Largura:</strong> 1,20m</Largura>
-                    <Status><strong>Status:</strong> Em análise</Status>
                 </SecondSection>
 
                 <Description>
@@ -31,7 +35,18 @@ export function PedidoAdminCard(props) {
                     <Value>
                         Valor: R$ 200,00
                     </Value>
-                    <ApproveButton>Aprovar pedido</ApproveButton>
+                    <FormControl fullWidth>
+                        <InputLabel id="demo-simple-select-label">Status</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            label="Status"
+                        >
+                            {Object.values(statusDict).map((s, i) => {
+                                return <MenuItem value={i}>{s}</MenuItem>
+                            })}
+                        </Select>
+                        </FormControl>
                     <WppButton>Entrar em contato com o cliente</WppButton>
                 </ThirdSection>
 
@@ -71,25 +86,6 @@ const Description = styled.p`
     font-size: 12px;
 `
 
-const ApproveButton = styled.button`
-        display: flex;
-        font-size: 16px;
-        font-weight: 500;
-        font-family: inherit;
-        color: white;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
-    
-        cursor: pointer;
-        border: 3px solid #d3d3d3;
-        padding: 10px;
-        margin: 20px 0;
-        background-color: black;
-        border-radius: 6.25px;
-`
-
 const WppButton = styled.button`
         display: flex;
         font-size: 16px;
@@ -102,7 +98,7 @@ const WppButton = styled.button`
         height: 100%;
     
         cursor: pointer;
-        border: 3px solid #030303;
+        border: 1px solid #030303;
         padding: 10px;
         background-color: white;
         border-radius: 6.25px;
@@ -135,7 +131,8 @@ const SecondSection = styled.div `
 const ThirdSection = styled.div `
     display: flex;
     flex-direction: column;
-    min-width: 20%
+    min-width: 20%;
+    gap: 10px;
 `
 
 const CardAction = styled.div `
