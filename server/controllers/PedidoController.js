@@ -1,3 +1,5 @@
+const { cliente, produto, variacao } = require("../models");
+
 require("dotenv").config();
 
 const Pedido = require("../models").pedido;
@@ -11,9 +13,10 @@ const createPedido = async (req,res) =>{
           valorTotal: req.body.valorTotal,
           clienteId: req.body.clienteId,
           produtoId: req.body.produtoId,
-          variacaoId: req.body.variacaoId
+          variacaoId: req.body.variacaoId,
+          status: req.body.status
          })
-         if(insertPedido) insertPedido.status = "Realizado"
+        //  if(insertPedido) insertPedido.status = "Realizado"
 
         res.status(200).json({insertPedido})
     } catch (error) {
@@ -22,13 +25,51 @@ const createPedido = async (req,res) =>{
 }
 
 
+
+const getAllPedido = async (req, res) =>{
+  try {
+
+    const allPedido = await Pedido.findAll({
+      include:[{
+        model: cliente
+      },
+      {
+        model: produto
+      }
+    ]
+    })
+
+    res.status(200).json({allPedido});
+  } catch (error) {
+    res.status(500).json({msg: "Ocorreu um erro"});
+  }
+}
+
+const getOnePedido = async (req,res) =>{
+  try {
+    let id = req.params.id
+    const onePedido = await Pedido.findOne({
+      where:{
+        id:id
+      },
+      include:[{
+        model: cliente
+      },
+      {
+        model: produto
+      }
+    ]
+    })
+    res.status(200).json({onePedido})
+  } catch (error) {
+    res.status(500).json({msg: "Erro"+ error})
+  }
+}
+
+
 const updatePedido = async (req,res) =>{
   try {
-    let info = {
-      largura: req.body.largura,
-      altura: req.body.altura,
-      valorTotal: req.body.valorTotal,
-    }
+    let id = req.params.id
     const updatePedido = await Pedido.update(req.body,{where:{id:id}})
     res.status(200).json({msg:"Atualizado com sucesso!"});
   } catch (error) {
@@ -39,6 +80,7 @@ const updatePedido = async (req,res) =>{
 // delete cliente por id
 const deletePedido = async (req, res) => {
   try {
+    let id = req.params.id
     const deletePedido = Pedido.destroy({where:{id:id}})
     res.status(200).json({msg:"Deletado com sucesso!"});
   } catch (error) {
@@ -64,5 +106,7 @@ module.exports = {
     createPedido,
     updatePedido,
     deletePedido,
+    getAllPedido,
+    getOnePedido,
     atualizarStatus
 };

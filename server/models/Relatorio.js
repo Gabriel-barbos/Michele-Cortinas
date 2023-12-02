@@ -4,13 +4,8 @@ const Relatorio = sequelize.define("relatorios", {
   maisVendCategoria: {
     type: Sequelize.STRING,
     allowNull: true,
-    unique: true
   },
-  maisVendItem: {
-    type: Sequelize.STRING,
-    allowNull: true,
-  },
-  ticketMedia:{
+  ticketMedio:{
     type: Sequelize.DOUBLE
   },
   qtdPedidosRealizados:{
