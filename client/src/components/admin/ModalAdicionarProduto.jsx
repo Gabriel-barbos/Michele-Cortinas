@@ -24,7 +24,6 @@ const ModalPopup = (props) => {
     const [preco, setPreco] = useState("");
     const [descricao, setDescricao] = useState("");
     const [categoria, setCategoria] = useState(""); 
-    const [categoriaId, setCategoriaId] = useState("");
     const [categorias, setCategorias] = useState([]);
     
     useEffect(() => {
@@ -40,7 +39,6 @@ const ModalPopup = (props) => {
     const [sendingFiles, setSendingFiles] = useState(false)
     const [sendedFiles, setSendedFiles] = useState(false)
     
-    
     const [files, setFiles] = useState([]);
     const [variacoes, setVariacoes] = useState([]);
 
@@ -53,6 +51,10 @@ const ModalPopup = (props) => {
         e.preventDefault();
         let formData = new FormData();    //formdata object
 
+        if(nome == "" || preco == "" || descricao == "" || categoria == "" || files.length <= 0){
+            return toast.warn("Nenhum campo pode estar vazio")
+        }
+        
         setSendingFiles(true)
         
         for(let file of files) {

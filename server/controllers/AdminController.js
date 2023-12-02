@@ -9,32 +9,22 @@ const Admin = require("../models").admin;
 const register = async (req, res) => {
   let info = {
     nome: req.body.nome,
-    sobrenome: req.body.sobrenome,
     email: req.body.email,
     senha: await bcrypt.hash(req.body.senha, 10),
   };
 
 
-  const emailIsRegistered = await Cliente.findOne({
+  const emailIsRegistered = await Admin.findOne({
     where: { email: info.email },
   });
   if (emailIsRegistered) {
     return res.status(422).json({ msg: "E-mail já cadastrado" });
   }
 
-  const insertCliente = await Cliente.create(info)
-  //* Adicionar endereco e telefone do cliente
-  if(insertCliente){
+  const insertAdmin = await Admin.create(info)
+  //* Adicionar endereco e telefone do Admin
+  if(insertAdmin){
 
-    const clienteRecente = await Cliente.findOne({
-      attributes: ["id"],
-      order: [["createdAt", "DESC"]],
-    });
-    let clienteId = clienteRecente.id
-    const insertTelefone = await Telefone.create({
-      numero: req.body.telefone,
-      clienteId: clienteId
-    });
     res.status(200).json({ msg: "Cliente cadastrado com sucesso!"});
   }else{
     return res.status(500).json({ msg: "Erro ao cadastrar Usuário"})
@@ -92,6 +82,7 @@ const login = async (req, res) => {
   };
 
   module.exports ={
+    register,
     updateAdmin,
     login
   }

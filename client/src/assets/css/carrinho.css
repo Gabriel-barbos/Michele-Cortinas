@@ -51,6 +51,8 @@
 
 .produto-carrinho-card-img img {
     height: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
 } 
 
 .produto-carrinho-card-sizes {
@@ -75,4 +77,43 @@
     right: -5px;
     top: -5px;
     transform: scale(.8);
+}
+
+.carrinho-footer-action{
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+    border: 1px solid #ccc;
+    width: fit-content;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    transform: scale(1.2);
+    transition: .2s ease;
+}
+
+.carrinho-footer-action:hover{
+    background: #000;
+    color: #fff;
+    border-color: #000;
+}
+
+.carrinho-footer-action .label {
+    transition: .4s ease;
+    width: 0;
+    margin-left: -5px; /* compensando gap */
+    overflow: hidden;
+    white-space: nowrap;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.carrinho-footer-action:hover .label {
+    width: 98px;
+    margin-left: 5px; /* compensando gap */
 }

@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { cliente } = require("../models");
+const { cliente, endereco } = require("../models");
 const { exit } = require("process");
 
 require("dotenv").config();
@@ -67,8 +67,6 @@ const register = async (req, res) => {
   const insertCliente = await Cliente.create(info)
   //* Adicionar endereco e telefone do cliente
   if(insertCliente){
-
-    let numero = req.body.numero
     let endereco = {
       rua: req.body.nome,
       cep: req.body.cep,
@@ -108,8 +106,57 @@ const getAllCliente = async (req, res) => {
 const getOneCliente = async (req, res) => {
   try {
     let id = req.params.id;
-    let cliente = await Cliente.findOne({ where: { id: id } });
-    res.status(200).send(cliente);
+    let clienteEnderecoTel = await Cliente.findOne({where:
+       { id: id },
+      include:[
+        {
+        model: Endereco,
+        where:{clienteId: id}
+        },{
+          model: Telefone,
+          where:{clienteId: id}
+        }]
+      });
+      //* retorna tudooo
+      if(clienteEnderecoTel!= null) return res.status(200).send(clienteEnderecoTel);
+      
+      //* RETORNA APENAS O CLIENTE E SEU ENDEREÇO CASO NÃO HAJA TELEFONE
+      if(clienteEnderecoTel == null || !clienteEnderecoTel){
+        
+        let clienteEndereco = await Cliente.findOne({where: {id:id},
+        include:{
+          model: Endereco,
+          where: {clienteId: id}
+        }
+      })
+      //* RETORNA SOMENTE O CLIENTE E TELEFONE
+        if(clienteEndereco == null || !clienteEndereco){
+            let clienteTelefone = await Cliente.findOne({where: {id:id},
+              include:{
+                model: Telefone,
+                where: {clienteId: id}
+              }
+            })
+
+              //* RETORNA SOMENTE O CLIENTE
+              if(clienteTelefone == null || !clienteTelefone){
+                const clienteSolo = await Cliente.findOne({where:{
+                  id:id
+                }})
+                return res.status(200).send(clienteSolo);
+              }
+          return res.status(200).send(clienteTelefone);
+        }
+        return res.status(200).json({clienteEndereco})
+      }
+      
+      else if(clienteEndereco == null || !clienteEndereco){
+        
+      }
+
+      
+      
+    
   } catch (error) {
     res.status(400).json({ error });
   }
@@ -138,6 +185,8 @@ const deleteCliente = async (req, res) => {
   }
 };
 
+
+//* ======================== ENDEREÇO ============================
 const addEndereco = async (req,res) =>{
   try {
     const insertEndereco = Endereco.create({
@@ -154,6 +203,74 @@ const addEndereco = async (req,res) =>{
   }
 }
 
+const updateEndereco = async (req,res) =>{
+  try {
+    let id = req.params.id;
+    const updateEndereco = await Endereco.update(req.body, { where: { id: id } });
+    res.status(200).json({msg:"Endereço atualizado com sucesso!"});
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({msg:"Erro ao atualizar endereço"});
+  }
+}
+
+const deleteEndereco = async (req,res) =>{
+  try {
+    let id = req.params.id;
+    const insertEndereco = Endereco.destroy({
+      where:{
+        id:id
+      }
+    });
+    res.status(200).json({msg:"Endereço excluido com sucesso!"});
+  } catch (error) {
+    res.status(500).json({msg:"Erro ao excluir endereço"});
+  }
+}
+
+
+
+
+//* ================================== TELEFONE ==================================
+const addTelefone = async (req,res) =>{
+  try {
+    const insertTelefone = Telefone.create({
+      numero: req.body.numero,
+      clienteId: req.body.id
+    });
+    res.status(200).json({msg:"Telefone adicionado com sucesso!"});
+  } catch (error) {
+    res.status(500).json({msg:"Erro ao adicionar telefone"});
+  }
+}
+
+const updateTelefone = async (req,res) =>{
+  try {
+    let id = req.params.id;
+    const updateTelefone = await Telefone.update(req.body, { where: { id: id } });
+    res.status(200).json({msg:"Telefone atualizado com sucesso!"});
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({msg:"Erro ao atualizar telefone"});
+  }
+}
+
+const deleteTelefone = async (req,res) =>{
+  try {
+    let id = req.params.id;
+    const deleteTelefone = Telefone.destroy({
+      where:{
+        id:id
+      }
+    });
+    res.status(200).json({msg:"Telefone excluido com sucesso!"});
+  } catch (error) {
+    res.status(500).json({msg:"Erro ao excluir telefone"});
+  }
+}
+
+
+
 module.exports = {
   login,
   register,
@@ -161,5 +278,10 @@ module.exports = {
   getOneCliente,
   updateCliente,
   deleteCliente,
-  addEndereco
+  addEndereco,
+  updateEndereco,
+  deleteEndereco,
+  addTelefone,
+  updateTelefone,
+  deleteTelefone,
 };

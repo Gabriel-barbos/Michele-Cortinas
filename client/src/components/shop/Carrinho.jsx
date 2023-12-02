@@ -3,8 +3,9 @@ import '../../assets/css/carrinho.css'
 import CloseIcon from '@mui/icons-material/Close';
 import ProdutoCarrinhoCard from './ProdutoCarrinhoCard';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import { useState, useEffect } from 'react';
-
+import { useState } from 'react';
+import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
+import { ToastContainer, toast } from 'react-toastify';
 export const CarrinhoButton = () => {
     const [showCarrinho, setShowCarrinho] = useState(false);
     const [itensNoCarrinho, setItensNoCarrinho] = useState(localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")).products : []) 
@@ -36,8 +37,18 @@ export const Carrinho = ({show, changeHandle, closeHandle}) => {
         changeHandle()
     }
 
+    const checkoutHandle = () => {
+        let token = sessionStorage.getItem("token_client");
+        if(!token){
+            return toast.warn("Você deve estar logado para fazer um pedido")
+        } else {
+            return alert("foi")
+        }
+    }
+
     return(
     <div className={`carrinho-container ${show ? "open" : ""}`}>
+        <ToastContainer />
         <div className="carrinho-container-header">
             <IconButton onClick={closeHandle}>
                 <CloseIcon />
@@ -49,5 +60,9 @@ export const Carrinho = ({show, changeHandle, closeHandle}) => {
                 return <ProdutoCarrinhoCard produto={produto} onDelete={deleteHandle} index={index} />
             })}
         </Stack>
+        <button className="carrinho-footer-action" onClick={checkoutHandle}>
+            <ShoppingCartCheckoutIcon />
+            <h4 className='label'>Fazer pedido</h4>
+        </button>
     </div>)
 }

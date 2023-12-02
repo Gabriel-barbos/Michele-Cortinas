@@ -70,8 +70,3 @@ models.relatorio.belongsTo(models.admin);
 
 module.exports = models;
 
-models.admin.create({
-  nome: "admin1",
-  email: "admin@gmail.com",
-  senha: "123"
-})
