@@ -19,7 +19,7 @@ export default function LandingPage() {
     return (
         <>
         <LandingPageHeader></LandingPageHeader>
-        <Wrap>
+        <WrapIntro>
         <Intro>
             <IntroInformations>
                 <IntroText>
@@ -34,7 +34,7 @@ export default function LandingPage() {
             </IntroInformations>
             
         </Intro> 
-        </Wrap>
+        </WrapIntro>
         
         <Wrap>
         <Qualidades>
@@ -81,6 +81,17 @@ export default function LandingPage() {
     )
 }
 
+const WrapIntro = styled.div `
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    height: 100vh;
+    width: 100%;
+    background-image: url("assets/img/primeira.jpeg");
+`
+
 const Wrap = styled.div `
     margin: 0 auto;
     justify-content: center;
@@ -97,8 +108,6 @@ const Intro = styled.div `
   align-items: center;
   justify-content: center;
   background-color:black;
-    background-size: cover;
-background-image: url("http://127.0.0.1:5173/src/assets/icons/primeira.jpeg");
 `
 
 const IntroText = styled.div `
@@ -123,6 +132,7 @@ const IntroInformations = styled.div `
     
     
 `
+
 
 const Title = styled.span `
     font-size: 48px;
