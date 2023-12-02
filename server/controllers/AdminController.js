@@ -21,7 +21,6 @@ const register = async (req, res) => {
   }
 
   const insertAdmin = await Admin.create(info)
-  //* Adicionar endereco e telefone do Admin
   if(insertAdmin){
 
     res.status(200).json({ msg: "Usuário cadastrado com sucesso!"});

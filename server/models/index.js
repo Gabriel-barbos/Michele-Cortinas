@@ -64,6 +64,9 @@ models.produto.belongsTo(models.categoria);
 models.admin.hasMany(models.relatorio); 
 models.relatorio.belongsTo(models.admin);
 
+models.variacao.hasOne(models.pedido); 
+models.pedido.belongsTo(models.variacao);
+
 
 // sequelize.sync({ force: true });
 

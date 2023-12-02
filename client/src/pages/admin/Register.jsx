@@ -18,7 +18,7 @@ export function Register() {
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    if(email == "" || password == "" || nome == "" || sobrenome == "", telefone == ""){
+    if(email == "" || password == ""){
       return toast.warn("Nenhum campo pode estar vazio")
     }
 
@@ -33,7 +33,7 @@ export function Register() {
             senha: password
           }
     ).then(() => {
-        window.location = "/dashboard"
+        window.location = "/dashboard/perfil"
     }).catch((err) => {
         toast.warn(err.response.data.msg)
     })
