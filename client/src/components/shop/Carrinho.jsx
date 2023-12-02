@@ -50,29 +50,39 @@ export const Carrinho = ({show, changeHandle, closeHandle}) => {
         } else {
             let products = JSON.parse(localStorage.getItem("cart")).products;
            
+            let getProdutosPromises = []
             for(let product of products){
-                axios.get("http://localhost:8081/produto/" + product.id).then(({data}) => {
-                    let valorTotal = data.preco * product.largura * product.altura;
-                    const clientId = decodedToken.id
+                getProdutosPromises.push(axios.get("http://localhost:8081/produto/" + product.id))
+            }
 
+            Promise.all(getProdutosPromises).then((res) => {
+                let pedidosPromises = []
+                for(let [i, produto] of res.entries()){
+                    let valorTotal = products[i].altura * products[i].largura * produto.preco;
+                    const clientId = decodedToken.id
+    
                     const body = {
-                        largura: product.largura,
-                        altura: product.altura,
+                        largura: products[i].largura,
+                        altura: products[i].altura,
                         valorTotal: valorTotal,
                         clientId: clientId,
-                        produtoId: product.id
+                        produtoId: products[i].altura.id
                     }
 
-                    if(product.variacao != ""){
-                        body.variacaoId = product.variacao
+                    if(products[i].variacao != ""){
+                        body.variacao = products[i].variacao
                     }
 
-                    
-                    axios.post("http://localhost:8081/pedido", body).then(() => {
-                        console.log("enviado")
-                    })
+                    let createPedidosPromises = []
+
+                    pedidosPromises.push(axios.post("http://localhost:8081/pedido", body))
+                }
+                Promise.all(pedidosPromises).then((res) => {
+                    localStorage.removeItem("cart")
+                    window.location = "/painel/pedidos"
                 })
-            }
+            })
+
         }
     }
 

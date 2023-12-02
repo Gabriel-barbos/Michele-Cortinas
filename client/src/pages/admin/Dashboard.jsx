@@ -1,11 +1,11 @@
 import { SideBar } from "../../components/admin/SideBar"
 
 export function Dashboard({page}){
-    const token = sessionStorage.getItem("token_admin")
+    // const token = sessionStorage.getItem("token_admin")
 
-    if(!token){
-        return window.location = "/dashboard/login"
-    }
+    // if(!token){
+    //     return window.location = "/dashboard/login"
+    // }
     
     return (
         <>
