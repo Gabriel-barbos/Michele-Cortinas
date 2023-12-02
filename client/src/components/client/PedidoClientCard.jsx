@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export function PedidoCard(props) {
+export function PedidoClientCard(props) {
     return (
         <>
             <Card>
@@ -13,24 +13,23 @@ export function PedidoCard(props) {
                 </FirstSection>
 
                 <SecondSection>
-                    <Client><strong>Cliente:</strong> Danilo</Client>
                     <Color>
                         <strong>Cor:</strong> Azul
                     </Color>
                     <Altura><strong>Altura:</strong> 5m</Altura>
                     <Largura><strong>Largura:</strong> 1,20m</Largura>
                 </SecondSection>
+
                 <Description>
                     Uma descrição muito longaa longaa longaa longaa longaa longaa
                     longaa longaa longaa longaa  longaa longaa longaa longaa longaa longaa longaa longaa longaa longaa
                 </Description>
-                <ThirdSection>
-                <Value>
-                    Valor: R$ 200,00
-                </Value>
-                <ApproveButton>Aprovar pedido</ApproveButton>
 
-                <WppButton>Entrar em contato com o cliente</WppButton>
+                <ThirdSection>
+                    <Value>
+                        Valor: R$ 200,00
+                    </Value>
+                    <WppButton>Entrar em contato com o cliente</WppButton>
                 </ThirdSection>
 
             </Card>
@@ -121,13 +120,13 @@ const Altura = styled.span`
 const FirstSection = styled.div `
     display: flex;
     flex-direction: column;
-    min-width: 30%
+    min-width: 25%
 `
 
 const SecondSection = styled.div `
     display: flex;
     flex-direction: column;
-    min-width: 15%;
+    min-width: 20%;
 `
 
 const ThirdSection = styled.div `
@@ -137,5 +136,9 @@ const ThirdSection = styled.div `
 `
 
 const CardAction = styled.div `
+    
+`
+
+const Status = styled.span `
     
 `

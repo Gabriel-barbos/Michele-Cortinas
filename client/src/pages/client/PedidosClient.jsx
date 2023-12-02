@@ -1,6 +1,7 @@
-import { PedidoCard } from "../../components/PedidoCard"
+
+import { PedidoClientCard } from "../../components/client/PedidoClientCard"
 import styled from "styled-components"
-export function PedidosClient(){
+export default function PedidosClient(){
     return (
         <div className="dashboard-container">
             <div className="dashboard-content">
@@ -8,7 +9,7 @@ export function PedidosClient(){
                 <h1>Pedidos</h1>
             </header>
             <div>
-                <PedidoCard></PedidoCard>
+                <PedidoClientCard></PedidoClientCard>
             </div>
             </div>
         </div>

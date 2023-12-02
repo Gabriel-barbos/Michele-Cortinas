@@ -30,7 +30,7 @@ export function LoginClient() {
       }
     ).then((response) => {
         sessionStorage.setItem("token_client", response.data.token)
-        window.location = "/dashboard/perfil"
+        window.location = "/painel/perfil"
     }).catch((err) => {
         toast.warn(err.response.data.msg);
         console.log(err)

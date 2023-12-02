@@ -6,10 +6,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function PerfilClient() {
-    const token = sessionStorage.getItem("token")
+    const token = sessionStorage.getItem("token_client")
 
     if(!token){
-        return window.location = "/login"
+        return window.location = "/entrar"
     }
 
     const { decodedToken, isExpired } = useJwt(token);

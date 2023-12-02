@@ -1,4 +1,4 @@
-import { PedidoCard } from "../../components/PedidoCard"
+import { PedidoAdminCard } from "../../components/admin/PedidoAdminCard"
 
 export function Pedidos(){
     return (
@@ -8,7 +8,7 @@ export function Pedidos(){
                 <h1>Pedidos</h1>
             </header>
 
-            <PedidoCard></PedidoCard>
+            <PedidoAdminCard></PedidoAdminCard>
             </div>
         </div>
     )
