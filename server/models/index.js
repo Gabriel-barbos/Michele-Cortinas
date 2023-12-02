@@ -66,7 +66,7 @@ models.admin.hasMany(models.relatorio);
 models.relatorio.belongsTo(models.admin);
 
 
-// sequelize.sync({ force: true });
+sequelize.sync({ force: true });
 
 module.exports = models;
 

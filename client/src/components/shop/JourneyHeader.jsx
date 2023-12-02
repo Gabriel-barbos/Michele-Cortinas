@@ -3,7 +3,7 @@ import { CarrinhoButton } from './Carrinho'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { Link } from '@mui/material';
 
-const JourneyHeader = () => {
+const JourneyHeader = ({noCart}) => {
     const logado = sessionStorage.getItem("token_client");
 
     return (
@@ -21,7 +21,7 @@ const JourneyHeader = () => {
                     <a href="/dashboard/login" className="admin-area"><LockOutlinedIcon /></a>
                     {!logado && <a href="/entrar" className="client-area">Entrar na conta</a>}
                     {logado && <a href="/painel" className="client-area">Área do cliente</a>}
-                    <CarrinhoButton />
+                    {!noCart && <CarrinhoButton />}
                 </div>
             </nav>  
         </header>

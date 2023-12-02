@@ -13,6 +13,7 @@ const Clientes = () => {
         axios.get("http://localhost:8081/cliente")
         .then(({data}) => {
             setClientes(data)
+            console.log(data)
         })    
     }, [])
 

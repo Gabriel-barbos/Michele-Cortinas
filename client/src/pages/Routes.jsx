@@ -4,7 +4,7 @@ import {
     Route,
 } from "react-router-dom";
 
-import { Login } from "./admin/Login.jsx";
+import { LoginAdmin } from "./admin/LoginAdmin.jsx"
 import { Perfil } from "./admin/Perfil.jsx";
 import Enderecos from "./client/Enderecos.jsx";
 import { Logout } from "./Logout.jsx";
@@ -23,8 +23,7 @@ import { Pedidos } from "./admin/Pedidos.jsx";
 
 import { Painel } from "./client/Painel.jsx";
 import { Registro } from "./client/Registro.jsx"
-import { LoginClient } from "./client/Login.jsx"
-import PerfilClient from "./client/PerfilClient.jsx"
+import { Login } from "./client/Login.jsx"
 import Pedido from "./client/Pedido.jsx"
 
 import '../assets/css/login.css'
@@ -40,7 +39,7 @@ export function AppRoutes(){
             <Routes>
                 <Route path="/" element={<Home />}/>
 
-                <Route path="/dashboard/login" element={<Login />}/>
+                <Route path="/dashboard/login" element={<LoginAdmin />}/>
                 <Route path="/dashboard/perfil" element={
                     <Dashboard page={<Perfil />} />}
                 />
@@ -60,7 +59,7 @@ export function AppRoutes(){
                 }/>
 
                 <Route path="/registrar" element={<Registro />}/>
-                <Route path="/entrar" element={<LoginClient />}/>
+                <Route path="/entrar" element={<Login />}/>
 
                 <Route path="/painel" element={
                     <Painel page={<PerfilClient />} />
@@ -84,7 +83,7 @@ export function AppRoutes(){
 
                 <Route path="/painel/telefones" element={
                 <DashboardClient page={<Telefones />}/>
-                }/>
+                }/> */}
 
                 <Route path="/intro" element={<LandingPage/>}/>
             </Routes>
